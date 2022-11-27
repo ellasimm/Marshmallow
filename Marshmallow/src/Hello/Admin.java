@@ -2,7 +2,7 @@ package Hello;
 
 public class Admin extends User{
 	
-	public int adminId;
+	private int adminId;
 	
 	public void addFlight() {
 	}

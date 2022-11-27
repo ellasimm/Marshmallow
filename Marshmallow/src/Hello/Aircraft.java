@@ -1,8 +1,9 @@
 package Hello;
 public class Aircraft {
 	
-	String aircraftMake;
-	String aircraftModel;
-	int aircraftId;
-	int aircraftCapacity;
+	private String aircraftMake;
+	private String aircraftModel;
+	private int aircraftId;
+	private String airlineName;
+	private int aircraftCapacity;
 }

@@ -1,12 +1,12 @@
 package Hello;
 public class User {
 	
-	String userName; 
-	String password;
-	public String firstName;
-	public String lastName;
-	public String email;
-	String securityQuestion;
+	private String userName; 
+	private String password;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String securityQuestion;
 	
 	public void register() {
 	}
