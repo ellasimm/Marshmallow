@@ -26,12 +26,12 @@ public static void main(String[] args) {
 		
 		firstStage.setTitle("Main");
 		
-		Button login = new Button("Login");
+		login = new Button("Login");
 		login.setTranslateY(-270);
 		login.setTranslateX(195);
 		login.setOnAction(this);
 		
-		Button register = new Button("Register");
+		register = new Button("Register");
 		register.setTranslateY(-270);
 		register.setTranslateX(250);
 		register.setOnAction(this);
