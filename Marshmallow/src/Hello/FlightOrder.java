@@ -3,17 +3,17 @@ import java.util.Date;
 public class FlightOrder {
 	
 	private int orderNumber;
-	private int flightId;
+	private Flights flightId;
 	private Date bookingDate;
 	private int[] seatNumbers;
 	private String[] passengersFullNames;
 	private int[] passengersSsn;
 	private Date[] passengersDateOfBirth;
-	private String fromCity;
-	private String toCity;
-	private Date flightDate;
-	private int flightTime;
-	private float unitCost;
+	private Flights fromCity;
+	private Flights toCity;
+	private Flights flightDate;
+	private Flights flightTime;
+	private Flights unitCost;
 	private float subtotal;
 	private boolean bookingStatus;
 	private Customer firstName;
@@ -23,9 +23,9 @@ public class FlightOrder {
 	
 	public FlightOrder(){
 	}
-	public FlightOrder(int orderNumber, int flightId, Date bookingDate, int[] seatNumbers, String[] passengersFullNames, 
-			int[] passengersSsn, Date[] passengersDateOfBirth, String fromCity, String toCity, Date flightDate,
-			int flightTime, float unitCost, float subtotal, boolean bookingStatus){
+	public FlightOrder(int orderNumber, Flights flightId, Date bookingDate, int[] seatNumbers, String[] passengersFullNames, 
+			int[] passengersSsn, Date[] passengersDateOfBirth, Flights fromCity, Flights toCity, Flights flightDate,
+			Flights flightTime, Flights unitCost, float subtotal, boolean bookingStatus){
 		this.orderNumber = orderNumber;
 		this.flightId = flightId;
 		this.bookingDate = bookingDate;
