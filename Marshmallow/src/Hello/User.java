@@ -14,19 +14,11 @@ public class User {
 	}
 	public void logOut(){
 	}
-	public void setFirstName(){
-	}
-	public void setLastName() {
-	}
 	public void setAddress() {
 	}
 	public void setZip() {
 	}
 	public void setState() {
-	}
-	public void setEmail() {
-	}
-	public void setSecurityQuestion() {
 	}
 	public void goMainMenu() {
 	}
@@ -37,5 +29,41 @@ public class User {
 	public void retrievePassword() {
 	}
 	public void searchFlight() {
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getSecurityQuestion() {
+		return securityQuestion;
+	}
+	public void setSecurityQuestion(String securityQuestion) {
+		this.securityQuestion = securityQuestion;
 	}
 }
