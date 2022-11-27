@@ -12,6 +12,9 @@ import javafx.stage.Stage;
 
 public class ReservationDemo extends Application implements EventHandler<ActionEvent>{
 
+	Button login;
+	Button register;
+	
 public static void main(String[] args) {
 		
 		launch(args);
@@ -46,6 +49,14 @@ public static void main(String[] args) {
 
 	@Override
 	public void handle(ActionEvent event) {
+		
+		if (event.getSource() == login) {
+			System.out.println("you're logged in");
+		}
+		
+		if (event.getSource() == register) {
+			System.out.println("youre registered");
+		}
 		
 	}
 	
