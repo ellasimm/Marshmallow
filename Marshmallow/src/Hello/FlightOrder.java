@@ -5,7 +5,8 @@ public class FlightOrder {
 	private int orderNumber;
 	private Flights flightId;
 	private Date bookingDate;
-	private int[] seatNumbers;
+	private Flights[] seatNumbers;
+	private int[] passengersSeatNumbers;
 	private String[] passengersFullNames;
 	private int[] passengersSsn;
 	private Date[] passengersDateOfBirth;
@@ -23,13 +24,13 @@ public class FlightOrder {
 	
 	public FlightOrder(){
 	}
-	public FlightOrder(int orderNumber, Flights flightId, Date bookingDate, int[] seatNumbers, String[] passengersFullNames, 
+	public FlightOrder(int orderNumber, Flights flightId, Date bookingDate, int[] passengersSeatNumbers, String[] passengersFullNames, 
 			int[] passengersSsn, Date[] passengersDateOfBirth, Flights fromCity, Flights toCity, Flights flightDate,
 			Flights flightTime, Flights unitCost, float subtotal, boolean bookingStatus){
 		this.orderNumber = orderNumber;
 		this.flightId = flightId;
 		this.bookingDate = bookingDate;
-		this.seatNumbers = seatNumbers;
+		this.passengersSeatNumbers = passengersSeatNumbers;
 		this.passengersFullNames = passengersFullNames;
 		this.passengersSsn = passengersSsn;
 		this.passengersDateOfBirth = passengersDateOfBirth;
@@ -51,18 +52,9 @@ public class FlightOrder {
 	}
 	public void goMainMenu() {
 	}
-	public Customer getFirstName() {
-		return firstName;
+	public int[] getPassengersSeatNumbers() {
+		return passengersSeatNumbers;
 	}
-	public Customer getLastName() {
-		return lastName;
-	}
-	public Customer getEmail() {
-		return email;
-	}
-	public int[] getSeatNumbers() {
-		return seatNumbers;
-	}	
 	public String[] getPassengersFullNames() {
 		return passengersFullNames;
 	}	
@@ -72,25 +64,16 @@ public class FlightOrder {
 	public Date[] getPassengersDateOfBirth() {
 		return passengersDateOfBirth;
 	}
-	public Customer setFirstName(Customer firstName) {
-		return firstName;
-	}
-	public Customer setLastName(Customer lastName) {
-		return lastName;
-	}
-	public Customer setEmail(Customer email) {
-		return email;
-	}
-	public int[] setSeatNumbers(int[] seatNumbers) {
-		return seatNumbers;
+	public void setPassengersSeatNumbers(int[] passengersSeatNumbers) {
+		passengersSeatNumbers = passengersSeatNumbers;
 	}	
-	public String[] setPassengersFullNames(String[] passengersFullNames) {
-		return passengersFullNames;
+	public void setPassengersFullNames(String[] passengersFullNames) {
+		passengersFullNames = passengersFullNames;
 	}	
-	public int[] setPassengersSsn(int[] passengersSsn) {
-		return passengersSsn;
+	public void setPassengersSsn(int[] passengersSsn) {
+		passengersSsn = passengersSsn;
 	}
-	public Date[] setPassengersDateOfBirth(Date[] passengersDateOfBirth) {
-		return passengersDateOfBirth;
+	public void setPassengersDateOfBirth(Date[] passengersDateOfBirth) {
+		passengersDateOfBirth = passengersDateOfBirth;
 	}
 }
