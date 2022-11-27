@@ -16,10 +16,10 @@ public class FlightOrder {
 	private float unitCost;
 	private float subtotal;
 	private boolean bookingStatus;
-	private String firstName = Customer.firstName;
-	private String lastName = Customer.lastName;
-	private String email = Customer.email;
-	private int ssn = Customer.ssn;
+	private Customer firstName;
+	private Customer lastName;
+	private Customer email;
+	private Customer ssn;
 	
 	public FlightOrder(){
 	}
@@ -51,13 +51,13 @@ public class FlightOrder {
 	}
 	public void goMainMenu() {
 	}
-	public String getFirstName() {
+	public Customer getFirstName() {
 		return firstName;
 	}
-	public String getLastName() {
+	public Customer getLastName() {
 		return lastName;
 	}
-	public String getEmail() {
+	public Customer getEmail() {
 		return email;
 	}
 	public int[] getSeatNumbers() {
@@ -72,25 +72,25 @@ public class FlightOrder {
 	public Date[] getPassengersDateOfBirth() {
 		return passengersDateOfBirth;
 	}
-	public String setFirstName(String firstName) {
-		this.firstName = firstName;
+	public Customer setFirstName(Customer firstName) {
+		return firstName;
 	}
-	public String setLastName(String lastName) {
-		this.lastName = lastName;
+	public Customer setLastName(Customer lastName) {
+		return lastName;
 	}
-	public String setEmail(String email) {
-		this.email = email;
+	public Customer setEmail(Customer email) {
+		return email;
 	}
 	public int[] setSeatNumbers(int[] seatNumbers) {
-		this.seatNumbers = seatNumbers;
+		return seatNumbers;
 	}	
 	public String[] setPassengersFullNames(String[] passengersFullNames) {
-		this.passengersFullNames = passengersFullNames;
+		return passengersFullNames;
 	}	
 	public int[] setPassengersSsn(int[] passengersSsn) {
-		this.passengersSsn = passengersSsn;
+		return passengersSsn;
 	}
 	public Date[] setPassengersDateOfBirth(Date[] passengersDateOfBirth) {
-		this.passengersDateOfBirth = passengersDateOfBirth;
+		return passengersDateOfBirth;
 	}
 }
