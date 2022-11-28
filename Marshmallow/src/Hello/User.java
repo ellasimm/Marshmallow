@@ -19,12 +19,70 @@ public class User {
 		this.email = email;
 		this.securityQuestion = securityQuestion;
 	}
-	public void register() {
+	public void register() throws FileNotFoundException{
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter username: ");
+		this.userName = input.nextLine();
+		System.out.println("Enter password: ");
+		this.password = input.nextLine();
+		System.out.println("Confirm Password: ");
+		String confirmPassword = input.nextLine();
+		
+		userName = userName.trim();
+		password = password.trim();
+		confirmPassword = confirmPassword.trim();
+		
+		String str = userName + " " + confirmPassword;
+		if (password.equals(confirmPassword)) {
+			File f = new File("User.txt");
+			Scanner scan = new Scanner(f);
+			int flag = 0;
+			while(scan.hasNextLine()) {
+				String data = scan.nextLine();
+				if(data.equals(str)) {
+					System.out.println("Already Registered.");
+					flag = 1;
+					System.out.println("1. Registeration");
+					System.out.println("2. LogIn");
+					
+					System.out.println("Enter your choice: ");
+					int choice = input.nextInt();
+					if(choice == 1) {
+						this.register();
+					}
+					else if (choice == 2){
+						this.logIn();
+					}
+					else {
+						System.out.println("Enter proper choice.");
+					}
+					break;
+				}
+				scan.close();
+				
+				if (flag == 0) {
+					try {
+						BufferedWriter out = new BufferedWriter(new FileWriter("User.txt", true));
+						out.write(userName +" "+ password+ "\n");
+						out.close();
+					}catch(IOException ex) {
+						System.out.println("Exception happened" + ex);
+					}
+					System.out.println("Successfully Registered.");
+					System.out.println("Please Login");
+					this.logIn();
+				}
+				
+			}
+		}
+		input.close();
+		
 	}
 	public void logIn() {
 	}
 	public void logOut(){
 	}
+
 	public void goMainMenu() {
 	}
 	public void bookFlight() {
@@ -50,6 +108,7 @@ public class User {
 	public String getEmail() {
 		return email;
 	}
+
 	public String getSecurityQuestion() {
 		return securityQuestion;
 	}
