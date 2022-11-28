@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public abstract class User {
+public class User {
 	
 	private String userName; 
 	private String password;
@@ -196,7 +196,6 @@ public abstract class User {
 	public String getEmail() {
 		return email;
 	}
-
 	public String getSecurityQuestion() {
 		return securityQuestion;
 	}

@@ -4,10 +4,17 @@ import java.util.Random;
 
 public class Customer extends User{
 	
+	private User userName; 
+	private User password;
+	private User firstName;
+	private User lastName;
+	private User email;
+	private User securityQuestion;
 	private int passengerId;
 	private String address;
 	private int zip;
 	private String state;
+<<<<<<< HEAD
 	private int ssn;
 	
 	public Customer(){
@@ -67,4 +74,23 @@ public class Customer extends User{
 	public void setSsn(int ssn) {
 		this.ssn = ssn;
 	}
+=======
+	
+	public Customer() {
+	}
+	public Customer(User userName, User password, User firstName, User lastName, User email,
+			        User securityQuestion, int passengerId, String address, int zip, String state) {
+		this.userName = userName;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.securityQuestion = securityQuestion;
+		this.passengerId = passengerId;
+		this.address = address;
+		this.zip = zip;
+		this.state = state;
+	}
+	
+>>>>>>> branch 'master' of https://github.com/ellasimm/Marshmallow.git
 }
