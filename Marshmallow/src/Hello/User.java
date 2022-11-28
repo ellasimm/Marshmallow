@@ -172,26 +172,25 @@ public class User {
 	public String getEmail() {
 		return email;
 	}
-
 	public String getSecurityQuestion() {
 		return securityQuestion;
 	}
 	public void setUserName(String userName){
-		userName = userName;
+		this.userName = userName;
 	}
 	public void setPassword(String password) {
-		password = password;
+		this.password = password;
 	}
 	public void setFirstName(String firstName) {
-		firstName = firstName;
+		this.firstName = firstName;
 	}
 	public void setLastName(String lastName) {
-		lastName = lastName;
+		this.lastName = lastName;
 	}
 	public void setEmail(String email) {
-		email = email;
+		this.email = email;
 	}
 	public void setSecurityQuestion(String securityQuestion) {
-		securityQuestion = securityQuestion;
+		this.securityQuestion = securityQuestion;
 	}
 }

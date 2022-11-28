@@ -56,27 +56,27 @@ public class Flights {
 		return unitCost;
 	}
 	public void setFlightId(int flightId) {
-		flightId = flightId;
+		this.flightId = flightId;
 	}
 	public void setCities(String[] cities) {
-		cities = cities;
+		this.cities = cities;
 	}
 	public void setFromCity(String fromCity) {
-		fromCity = fromCity;
+		this.fromCity = fromCity;
 	}
 	public void setToCity(String toCity) {
-		toCity = toCity;
+		this.toCity = toCity;
 	}
 	public void setAvailableSeatNumbers(int[] availableSeatNumbers) {
-		availableSeatNumbers = availableSeatNumbers;
+		this.availableSeatNumbers = availableSeatNumbers;
 	}
 	public void setFlightDate(Date flightDate) {
-		flightDate = flightDate;
+		this.flightDate = flightDate;
 	}
 	public void setFlightTime(int flightTime) {
-		flightTime = flightTime;
+		this.flightTime = flightTime;
 	}
 	public void setUnitCost(float unitCost) {
-		unitCost = unitCost;
+		this.unitCost = unitCost;
 	}
 }

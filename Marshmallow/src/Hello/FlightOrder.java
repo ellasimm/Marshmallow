@@ -63,15 +63,15 @@ public class FlightOrder {
 		return passengersDateOfBirth;
 	}
 	public void setBookedSeatNumbers(int[] bookedSeatNumbers) {
-		bookedSeatNumbers = bookedSeatNumbers;
+		this.bookedSeatNumbers = bookedSeatNumbers;
 	}	
 	public void setPassengersFullNames(String[] passengersFullNames) {
-		passengersFullNames = passengersFullNames;
+		this.passengersFullNames = passengersFullNames;
 	}	
 	public void setPassengersSsn(int[] passengersSsn) {
-		passengersSsn = passengersSsn;
+		this.passengersSsn = passengersSsn;
 	}
 	public void setPassengersDateOfBirth(Date[] passengersDateOfBirth) {
-		passengersDateOfBirth = passengersDateOfBirth;
+		this.passengersDateOfBirth = passengersDateOfBirth;
 	}
 }
