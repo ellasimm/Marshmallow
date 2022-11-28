@@ -7,7 +7,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.skin.TableHeaderRow;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.stage.Stage;
 
 public class ReservationDemo extends Application implements EventHandler<ActionEvent>{
@@ -26,12 +31,13 @@ public static void main(String[] args) {
 		
 		firstStage.setTitle("Main");
 		
-		Button login = new Button("Login");
+		
+		login = new Button("Login");
 		login.setTranslateY(-270);
 		login.setTranslateX(195);
 		login.setOnAction(this);
 		
-		Button register = new Button("Register");
+		register = new Button("Register");
 		register.setTranslateY(-270);
 		register.setTranslateX(250);
 		register.setOnAction(this);
@@ -41,8 +47,10 @@ public static void main(String[] args) {
 		layout.getChildren().add(register);
 		
 		Scene scene = new Scene(layout, 600, 600);
-		
-		
+//		Stop[] stops = new Stop[] { new Stop(0, Color.YELLOW), new Stop(1, Color.WHITE)};
+//        LinearGradient lg1 = new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE, stops);
+//		scene.setFill(lg1);
+        
 		firstStage.setScene(scene);
 		firstStage.show();
 	}
