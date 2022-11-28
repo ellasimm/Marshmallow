@@ -5,7 +5,7 @@ public class FlightOrder {
 	private int orderNumber;
 	private Flights flightId;
 	private Date bookingDate;
-	private Flights[] seatNumbers;
+	private Flights[] availableSeatNumbers;
 	private int[] bookedSeatNumbers;
 	private String[] passengersFullNames;
 	private int[] passengersSsn;
@@ -41,8 +41,6 @@ public class FlightOrder {
 		this.unitCost = unitCost;
 		this.subtotal = subtotal;
 		this.bookingStatus = bookingStatus;
-	}
-	public void displayAvailableSeats() {
 	}
 	public void displayCheckout() {
 	}
