@@ -25,6 +25,10 @@ public class User {
 		System.out.println("Confirm Password: ");
 		String confirmPassword = input.nextLine();
 		
+		userName = userName.trim();
+		password = password.trim();
+		confirmPassword = confirmPassword.trim();
+		
 		String str = userName + " " + confirmPassword;
 		if (password.equals(confirmPassword)) {
 			File f = new File("User.txt");
@@ -63,16 +67,60 @@ public class User {
 					}
 					System.out.println("Successfully Registered.");
 					System.out.println("Please Login");
-					this.logIn;
+					this.logIn();
 				}
 				
 			}
-			System.out.println("Password is verified.");
-			
 		}
+		input.close();
 		
 	}
 	public void logIn() {
+		Scanner in = new Scanner(System.in);
+		System.out.println("Enter username: ");
+		this.userName = in.nextLine();
+		System.out.println(userName);
+		System.out.println("Enter password: ");
+		this.password = in.nextLine();
+		System.out.println(password);
+		
+		userName = userName.trim();
+		password = password.trim();
+		String str = userName + " "+ password;
+		
+		try {
+			File f = new File("User.txt");
+			Scanner scan = new Scanner (f);
+			int flag  = 0;
+			while(scan.hasNextLine()) {
+				String data = scan.nextLine();
+				if(data.equals(str)) {
+					System.out.println("Login Successful");
+					flag = 1;
+					break;
+				}
+			}
+			if (flag == 0) {
+				System.out.println("Login failed");
+				System.out.println("1. Registeration");
+				System.out.println("2. LogIn");
+				
+				System.out.println("Enter your choice: ");
+				int choice = in.nextInt();
+				
+				if(choice == 1)
+					this.register();
+				else if(choice == 2)
+					this.logIn();
+				else
+					System.out.println("Enter proper choice.");
+			}
+			scan.close();
+		}catch(FileNotFoundException ex) {
+			System.out.println("Error occured.");
+			ex.printStackTrace();
+		}
+		in.close();
 	}
 	public void logOut(){
 	}
@@ -128,4 +176,6 @@ public class User {
 	public void setSecurityQuestion(String securityQuestion) {
 		this.securityQuestion = securityQuestion;
 	}
+	
+     
 }
