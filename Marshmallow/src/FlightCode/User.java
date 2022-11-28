@@ -16,6 +16,11 @@ public class User {
 	private String email;
 	private String securityQuestion;
 	private String securityAnswer;
+	private int userID;
+	private String address;
+	private int zipCode;
+	private String state;
+	private int ssn;
 	
 	public User() {
 	}
@@ -222,5 +227,35 @@ public class User {
 	}
 	public void setSecurityAnswer(String securityAnswer) {
 		this.securityAnswer = securityAnswer;
+	}
+	public int getUserID() {
+		return userID;
+	}
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public int getZipCode() {
+		return zipCode;
+	}
+	public void setZipCode(int zipCode) {
+		this.zipCode = zipCode;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public int getSsn() {
+		return ssn;
+	}
+	public void setSsn(int ssn) {
+		this.ssn = ssn;
 	}
 }

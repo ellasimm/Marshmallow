@@ -104,7 +104,7 @@ public class Login extends Application {
 					
 					currentAccount = RetrieveDBO.retrieveAccount(user);
 					
-					currentAccount = new Admin(currentAccount.getAccountID(),currentAccount.getUserName()
+					currentAccount = new Admin(currentAccount.getUserID(),currentAccount.getUserName()
 							, currentAccount.getPassword(), currentAccount.getFirstName(), currentAccount.getLastName(),
 							currentAccount.getAddress(),currentAccount.getState() , currentAccount.getEmail(),
 							currentAccount.getZipCode(), currentAccount.getSsn(),currentAccount.getSecurityQuestion(),
