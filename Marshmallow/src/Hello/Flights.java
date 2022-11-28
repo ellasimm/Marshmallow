@@ -5,29 +5,31 @@ import java.util.Date;
 public class Flights {
 	
 	private int flightId;
+	private Aircraft aircraftId;
 	private String[] cities;
 	private String fromCity;
 	private String toCity;
-	private int[] seatNumbers;
+	private int[] availableSeatNumbers;
 	private Date flightDate;
 	private int flightTime;
 	private float unitCost;
 	
-		
 	public Flights() {
 	}
-	public Flights(int flightId, String[] cities, String fromCity, String toCity, int[] seatNumbers,
+	public Flights(int flightId, Aircraft aircraftId, String fromCity, String toCity, int[] availableSeatNumbers,
 			Date flightDate, int flightTime, float unitCost) {
 		this.flightId = flightId;
-		this.cities = cities;
+		this.aircraftId = aircraftId;
 		this.fromCity = fromCity;
 		this.toCity = toCity;
-		this.seatNumbers = seatNumbers;
+		this.availableSeatNumbers = availableSeatNumbers;
 		this.flightDate = flightDate;
 		this.flightTime = flightTime;
 		this.unitCost = unitCost;
 	}
 	public void displayAvailableFlights() {
+	}
+	public void displayAvailableSeatNumbers() {
 	}
 	public int getFlightId() {
 		return flightId;
@@ -41,8 +43,8 @@ public class Flights {
 	public String getToCity() {
 		return toCity;
 	}
-	public int[] getSeatNumbers() {
-		return seatNumbers;
+	public int[] getAvailableSeatNumbers() {
+		return availableSeatNumbers;
 	}
 	public Date getFlightDate() {
 		return flightDate;
@@ -53,31 +55,28 @@ public class Flights {
 	public float getUnitCost() {
 		return unitCost;
 	}
-	
-	
-	public int setFlightId(int flightId) {
-		return flightId;
+	public void setFlightId(int flightId) {
+		flightId = flightId;
 	}
-	public String[] setCities() {
-		return cities;
+	public void setCities(String[] cities) {
+		cities = cities;
 	}
-	public String setFromCity() {
-		return fromCity;
+	public void setFromCity(String fromCity) {
+		fromCity = fromCity;
 	}
-	public String setToCity() {
-		return toCity;
+	public void setToCity(String toCity) {
+		toCity = toCity;
 	}
-	public int[] setSeatNumbers() {
-		return seatNumbers;
+	public void setAvailableSeatNumbers(int[] availableSeatNumbers) {
+		availableSeatNumbers = availableSeatNumbers;
 	}
-	public Date setFlightDate() {
-		return flightDate;
+	public void setFlightDate(Date flightDate) {
+		flightDate = flightDate;
 	}
-	public int setFlightTime() {
-		return flightTime;
+	public void setFlightTime(int flightTime) {
+		flightTime = flightTime;
 	}
-	public float setUnitCost() {
-		return unitCost;
+	public void setUnitCost(float unitCost) {
+		unitCost = unitCost;
 	}
-	
 }
