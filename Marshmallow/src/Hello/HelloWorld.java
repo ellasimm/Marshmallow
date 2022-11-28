@@ -43,7 +43,7 @@ public class HelloWorld {
 	        }
 	        else if(choice==2)
 	        {
-	            User user = new User();
+	            User user = new User(); //error because User is abstract, need to fix it
 	            user.logIn();
 	        }
 	        else

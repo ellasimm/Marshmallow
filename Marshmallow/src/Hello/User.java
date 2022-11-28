@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class User {
+public abstract class User {
 	
 	private String userName; 
 	private String password;
@@ -15,18 +15,26 @@ public class User {
 	private String lastName;
 	private String email;
 	private String securityQuestion;
+	private String securityAnswer;
 	
 	public User() {
 	}
+	public User(String userName, String password) {
+		this.userName = userName;
+		this.password = password;
+	}
 	public User(String userName, String password, String firstName, String lastName,
-	            String email, String securityQuestion) {
+	            String email, String securityQuestion, String securityAnswer) {
 		this.userName = userName; 
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.securityQuestion = securityQuestion;
+		this.securityAnswer = securityAnswer;
+		
 	}
+	
 	public void register() throws FileNotFoundException{
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter username: ");
@@ -145,15 +153,31 @@ public class User {
 	        input.close();
 	}
 	public void logOut(){
+		
 	}
 
 	public void goMainMenu() {
+		/**needs to be created in the GUI*/
 	}
 	public void bookFlight() {
+		/** this is similar to flightOrder class*/
 	}
 	public void deleteFlight() {
 	}
 	public void retrievePassword() {
+		System.out.println(securityQuestion);
+		Scanner input = new Scanner(System.in);
+		String sa = input.nextLine();
+		if (sa.equals(securityAnswer)) {
+			System.out.println("Your password is "+ getPassword());
+		}
+		else {
+			System.out.println("The answer to the security question is incorrect.");
+		}
+		/**
+		 * should this be in customer and admin so that we call call their specific accounts to retrive. 
+		 * Or does this make sense?
+		 */
 	}
 	public void searchFlight() {
 	}
@@ -176,22 +200,28 @@ public class User {
 	public String getSecurityQuestion() {
 		return securityQuestion;
 	}
+	public String getSecurityAnswer() {
+		return securityAnswer;
+	}
 	public void setUserName(String userName){
-		userName = userName;
+		this.userName = userName;
 	}
 	public void setPassword(String password) {
-		password = password;
+		this.password = password;
 	}
 	public void setFirstName(String firstName) {
-		firstName = firstName;
+		this.firstName = firstName;
 	}
 	public void setLastName(String lastName) {
-		lastName = lastName;
+		this.lastName = lastName;
 	}
 	public void setEmail(String email) {
-		email = email;
+		this.email = email;
 	}
 	public void setSecurityQuestion(String securityQuestion) {
-		securityQuestion = securityQuestion;
+		this.securityQuestion = securityQuestion;
+	}
+	public void setSecurityAnswer(String securityAnswer) {
+		this.securityAnswer = securityAnswer;
 	}
 }
