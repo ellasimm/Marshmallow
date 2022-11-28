@@ -20,10 +20,10 @@ public class HelloWorld {
 	              } 
 	               
 	            } 
-	            catch (IOException e) 
+	            catch (IOException ex) 
 	            {
 	              System.out.println("An error occurred.");
-	              e.printStackTrace();
+	              ex.printStackTrace();
 	               
 	            }
 	         
@@ -48,7 +48,7 @@ public class HelloWorld {
 	        }
 	        else
 	        {
-	            System.out.println("Choose Proper Option");
+	            System.out.println("Enter Proper Choice");
 	        }
 	        sc.close();
 	    }
