@@ -1,4 +1,4 @@
-package Hello;
+package FlightCode;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package Hello;
+package FlightCode;
 
 public class Admin extends User{
 	
