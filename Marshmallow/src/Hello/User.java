@@ -87,6 +87,62 @@ public class User {
 		
 	}
 	public void logIn() {
+		 Scanner input = new Scanner(System.in);
+         
+	        System.out.println("Enter User Name: ");
+	        this.userName = input.nextLine();
+			System.out.println("Enter password: ");
+			this.password = input.nextLine();
+			
+			userName = userName.trim();
+			password = password.trim();
+			
+	        String str = userName +" "+ password;
+	         
+	        try {
+	             
+	              File f = new File("User.txt");
+	              Scanner scan = new Scanner(f);
+	              int flag=0;
+	              while (scan.hasNextLine()) {
+	                String data = scan.nextLine();
+	                if(data.equals(str)) {
+	                    System.out.println("Login Successful");
+	                  
+	                    flag=1;
+	                    break;
+	                }
+	              }
+	                if(flag==0)
+	                {
+	                    System.out.println("Login Failed");
+	                    System.out.println("1. Registration. ");
+	                    System.out.println("2. Login. ");
+	                     
+	                    System.out.println("Enter your Choice");
+	                    int choice=input.nextInt();
+	                    if(choice==1)
+	                    {
+	                        this.register();
+	                    }
+	                    else if(choice==2)
+	                    {
+	                        this.logIn();
+	                    }
+	                    else
+	                    {
+	                        System.out.println("Enter proper choice.");
+	                    }
+	                }
+	               
+	              scan.close();
+	            }  catch (FileNotFoundException ex) {
+	              
+	              System.out.println("Error.");
+	              ex.printStackTrace();
+	            }
+	         
+	        input.close();
 	}
 	public void logOut(){
 	}
