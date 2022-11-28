@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class HelloWorld {
-//Omama's testing her code
-	/*
+//Omama's testing her code.
+	
 		public static void main(String[] args) throws FileNotFoundException{
 		     
 	        try {
 	             
-	              File obj = new File("Registration.txt");
+	              File obj = new File("User.txt");
 	               
 	              if (obj.createNewFile()) 
 	              {
@@ -54,6 +54,6 @@ public class HelloWorld {
 	    }
 	     
 
-*/
+
 	}
 
