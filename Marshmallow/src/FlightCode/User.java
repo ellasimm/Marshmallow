@@ -21,13 +21,16 @@ public class User {
 	private int zipCode;
 	private String state;
 	private int ssn;
+	public static boolean isAdmin = false;
 	
 	public User() {
 	}
+	
 	public User(String userName, String password) {
 		this.userName = userName;
 		this.password = password;
 	}
+	
 	public User(String userName, String password, String firstName, String lastName,
 	            String email, String securityQuestion, String securityAnswer) {
 		this.userName = userName; 
@@ -37,7 +40,6 @@ public class User {
 		this.email = email;
 		this.securityQuestion = securityQuestion;
 		this.securityAnswer = securityAnswer;
-		
 	}
 	
 	public void register() throws FileNotFoundException{

@@ -23,7 +23,8 @@ public class Customer extends User{
 	}
 	public Customer( String firstName, String lastName, String email, String securityQuestion, String securityAnswer,
 							String address, String zip, String state ) {
-		generatePassengerId();
+		int id = generatePassengerId();
+		User user1 = new User();
 		new Customer();
 	}
 	
