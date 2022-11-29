@@ -1,5 +1,7 @@
 package Hello;
 
+import FlightCode.User;
+
 public class Admin extends User{
 	
 	private User userName; 

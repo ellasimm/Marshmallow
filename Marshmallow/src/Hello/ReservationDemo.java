@@ -55,15 +55,15 @@ public static void main(String[] args) {
 		header.setFont(Font.font("Arial", 100));
 		
 		ImageView piccy = new ImageView();
-		Image pic = new Image(new FileInputStream("/Users/ellasimm/Desktop"));
-		piccy.setImage(pic);
+		//Image pic = new Image(new FileInputStream("/Users/ellasimm/Desktop"));
+		//piccy.setImage(pic);
 		
 		
 		StackPane layout = new StackPane();
 		layout.getChildren().add(login);
 		layout.getChildren().add(register);
 		layout.getChildren().add(header);
-		layout.getChildren().add(piccy);
+		//layout.getChildren().add(piccy);
 		
 		Scene scene = new Scene(layout, 600, 600);
 //		Stop[] stops = new Stop[] { new Stop(0, Color.YELLOW), new Stop(1, Color.WHITE)};

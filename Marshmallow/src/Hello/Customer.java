@@ -2,6 +2,8 @@ package Hello;
 
 import java.util.Random;
 
+import FlightCode.User;
+
 public class Customer extends User{
 	
 	private User userName; 
