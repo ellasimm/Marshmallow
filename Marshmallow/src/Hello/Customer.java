@@ -14,11 +14,10 @@ public class Customer extends User{
 	private String address;
 	private int zip;
 	private String state;
-<<<<<<< HEAD
+
 	private int ssn;
 	
-	public Customer(){
-		
+	public Customer(){	
 	}
 	public Customer(String userName, String password) {
 		super.setUserName(userName);
@@ -74,10 +73,9 @@ public class Customer extends User{
 	public void setSsn(int ssn) {
 		this.ssn = ssn;
 	}
-=======
+
 	
-	public Customer() {
-	}
+	
 	public Customer(User userName, User password, User firstName, User lastName, User email,
 			        User securityQuestion, int passengerId, String address, int zip, String state) {
 		this.userName = userName;
@@ -92,5 +90,5 @@ public class Customer extends User{
 		this.state = state;
 	}
 	
->>>>>>> branch 'master' of https://github.com/ellasimm/Marshmallow.git
+
 }
