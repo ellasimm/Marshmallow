@@ -1,13 +1,15 @@
 package FlightCode;
 import java.util.Date;
+import java.util.Random;
 public class FlightOrder {
 	
 	private int orderNumber;
 	private Flights flightId;
+	private Aircraft airlineName; //added on 11/30th
 	private Date bookingDate;
 	private Flights[] seatNumbers;
 	private int[] passengersSeatNumbers;
-	private String[] passengersFullNames;
+	private String[] passengersFullNames;  //is this necessary? 
 	private int[] passengersSsn;
 	private Date[] passengersDateOfBirth;
 	private Flights fromCity;
@@ -17,18 +19,19 @@ public class FlightOrder {
 	private Flights unitCost;
 	private float subtotal;
 	private boolean bookingStatus;
-	private Customer firstName;
-	private Customer lastName;
-	private Customer email;
-	private Customer ssn;
+	private User firstName;
+	private User lastName;
+	private User email;
+	private User ssn;
 	
 	public FlightOrder(){
 	}
-	public FlightOrder(int orderNumber, Flights flightId, Date bookingDate, int[] passengersSeatNumbers, String[] passengersFullNames, 
+	public FlightOrder(int orderNumber, Flights flightId, Aircraft airlineName, Date bookingDate, int[] passengersSeatNumbers, String[] passengersFullNames, 
 			int[] passengersSsn, Date[] passengersDateOfBirth, Flights fromCity, Flights toCity, Flights flightDate,
 			Flights flightTime, Flights unitCost, float subtotal, boolean bookingStatus){
 		this.orderNumber = orderNumber;
 		this.flightId = flightId;
+		this.airlineName = airlineName;
 		this.bookingDate = bookingDate;
 		this.passengersSeatNumbers = passengersSeatNumbers;
 		this.passengersFullNames = passengersFullNames;
@@ -42,15 +45,32 @@ public class FlightOrder {
 		this.subtotal = subtotal;
 		this.bookingStatus = bookingStatus;
 	}
+	
+	public FlightOrder(Flights flightId, Aircraft airlineName, Flights flightDate, Flights flightTime, Flights fromCity, Flights toCity) {
+		this.flightId = flightId;
+		this.airlineName = airlineName;
+		this.flightDate = flightDate;
+		this.flightTime = flightTime;
+		this.fromCity = fromCity;
+		this.toCity = toCity;
+	}
 	public void displayAvailableSeats() {
 	}
 	public void displayCheckout() {
 	}
-	public void placeOrder() {
+	public void placeOrder(int flightId) {
+		int ticketNum = generateTicket();
+		//
 	}
 	public void saveCustomerActivity() {
 	}
 	public void goMainMenu() {
+	}
+	
+	public static int generateTicket() {
+		Random rand  = new Random();
+		int ticketNum = rand.nextInt(999);
+		return ticketNum;
 	}
 	public int[] getPassengersSeatNumbers() {
 		return passengersSeatNumbers;
