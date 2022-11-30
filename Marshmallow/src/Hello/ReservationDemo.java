@@ -50,7 +50,7 @@ public static void main(String[] args) {
 		register.setTranslateX(250);
 		register.setOnAction(this);
 		
-		header = new Label("hello");
+		header = new Label("Omama");
 		header.setTranslateY(-270);
 		header.setFont(Font.font("Arial", 100));
 		
@@ -68,7 +68,7 @@ public static void main(String[] args) {
 		Scene scene = new Scene(layout, 600, 600);
 //		Stop[] stops = new Stop[] { new Stop(0, Color.YELLOW), new Stop(1, Color.WHITE)};
 //        LinearGradient lg1 = new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE, stops);
-		layout.setStyle("-fx-background-color: plum;");
+		layout.setStyle("-fx-background-color: maroon;");
 		
         
 		firstStage.setScene(scene);
