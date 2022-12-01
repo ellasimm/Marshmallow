@@ -60,7 +60,8 @@ public class FlightOrder {
 	}
 	public void placeOrder(int flightId) {
 		int ticketNum = generateTicket();
-		//
+		//FlightOrder book = ;//retrieve flightID from the DB
+		//FlightOrder
 	}
 	public void saveCustomerActivity() {
 	}
