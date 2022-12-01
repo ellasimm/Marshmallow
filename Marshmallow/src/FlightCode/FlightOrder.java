@@ -1,6 +1,9 @@
 package FlightCode;
 import java.util.Date;
 import java.util.Random;
+
+import Database.InsertDB;
+import GUI.LoginPageController;
 public class FlightOrder {
 	
 	private int orderNumber;
@@ -57,8 +60,10 @@ public class FlightOrder {
 	}
 	public void placeOrder(int flightId) {
 		int ticketNum = generateTicket();
-		//FlightOrder book = ;//retrieve flightID from the DB
-		//FlightOrder
+		//FlightOrder toBook = ;//retrieve flightID from the DB
+		FlightOrder booking = new FlightOrder(orderNumber, LoginPageController.currentUser.getUserID(),flightId, /** toBook.toCity(),*/
+				LoginPageController.currentUser.getUserName()); //has error becuz toBook needs to connect to DB
+		InsertDB.insertFightOrder(booking); //need to create this method in InsertDB
 	}
 	public void saveCustomerActivity() {
 	}

@@ -3,6 +3,8 @@ package GUI;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import FlightCode.Admin;
+import FlightCode.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +46,8 @@ public class LoginPageController implements Initializable {
 	@FXML private Rectangle ImageBackground;
 	@FXML private ImageView PlaneImage;
 	
-	
+	public static Admin currentAdmin;
+	public static User currentUser;
 	public void goToForgotPassword(ActionEvent event) throws Exception {
 		
 		AnchorPane forgotPasswordParent = FXMLLoader.load(getClass().getResource("/GUI/ForgotPassword.fxml"));
