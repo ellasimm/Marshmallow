@@ -1,6 +1,7 @@
 package FlightCode;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Flights implements Comparable<Flights>{
 	
@@ -8,74 +9,148 @@ public class Flights implements Comparable<Flights>{
 	private String fromCity;
 	private String toCity;
 	private int numSeats;
-	private LocalDate flightDate;
-	private int flightTime;
-	private float unitCost;
+	private String flightDate;
+	private String landingTime;
+	private String takeOffTime;
+	private ArrayList<User> passengers = new ArrayList<>();
+	private String returnFlight;
 	
 		
 	public Flights() {
 	}
-	public Flights(int flightId, String fromCity, String toCity, int seatNumbers,
-			LocalDate flightDate, int flightTime, float unitCost) {
+	
+	public Flights(int flightId, String fromCity, String toCity, int numSeats,
+			String flightDate, String landingTime, String takeOffTime, String returnFlight) {
+		
 		this.flightId = flightId;
 		this.fromCity = fromCity;
 		this.toCity = toCity;
-		this.numSeats = seatNumbers;
+		this.numSeats = numSeats;
 		this.flightDate = flightDate;
-		this.flightTime = flightTime;
-		this.unitCost = unitCost;
+		this.landingTime = landingTime;
+		this.takeOffTime = takeOffTime;
+		this.returnFlight = returnFlight;	
 	}
-	public void displayAvailableFlights() {
+	
+
+	public static void createFlight(String fromCity, String toCity, int numSeats, String flightDate, 
+										String landingTime,  String takeOffTime,  String  returnFlight) {
 		
+		int num = createFlightNum();
+		
+		Flights flight = new Flights(num, fromCity, toCity, numSeats, flightDate, landingTime,  takeOffTime, returnFlight);
+		
+		//InsertDBO.insertFlight(flight);
+		//if(InsertDBO.success)  {
+		//		AlertBox.Display("Flight Created. The Flight ID is: " + num);
+		//}else {
+		//		AlertBox.Display("Try Again, Make Sure All Fields Are Filled");
+		//}
 	}
+	
+	
+	public  String getPass(ArrayList<User> passengers) {
+		
+		String pass = "";
+		
+		for (int i = 0; i < passengers.size(); i++) {
+			
+			User user = passengers.get(i);
+			pass  += user;
+			
+		}		
+		
+		return pass;	
+	}
+	
+	
 	public int getFlightId() {
 		return flightId;
 	}
+
+	public void setFlightId(int flightId) {
+		this.flightId = flightId;
+	}
+
 	public String getFromCity() {
 		return fromCity;
 	}
+
+	public void setFromCity(String fromCity) {
+		this.fromCity = fromCity;
+	}
+
 	public String getToCity() {
 		return toCity;
 	}
-	public int getnumSeats() {
+
+	public void setToCity(String toCity) {
+		this.toCity = toCity;
+	}
+
+	public int getNumSeats() {
 		return numSeats;
 	}
-	public LocalDate getFlightDate() {
+
+	public void setNumSeats(int numSeats) {
+		this.numSeats = numSeats;
+	}
+
+	public String getFlightDate() {
 		return flightDate;
 	}
-	public int getFlightTime() {
-		return flightTime;
+
+	public void setFlightDate(String flightDate) {
+		this.flightDate = flightDate;
 	}
-	public float getUnitCost() {
-		return unitCost;
+
+	public String getLandingTime() {
+		return landingTime;
+	}
+
+	public void setLandingTime(String landingTime) {
+		this.landingTime = landingTime;
+	}
+
+	public String getTakeOffTime() {
+		return takeOffTime;
+	}
+
+	public void setTakeOffTime(String takeOffTime) {
+		this.takeOffTime = takeOffTime;
+	}
+
+	public String getReturnFlight() {
+		return returnFlight;
+	}
+
+	public void setReturnFlight(String returnFlight) {
+		this.returnFlight = returnFlight;
+	}
+
+	public static int createFlightNum() {
+		
+		int num = (int)(Math.random() * 99999);
+		return num;
 	}
 	
 	
-	public int setFlightId(int flightId) {
-		return flightId;
+	@Override
+	public String toString() {
+		return "Flight ID: " + this.getFlightId() + "/nDeparture Time: " + this.getTakeOffTime() 
+					+ "/nDeparture City: " + this.getFromCity() + "/nArrival Time: " + this.getLandingTime()
+					+ "/nArrival City: " + this.getToCity();
 	}
-	public String setFromCity() {
-		return fromCity;
-	}
-	public String setToCity() {
-		return toCity;
-	}
-	public int setNumSeats() {
-		return numSeats;
-	}
-	public LocalDate setFlightDate() {
-		return flightDate;
-	}
-	public int setFlightTime() {
-		return flightTime;
-	}
-	public float setUnitCost() {
-		return unitCost;
-	}
+	
+	
 	@Override
 	public int compareTo(Flights o) {
-		// TODO Auto-generated method stub
-		return 0;
+		if (flightId == o.flightId) {
+			return 0;
+		}
+		else {
+			return -1;
+		}
 	}
 	
 }
