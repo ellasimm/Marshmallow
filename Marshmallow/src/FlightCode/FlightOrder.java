@@ -5,7 +5,6 @@ public class FlightOrder {
 	
 	private int orderNumber;
 	private Flights flightId;
-	private Aircraft airlineName; //added on 11/30th
 	private Date bookingDate;
 	private Flights[] seatNumbers;
 	private int[] passengersSeatNumbers;
@@ -26,12 +25,11 @@ public class FlightOrder {
 	
 	public FlightOrder(){
 	}
-	public FlightOrder(int orderNumber, Flights flightId, Aircraft airlineName, Date bookingDate, int[] passengersSeatNumbers, String[] passengersFullNames, 
+	public FlightOrder(int orderNumber, Flights flightId, Date bookingDate, int[] passengersSeatNumbers, String[] passengersFullNames, 
 			int[] passengersSsn, Date[] passengersDateOfBirth, Flights fromCity, Flights toCity, Flights flightDate,
 			Flights flightTime, Flights unitCost, float subtotal, boolean bookingStatus){
 		this.orderNumber = orderNumber;
 		this.flightId = flightId;
-		this.airlineName = airlineName;
 		this.bookingDate = bookingDate;
 		this.passengersSeatNumbers = passengersSeatNumbers;
 		this.passengersFullNames = passengersFullNames;
@@ -46,9 +44,8 @@ public class FlightOrder {
 		this.bookingStatus = bookingStatus;
 	}
 	
-	public FlightOrder(Flights flightId, Aircraft airlineName, Flights flightDate, Flights flightTime, Flights fromCity, Flights toCity) {
+	public FlightOrder(Flights flightId, Flights flightDate, Flights flightTime, Flights fromCity, Flights toCity) {
 		this.flightId = flightId;
-		this.airlineName = airlineName;
 		this.flightDate = flightDate;
 		this.flightTime = flightTime;
 		this.fromCity = fromCity;
