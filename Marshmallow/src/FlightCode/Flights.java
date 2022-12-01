@@ -1,39 +1,35 @@
 package FlightCode;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-public class Flights {
+public class Flights implements Comparable<Flights>{
 	
 	private int flightId;
-	private String[] cities;
 	private String fromCity;
 	private String toCity;
-	private int[] seatNumbers;
-	private Date flightDate;
+	private int numSeats;
+	private LocalDate flightDate;
 	private int flightTime;
 	private float unitCost;
 	
 		
 	public Flights() {
 	}
-	public Flights(int flightId, String[] cities, String fromCity, String toCity, int[] seatNumbers,
-			Date flightDate, int flightTime, float unitCost) {
+	public Flights(int flightId, String fromCity, String toCity, int seatNumbers,
+			LocalDate flightDate, int flightTime, float unitCost) {
 		this.flightId = flightId;
-		this.cities = cities;
 		this.fromCity = fromCity;
 		this.toCity = toCity;
-		this.seatNumbers = seatNumbers;
+		this.numSeats = seatNumbers;
 		this.flightDate = flightDate;
 		this.flightTime = flightTime;
 		this.unitCost = unitCost;
 	}
 	public void displayAvailableFlights() {
+		
 	}
 	public int getFlightId() {
 		return flightId;
-	}
-	public String[] getCities() {
-		return cities;
 	}
 	public String getFromCity() {
 		return fromCity;
@@ -41,10 +37,10 @@ public class Flights {
 	public String getToCity() {
 		return toCity;
 	}
-	public int[] getSeatNumbers() {
-		return seatNumbers;
+	public int getnumSeats() {
+		return numSeats;
 	}
-	public Date getFlightDate() {
+	public LocalDate getFlightDate() {
 		return flightDate;
 	}
 	public int getFlightTime() {
@@ -58,19 +54,16 @@ public class Flights {
 	public int setFlightId(int flightId) {
 		return flightId;
 	}
-	public String[] setCities() {
-		return cities;
-	}
 	public String setFromCity() {
 		return fromCity;
 	}
 	public String setToCity() {
 		return toCity;
 	}
-	public int[] setSeatNumbers() {
-		return seatNumbers;
+	public int setNumSeats() {
+		return numSeats;
 	}
-	public Date setFlightDate() {
+	public LocalDate setFlightDate() {
 		return flightDate;
 	}
 	public int setFlightTime() {
@@ -78,6 +71,11 @@ public class Flights {
 	}
 	public float setUnitCost() {
 		return unitCost;
+	}
+	@Override
+	public int compareTo(Flights o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

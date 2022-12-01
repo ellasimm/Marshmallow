@@ -3,8 +3,8 @@ package GUI;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 
 public class Main extends Application{
 
@@ -19,7 +19,7 @@ public class Main extends Application{
 	public void start(Stage primaryStage) throws Exception {
 	
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
+			AnchorPane root = FXMLLoader.load(getClass().getResource("/GUI/LoginPage.fxml"));
 			Scene scene = new Scene(root);
 			
 			primaryStage.setTitle("Login");
