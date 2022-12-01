@@ -1,4 +1,4 @@
-package FlightCode;
+package FlightCode;  //FINISHED ALL THE CODE IS WRITTEN
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,7 +9,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 
-public class User {
+public class User implements Comparable<User>{
 	
 	private String userName; 
 	private String password;
@@ -24,8 +24,6 @@ public class User {
 	private String state;
 	private int ssn;
 	public static boolean isAdmin = false;
-	private ArrayList<FlightOrder> flights;
-	private String action;
 	
 	public User() {
 	}
@@ -51,13 +49,17 @@ public class User {
 		this.securityAnswer = securityAnswer;
 	}
 	
+	
 	public static void generateUser(String userName, String password, String firstName, String lastName, int ssn,
             String email, String address, int zipCode, String state, String securityQuestion, String securityAnswer) {
+		
 		int userID = generateUserId();
 		User user = new User(userID, userName, password, firstName, lastName, ssn, email, address, zipCode, state, securityQuestion, securityAnswer);
 		//InsertDBO input = new InsertDBO(); //create connection to the database
 		//input.insertAccount(user);  //need to insert this user into the database
 	}
+	
+	
 	public static int generateUserId() {
 		Random rand = new Random();
 		int id = rand.nextInt(99999);
@@ -160,20 +162,21 @@ public class User {
 		this.ssn = ssn;
 	}
 
-	public ArrayList<FlightOrder> getFlights() {
-		return flights;
+
+	@Override
+	public String toString() {
+		return "First Name: " + this.getFirstName() + "\nLast Name: " + this.getLastName()
+				+ "\nUser ID: "+ this.getUserID() + "\nUsername: " + this.getUserName();
 	}
 
-	public void setFlights(ArrayList<FlightOrder> flights) {
-		this.flights = flights;
-	}
-
-	public String getAction() {
-		return action;
-	}
-
-	public void setAction(String action) {
-		this.action = action;
+	@Override
+	public int compareTo(User o) {
+		if (ssn == o.getSsn()) {
+			return 0;
+		}
+		else {
+			return -1;
+		}
 	}
 	
 	/**
