@@ -11,8 +11,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle fx:id="bckrdBar" arcHeight="5.0" arcWidth="5.0" fill="#ffcf7c" height="114.0" stroke="BLACK" strokeType="INSIDE" width="655.0" />
