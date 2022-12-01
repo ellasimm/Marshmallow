@@ -41,7 +41,7 @@ public class Flights implements Comparable<Flights>{
 		Flights flight = new Flights(num, fromCity, toCity, numSeats, flightDate, landingTime,  takeOffTime, returnFlight);
 		
 		//InsertDBO.insertFlight(flight);
-		//if(InsertDBO.success)  {
+		//if(InsertDB.success)  {
 		//		AlertBox.Display("Flight Created. The Flight ID is: " + num);
 		//}else {
 		//		AlertBox.Display("Try Again, Make Sure All Fields Are Filled");
