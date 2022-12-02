@@ -48,6 +48,7 @@ public class LoginPageController implements Initializable {
 	
 	public static Admin currentAdmin;
 	public static User currentUser;
+	
 	public void goToForgotPassword(ActionEvent event) throws Exception {
 		
 		AnchorPane forgotPasswordParent = FXMLLoader.load(getClass().getResource("/GUI/ForgotPassword.fxml"));
@@ -59,6 +60,17 @@ public class LoginPageController implements Initializable {
 		window.show();
 	}
 
+	
+	public void goBack(ActionEvent event) throws Exception {
+		
+		AnchorPane backParent = FXMLLoader.load(getClass().getResource("/GUI/OpeningPage.fxml"));
+		Scene backScene = new Scene(backParent);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(backScene);
+		window.show();
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
