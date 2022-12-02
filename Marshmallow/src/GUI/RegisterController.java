@@ -40,6 +40,17 @@ public class RegisterController implements Initializable{
 		window.setScene(goBackScene);
 		window.show();
 	}
+	
+public void register(ActionEvent event) throws Exception {
+		
+		AnchorPane registerParent = FXMLLoader.load(getClass().getResource("/GUI/findFlight.fxml"));
+		Scene registerScene = new Scene(registerParent);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(registerScene);
+		window.show();
+	}
 
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {

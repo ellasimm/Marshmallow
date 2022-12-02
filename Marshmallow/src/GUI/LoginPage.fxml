@@ -43,7 +43,7 @@
          <font>
             <Font name="Tamil MN" size="18.0" />
          </font></TextField>
-      <Button fx:id="LoginButton" layoutX="266.0" layoutY="125.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="81.0" text="Login">
+      <Button fx:id="LoginButton" layoutX="266.0" layoutY="125.0" mnemonicParsing="false" onAction="#logIn" prefHeight="44.0" prefWidth="81.0" text="Login">
          <font>
             <Font name="Tamil MN" size="18.0" />
          </font></Button>

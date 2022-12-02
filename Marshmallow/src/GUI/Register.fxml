@@ -52,7 +52,7 @@
       <TextField fx:id="answerIn" layoutX="281.0" layoutY="224.0" prefHeight="26.0" prefWidth="127.0" promptText="Answer" />
       <TextField fx:id="securityQuestionIn" layoutX="67.0" layoutY="224.0" prefHeight="26.0" prefWidth="206.0" promptText="Security Question" />
       <TextField fx:id="StateIn" layoutX="268.0" layoutY="125.0" prefHeight="26.0" prefWidth="66.0" promptText="State" />
-      <Button fx:id="registerButton" layoutX="199.0" layoutY="263.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="89.0" text="Register">
+      <Button fx:id="registerButton" layoutX="199.0" layoutY="263.0" mnemonicParsing="false" onAction="#register" prefHeight="36.0" prefWidth="89.0" text="Register">
          <font>
             <Font name="Telugu MN" size="14.0" />
          </font>

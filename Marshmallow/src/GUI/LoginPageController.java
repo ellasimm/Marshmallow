@@ -71,6 +71,17 @@ public class LoginPageController implements Initializable {
 		window.setScene(backScene);
 		window.show();
 	}
+	
+public void logIn(ActionEvent event) throws Exception {
+		
+		AnchorPane logInParent = FXMLLoader.load(getClass().getResource("/GUI/findFlight.fxml"));
+		Scene logInScene = new Scene(logInParent);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(logInScene);
+		window.show();
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
