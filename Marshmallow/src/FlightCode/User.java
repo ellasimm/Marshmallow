@@ -1,13 +1,15 @@
-package FlightCode;
+package FlightCode;  //FINISHED ALL THE CODE IS WRITTEN
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
-public class User {
+
+public class User implements Comparable<User>{
 	
 	private String userName; 
 	private String password;
@@ -31,16 +33,153 @@ public class User {
 		this.password = password;
 	}
 	
-	public User(String userName, String password, String firstName, String lastName,
-	            String email, String securityQuestion, String securityAnswer) {
+	public User(int userID, String userName, String password, String firstName, String lastName, int ssn,
+            String email, String address, int zipCode, String state, String securityQuestion, String securityAnswer) {
+		this.userID = userID;
 		this.userName = userName; 
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.ssn = ssn;
 		this.email = email;
+		this.address = address;
+		this.zipCode = zipCode;
+		this.state = state;
 		this.securityQuestion = securityQuestion;
 		this.securityAnswer = securityAnswer;
 	}
+	
+	
+	public static void generateUser(String userName, String password, String firstName, String lastName, int ssn,
+            String email, String address, int zipCode, String state, String securityQuestion, String securityAnswer) {
+		
+		int userID = generateUserId();
+		User user = new User(userID, userName, password, firstName, lastName, ssn, email, address, zipCode, state, securityQuestion, securityAnswer);
+		//InsertDBO input = new InsertDBO(); //create connection to the database
+		//input.insertAccount(user);  //need to insert this user into the database
+	}
+	
+	
+	public static int generateUserId() {
+		Random rand = new Random();
+		int id = rand.nextInt(99999);
+		return id;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSecurityQuestion() {
+		return securityQuestion;
+	}
+
+	public void setSecurityQuestion(String securityQuestion) {
+		this.securityQuestion = securityQuestion;
+	}
+
+	public String getSecurityAnswer() {
+		return securityAnswer;
+	}
+
+	public void setSecurityAnswer(String securityAnswer) {
+		this.securityAnswer = securityAnswer;
+	}
+
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public int getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(int zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public int getSsn() {
+		return ssn;
+	}
+
+	public void setSsn(int ssn) {
+		this.ssn = ssn;
+	}
+
+
+	@Override
+	public String toString() {
+		return "First Name: " + this.getFirstName() + "\nLast Name: " + this.getLastName()
+				+ "\nUser ID: "+ this.getUserID() + "\nUsername: " + this.getUserName();
+	}
+
+	@Override
+	public int compareTo(User o) {
+		if (ssn == o.getSsn()) {
+			return 0;
+		}
+		else {
+			return -1;
+		}
+	}
+	
+	/**
 	
 	public void register() throws FileNotFoundException{
 		Scanner input = new Scanner(System.in);
@@ -164,10 +303,10 @@ public class User {
 	}
 
 	public void goMainMenu() {
-		/**needs to be created in the GUI*/
+		needs to be created in the GUI
 	}
 	public void bookFlight() {
-		/** this is similar to flightOrder class*/
+		this is similar to flightOrder class
 	}
 	public void deleteFlight() {
 	}
@@ -181,83 +320,15 @@ public class User {
 		else {
 			System.out.println("The answer to the security question is incorrect.");
 		}
-		/**
+		
 		 * should this be in customer and admin so that we call call their specific accounts to retrive. 
 		 * Or does this make sense?
-		 */
+		 
 	}
+	
 	public void searchFlight() {
 	}
-	public String getUserName() {
-		return userName;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public String getSecurityQuestion() {
-		return securityQuestion;
-	}
-	public String getSecurityAnswer() {
-		return securityAnswer;
-	}
-	public void setUserName(String userName){
-		this.userName = userName;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public void setSecurityQuestion(String securityQuestion) {
-		this.securityQuestion = securityQuestion;
-	}
-	public void setSecurityAnswer(String securityAnswer) {
-		this.securityAnswer = securityAnswer;
-	}
-	public int getUserID() {
-		return userID;
-	}
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public int getZipCode() {
-		return zipCode;
-	}
-	public void setZipCode(int zipCode) {
-		this.zipCode = zipCode;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
-	public int getSsn() {
-		return ssn;
-	}
-	public void setSsn(int ssn) {
-		this.ssn = ssn;
-	}
+	*/
+	
+	
 }

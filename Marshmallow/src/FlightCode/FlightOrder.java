@@ -1,5 +1,9 @@
 package FlightCode;
 import java.util.Date;
+import java.util.Random;
+
+import Database.InsertDB;
+import GUI.LoginPageController;
 public class FlightOrder {
 	
 	private int orderNumber;
@@ -7,7 +11,7 @@ public class FlightOrder {
 	private Date bookingDate;
 	private Aircraft[] seatNumbers;
 	private int[] passengersSeatNumbers;
-	private String[] passengersFullNames;
+	private String[] passengersFullNames;  //is this necessary? 
 	private int[] passengersSsn;
 	private Date[] passengersDateOfBirth;
 	private Flights fromCity;
@@ -17,10 +21,10 @@ public class FlightOrder {
 	private Flights unitCost;
 	private float subtotal;
 	private boolean bookingStatus;
-	private Customer firstName;
-	private Customer lastName;
-	private Customer email;
-	private Customer ssn;
+	private User firstName;
+	private User lastName;
+	private User email;
+	private User ssn;
 	
 	public FlightOrder(){
 	}
@@ -42,15 +46,34 @@ public class FlightOrder {
 		this.subtotal = subtotal;
 		this.bookingStatus = bookingStatus;
 	}
+	
+	public FlightOrder(Flights flightId, Flights flightDate, Flights flightTime, Flights fromCity, Flights toCity) {
+		this.flightId = flightId;
+		this.flightDate = flightDate;
+		this.flightTime = flightTime;
+		this.fromCity = fromCity;
+		this.toCity = toCity;
+	}
 	public void displayAvailableSeats() {
 	}
 	public void displayCheckout() {
 	}
-	public void placeOrder() {
+	public void placeOrder(int flightId) {
+		int ticketNum = generateTicket();
+		//FlightOrder toBook = ;//retrieve flightID from the DB
+		FlightOrder booking = new FlightOrder(orderNumber, LoginPageController.currentUser.getUserID(),flightId, /** toBook.toCity(),*/
+				LoginPageController.currentUser.getUserName()); //has error becuz toBook needs to connect to DB
+		InsertDB.insertFightOrder(booking); //need to create this method in InsertDB
 	}
 	public void saveCustomerActivity() {
 	}
 	public void goMainMenu() {
+	}
+	
+	public static int generateTicket() {
+		Random rand  = new Random();
+		int ticketNum = rand.nextInt(999);
+		return ticketNum;
 	}
 	public int[] getPassengersSeatNumbers() {
 		return passengersSeatNumbers;

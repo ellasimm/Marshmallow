@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="461.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OpeningPageController">
+   <children>
+      <Rectangle fx:id="ImageBackground" arcHeight="5.0" arcWidth="5.0" height="204.0" layoutX="25.0" layoutY="102.0" stroke="#82c5ee" strokeType="INSIDE" width="208.0">
+         <effect>
+            <GaussianBlur />
+         </effect>
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.8657407164573669" green="0.9485339522361755" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.5098039507865906" green="0.772549033164978" blue="0.9333333373069763" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Rectangle fx:id="bckrd" arcHeight="5.0" arcWidth="5.0" fill="#d4efff" height="328.0" layoutY="-2.0" opacity="0.54" stroke="WHITE" strokeType="INSIDE" width="461.0" />
+      <Rectangle fx:id="bckrdBar" arcHeight="5.0" arcWidth="5.0" height="81.0" stroke="#82c6ed" strokeType="INSIDE" width="461.0">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.8313725590705872" green="0.9372549057006836" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.5098039507865906" green="0.772549033164978" blue="0.9333333373069763" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </fill>
+      </Rectangle>
+      <Label fx:id="Title" layoutX="90.0" layoutY="11.0" text="REO Airlines">
+         <font>
+            <Font name="Tamil MN" size="48.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="PlaneImage" fitHeight="178.0" fitWidth="236.0" layoutX="39.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Desktop/plane3.jpeg" />
+         </image>
+      </ImageView>
+      <Label layoutX="280.0" layoutY="113.0" text="Existing Users:">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="266.0" layoutY="202.0" text="Make an Account:">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="loginButton" layoutX="295.0" layoutY="145.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="36.0" prefWidth="92.0" text="LOGIN">
+         <font>
+            <Font name="Tamil MN" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="registerButton" layoutX="295.0" layoutY="234.0" mnemonicParsing="false" onAction="#goToRegister" prefHeight="36.0" prefWidth="92.0" text="REGISTER">
+         <font>
+            <Font name="Tamil MN" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
