@@ -5,7 +5,7 @@ public class FlightOrder {
 	private int orderNumber;
 	private Flights flightId;
 	private Date bookingDate;
-	private Flights[] seatNumbers;
+	private Aircraft[] seatNumbers;
 	private int[] passengersSeatNumbers;
 	private String[] passengersFullNames;
 	private int[] passengersSsn;

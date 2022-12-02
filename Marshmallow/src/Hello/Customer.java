@@ -14,7 +14,6 @@ public class Customer extends User{
 	private String address;
 	private int zip;
 	private String state;
-
 	private int ssn;
 	
 	public Customer(){	
