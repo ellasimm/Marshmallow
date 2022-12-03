@@ -22,30 +22,12 @@ import javafx.scene.layout.AnchorPane;
 
 
 public class LoginPageController implements Initializable {
-
-	@FXML private Rectangle bckrdBar;
-	@FXML private Label Title;
-	@FXML private Text accountText;
+	
 	@FXML private TextField UsernameIn;
 	@FXML private TextField PasswordIn;
 	@FXML private Button LoginButton;
 	@FXML private Button ForgotPassButton;
-	@FXML private Text RegisterText;
-	@FXML private TextField FirstNameIn;
-	@FXML private TextField AddressIn;
-	@FXML private TextField ZipCodeIn;
-	@FXML private TextField EmailIn;
-	@FXML private TextField UsernameReg;
-	@FXML private TextField PasswordReg;
-	@FXML private TextField SecurityQuestionIn;
-	@FXML private TextField LastNameIn;
-	@FXML private TextField StateIn;
-	@FXML private TextField SSNIn;
-	@FXML private TextField SecurityAnswerIn;
-	@FXML private Button RegisterButton;
-	@FXML private Rectangle ImageBackground;
-	@FXML private ImageView PlaneImage;
-	
+
 	public static Admin currentAdmin;
 	public static User currentUser;
 	
@@ -72,8 +54,19 @@ public class LoginPageController implements Initializable {
 		window.show();
 	}
 	
-public void logIn(ActionEvent event) throws Exception {
+	
+	public void logIn(ActionEvent event) throws Exception {
 		
+		if (User.isAdmin) {
+			AnchorPane logInAdminParent = FXMLLoader.load(getClass().getResource("/GUI/findFlightAdmin.fxml"));
+			Scene logInAdminScene = new Scene(logInAdminParent);
+			
+			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+			
+			window.setScene(logInAdminScene);
+			window.show();
+		}
+		else {	
 		AnchorPane logInParent = FXMLLoader.load(getClass().getResource("/GUI/findFlight.fxml"));
 		Scene logInScene = new Scene(logInParent);
 		
@@ -81,6 +74,7 @@ public void logIn(ActionEvent event) throws Exception {
 		
 		window.setScene(logInScene);
 		window.show();
+		}
 	}
 
 	@Override

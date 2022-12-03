@@ -41,6 +41,17 @@ public class ForgotPasswordController implements Initializable{
 		window.show();
 	}
 	
+	public void passRecovery(ActionEvent event) throws Exception {
+		
+		AnchorPane passRecoveryParent = FXMLLoader.load(getClass().getResource("/GUI/PasswordRecovery.fxml"));
+		Scene passRecoveryScene = new Scene(passRecoveryParent);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(passRecoveryScene);
+		window.show();
+	}
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
