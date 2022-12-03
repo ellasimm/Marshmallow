@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="361.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.findFlightAdminController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d4efff" height="361.0" layoutX="1.0" opacity="0.54" stroke="WHITE" strokeType="INSIDE" width="552.0" />
+      <Rectangle fx:id="bckrdBar" arcHeight="5.0" arcWidth="5.0" height="93.0" stroke="#82c6ed" strokeType="INSIDE" width="553.0">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.8313725590705872" green="0.9372549057006836" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.5098039507865906" green="0.772549033164978" blue="0.9333333373069763" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </fill>
+      </Rectangle>
+      <Label fx:id="Title" layoutX="137.0" layoutY="25.0" text="Welcome Admin">
+         <font>
+            <Font name="Tamil MN" size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="accountButton" layoutX="474.0" layoutY="31.0" mnemonicParsing="false" onAction="#toAccount" prefHeight="26.0" prefWidth="78.0" text="Account">
+         <font>
+            <Font name="Telugu MN" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="LogOutButton" layoutX="474.0" layoutY="62.0" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="78.0" text="Log  Out">
+         <font>
+            <Font name="Tamil MN" size="13.0" />
+         </font>
+      </Button>
+      <TableView fx:id="flightTable" layoutX="238.0" layoutY="112.0" prefHeight="200.0" prefWidth="299.0">
+         <columns>
+            <TableColumn fx:id="cityToTable" prefWidth="75.0" text="To" />
+            <TableColumn fx:id="cityFromTable" prefWidth="75.0" text="From" />
+            <TableColumn fx:id="flightDateTable" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="timeTable" prefWidth="75.0" text="Time" />
+         </columns>
+      </TableView>
+      <TextField fx:id="searchDeparture" layoutX="40.0" layoutY="126.0" promptText="ie Atlanta" />
+      <TextField fx:id="searchArrival" layoutX="40.0" layoutY="178.0" promptText="ie Portland" />
+      <TextField fx:id="searchDate" layoutX="40.0" layoutY="229.0" promptText="XX/XX/XXXX" />
+      <Button fx:id="searchButton" layoutX="89.0" layoutY="321.0" mnemonicParsing="false" text="Search">
+         <font>
+            <Font name="Telugu MN" size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="41.0" layoutY="104.0" text="Departure City:">
+         <font>
+            <Font name="Telugu MN" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="41.0" layoutY="155.0" prefHeight="26.0" prefWidth="78.0" text="Arrival City:">
+         <font>
+            <Font name="Tamil MN" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="212.0" text="Date of Flight:">
+         <font>
+            <Font name="Telugu MN" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="searchTime" layoutX="39.0" layoutY="283.0" promptText="XX:XXAM/PM" />
+      <Label layoutX="39.0" layoutY="266.0" text="Time of Flight:">
+         <font>
+            <Font name="Telugu MN" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="addButton" layoutX="341.0" layoutY="321.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Add Flight">
+         <font>
+            <Font name="Tamil MN" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="adminButton" layoutX="423.0" layoutY="1.0" mnemonicParsing="false" text="Add/Delete Flights">
+         <font>
+            <Font name="Telugu MN" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
