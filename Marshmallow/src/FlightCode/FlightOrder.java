@@ -21,16 +21,13 @@ public class FlightOrder {
 	private Flights unitCost;
 	private float subtotal;
 	private boolean bookingStatus;
-	private User firstName;
-	private User lastName;
-	private User email;
-	private User ssn;
+	private User userID;
 	
 	public FlightOrder(){
 	}
 	public FlightOrder(int orderNumber, Flights flightId, Date bookingDate, int[] passengersSeatNumbers, String[] passengersFullNames, 
 			int[] passengersSsn, Date[] passengersDateOfBirth, Flights fromCity, Flights toCity, Flights flightDate,
-			Flights flightTime, Flights unitCost, float subtotal, boolean bookingStatus){
+			Flights flightTime, Flights unitCost, float subtotal, boolean bookingStatus, User userID){
 		this.orderNumber = orderNumber;
 		this.flightId = flightId;
 		this.bookingDate = bookingDate;
@@ -45,6 +42,7 @@ public class FlightOrder {
 		this.unitCost = unitCost;
 		this.subtotal = subtotal;
 		this.bookingStatus = bookingStatus;
+		this.userID = userID;
 	}
 	
 	public FlightOrder(Flights flightId, Flights flightDate, Flights flightTime, Flights fromCity, Flights toCity) {
@@ -75,28 +73,52 @@ public class FlightOrder {
 		int ticketNum = rand.nextInt(999);
 		return ticketNum;
 	}
+	public int getOrderNumber() {
+		return orderNumber;
+	}
+	public void setOrderNumber(int orderNumber) {
+		this.orderNumber = orderNumber;
+	}
+	public Date getBookingDate() {
+		return bookingDate;
+	}
+	public void setBookingDate(Date bookingDate) {
+		this.bookingDate = bookingDate;
+	}
 	public int[] getPassengersSeatNumbers() {
 		return passengersSeatNumbers;
 	}
+	public void setPassengersSeatNumbers(int[] passengersSeatNumbers) {
+		this.passengersSeatNumbers = passengersSeatNumbers;
+	}
 	public String[] getPassengersFullNames() {
 		return passengersFullNames;
-	}	
+	}
+	public void setPassengersFullNames(String[] passengersFullNames) {
+		this.passengersFullNames = passengersFullNames;
+	}
 	public int[] getPassengersSsn() {
 		return passengersSsn;
+	}
+	public void setPassengersSsn(int[] passengersSsn) {
+		this.passengersSsn = passengersSsn;
 	}
 	public Date[] getPassengersDateOfBirth() {
 		return passengersDateOfBirth;
 	}
-	public void setPassengersSeatNumbers(int[] passengersSeatNumbers) {
-		passengersSeatNumbers = passengersSeatNumbers;
-	}	
-	public void setPassengersFullNames(String[] passengersFullNames) {
-		passengersFullNames = passengersFullNames;
-	}	
-	public void setPassengersSsn(int[] passengersSsn) {
-		passengersSsn = passengersSsn;
-	}
 	public void setPassengersDateOfBirth(Date[] passengersDateOfBirth) {
-		passengersDateOfBirth = passengersDateOfBirth;
+		this.passengersDateOfBirth = passengersDateOfBirth;
+	}
+	public float getSubtotal() {
+		return subtotal;
+	}
+	public void setSubtotal(float subtotal) {
+		this.subtotal = subtotal;
+	}
+	public boolean isBookingStatus() {
+		return bookingStatus;
+	}
+	public void setBookingStatus(boolean bookingStatus) {
+		this.bookingStatus = bookingStatus;
 	}
 }
