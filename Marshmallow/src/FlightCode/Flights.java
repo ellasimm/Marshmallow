@@ -2,6 +2,9 @@ package FlightCode;
 
 import java.util.ArrayList;
 import Database.InsertDB;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 
 public class Flights implements Comparable<Flights>{
 
@@ -38,13 +41,14 @@ public class Flights implements Comparable<Flights>{
 		int num = createFlightNum();
 
 		Flights flight = new Flights(num, fromCity, toCity, numSeats, flightDate, landingTime,  takeOffTime, returnFlight);
-
-//		InsertDB.insertFlight(flight);
-//		if(InsertDB.success)  {
-//				AlertBox.Display("Flight Created. The Flight ID is: " + num);
-//		}else {
-//			AlertBox.Display("Try Again, Make Sure All Fields Are Filled");
-//		}
+		String cnnString = "jdbc:sqlserver://cisproject2022.database.windows.net:1433;database=FlightReservationProject;user=RezaKian@cisproject2022;password=Saglover2?;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+		Connection connection = DriverManager.getConnection(cnnString);
+		InsertDB.insertFlight(flight, connection);
+		if(InsertDB.success)  {
+				AlertBox.Display("Flight Created. The Flight ID is: " + num);
+		}else {
+			AlertBox.Display("Try Again, Make Sure All Fields Are Filled");
+		}
 	}
 
 
