@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class SampleSQL {
 
 	public static void main(String[] args) {
-		System.out.println("performing setup..");
+		System.out.println("performing setup...");
 		String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 		
 		SampleSQL azure = new SampleSQL();
@@ -20,7 +20,7 @@ public class SampleSQL {
 	}
 	
 	private void SelectAzureSQL(String cnnString, String sql) {
-		System.out.println("selecting data..");
+		System.out.println("selecting data...");
 		ResultSet resultSet = null;
 		try(Connection cnn = DriverManager.getConnection(cnnString);
 				Statement statement = cnn.createStatement();){
