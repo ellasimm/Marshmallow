@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import FlightCode.Flights;
 import FlightCode.User;
+import GUI.ErrorMessage;
 import GUI.ErrorMessageController;
 
 public class InsertDB {
@@ -60,7 +61,8 @@ public class InsertDB {
 			
 		}catch(SQLIntegrityConstraintViolationException ex1) {
 			
-			ErrorMessageController.display("Duplicate Booking Alert!");
+			ErrorMessage.showErrorMessage("Duplicate Booking Alert!");
+			
 			ex1.printStackTrace();
 			success = false;
 			
@@ -101,7 +103,7 @@ public class InsertDB {
 			success = true;
 		}catch(SQLIntegrityConstraintViolationException ex1) {
 			
-			ErrorMessageController.display("Duplicate Account Alert!" + "\nTry again or click forgot password");
+			ErrorMessage.showErrorMessage("Duplicate Account Alert!" + "\nTry again or click forgot password");
 			success = false;
 			
 		}catch(SQLException ex2) {

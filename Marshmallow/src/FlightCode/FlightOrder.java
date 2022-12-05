@@ -3,10 +3,10 @@ package FlightCode;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.Random;
-
 import Database.GetDB;
 import Database.InsertDB;
 import GUI.LoginPageController;
+
 public class FlightOrder {
 	
 	private int orderNumber;
