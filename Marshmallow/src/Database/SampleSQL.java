@@ -15,7 +15,7 @@ public class SampleSQL {
 		
 		SampleSQL azure = new SampleSQL();
 		System.out.println("connecting..");
-		String sql = "Select flightId, fromCity, toCity, takeOffTime, landingTime, numSeats, flightDate from Flights";
+		String sql = "Select * from Flights";
 		azure.SelectAzureSQL(cnnString, sql);
 	}
 	
@@ -26,8 +26,9 @@ public class SampleSQL {
 				Statement statement = cnn.createStatement();){
 			resultSet = statement.executeQuery(sql);
 			while(resultSet.next()) {
-				System.out.println(resultSet.getString(1) + ", "+ resultSet.getString(2)+", "+ resultSet.getString(3)
-									+ ", " + resultSet.getString(4) + ", "+ resultSet.getString(5)+", "+ resultSet.getString(6));	
+				System.out.println(resultSet.getString(1) + ", "+ resultSet.getString(2)+ ", "+ resultSet.getString(3)
+									+ ", " + resultSet.getString(4) + ", " + resultSet.getString(5)+ ", "+ resultSet.getString(6)
+									+ ", " + resultSet.getString(7) + ", " + resultSet.getString(8)+ ", " + resultSet.getString(9));	
 			}
 		}	
 		catch (SQLException e) {
