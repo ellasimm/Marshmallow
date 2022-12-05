@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.logging.Logger;
 
 import FlightCode.Flights;
 import FlightCode.User;
+import GUI.ErrorMessageController;
 
 public class InsertDB {
 	public static boolean success;
@@ -56,10 +58,17 @@ public class InsertDB {
 			
 			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO FlightOrder(flightOrderId, flightId, subtotal, bookingstatus, accountUserId) VALUES(?,?,?,?,?);");
 			
-		}catch(Exception ex) {
-			System.out.println("An exception occurred in database");
-			ex.printStackTrace();
+		}catch(SQLIntegrityConstraintViolationException ex1) {
+			
+			ErrorMessageController.display("Duplicate Booking Alert!");
+			ex1.printStackTrace();
 			success = false;
+			
+		}catch(SQLException ex2) {
+			ex2.printStackTrace();
+			success = false;
+		}catch(ClassNotFoundException ex3) {
+			ex3.printStackTrace();
 		}
 	}
 	public void insertAccount(User user, Connection connection) throws SQLException{
@@ -89,10 +98,18 @@ public class InsertDB {
 			
 			connection.close();
 			success = true;
-		}catch(Exception ex) {
-			System.out.println("An exception occurred in database");
-			ex.printStackTrace();
+		}catch(SQLIntegrityConstraintViolationException ex1) {
+			
+			ErrorMessageController.display("Duplicate Account Alert!" + "\nTry again or click forgot password");
 			success = false;
+			
+		}catch(SQLException ex2) {
+			ex2.printStackTrace();
+			success = false;
+			
+		}catch(ClassNotFoundException ex3) {
+			System.out.println("Might be an error in Database");
+			ex3.printStackTrace();
 		}
 	}
 }
