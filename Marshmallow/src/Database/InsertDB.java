@@ -71,6 +71,7 @@ public class InsertDB {
 			ex3.printStackTrace();
 		}
 	}
+	
 	public void insertAccount(User user, Connection connection) throws SQLException{
 		success = false;
 	

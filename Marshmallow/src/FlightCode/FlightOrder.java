@@ -11,13 +11,7 @@ public class FlightOrder {
 	
 	private int orderNumber;
 	private int flightID;
-	private String fromCity;
-	private String toCity;
-	private String flightDate;
-	private String takeOffTime;
-	private String landingTime;
 	private int userID;
-	private String passengerUserName;
 	
 	
 	public FlightOrder(){
@@ -25,31 +19,11 @@ public class FlightOrder {
 	}
 	
 	
-	public FlightOrder(int orderNumber, int flightID, String fromCity, String toCity,
-							String flightDate, String takeOffTime, String landingTime, int userID, String passengerUserName) {
+	public FlightOrder(int orderNumber, int flightID, int userID) {
 		
 		this.orderNumber = orderNumber;
 		this.flightID = flightID;
-		this.fromCity = fromCity;
-		this.toCity = toCity;
-		this.flightDate = flightDate;
-		this.takeOffTime = takeOffTime;
-		this.landingTime = landingTime;
 		this.userID = userID;
-		this.passengerUserName = passengerUserName;
-	}
-	
-	
-	public FlightOrder(int orderNumber, int flightID, String fromCity, String toCity, 
-						String flightDate, String takeOffTime, String landingTime) {
-		
-		this.orderNumber = orderNumber;
-		this.flightID = flightID;
-		this.fromCity = fromCity;
-		this.toCity = toCity;
-		this.flightDate = flightDate;
-		this.takeOffTime = takeOffTime;
-		this.landingTime = landingTime;
 	}
 	
 	
@@ -59,9 +33,7 @@ public class FlightOrder {
 		
 		Flights booked = GetDB.getFlight(flightID);
 		
-		FlightOrder flightOrder = new FlightOrder(orderNum, flightID, booked.getFromCity(), booked.getToCity(),
-													booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),
-													LoginPageController.currentUser.getUserID(), LoginPageController.currentUser.getUserName());
+		FlightOrder flightOrder = new FlightOrder(orderNum, flightID, LoginPageController.currentUser.getUserID());
 		
 		InsertDB.insertFlightOrder(booked);
 	}
@@ -92,57 +64,7 @@ public class FlightOrder {
 	public void setFlightID(int flightID) {
 		this.flightID = flightID;
 	}
-
-
-	public String getFromCity() {
-		return fromCity;
-	}
-
-
-	public void setFromCity(String fromCity) {
-		this.fromCity = fromCity;
-	}
-
-
-	public String getToCity() {
-		return toCity;
-	}
-
-
-	public void setToCity(String toCity) {
-		this.toCity = toCity;
-	}
-
-
-	public String getFlightDate() {
-		return flightDate;
-	}
-
-
-	public void setFlightDate(String flightDate) {
-		this.flightDate = flightDate;
-	}
-
-
-	public String getTakeOffTime() {
-		return takeOffTime;
-	}
-
-
-	public void setTakeOffTime(String takeOffTime) {
-		this.takeOffTime = takeOffTime;
-	}
-
-
-	public String getLandingTime() {
-		return landingTime;
-	}
-
-
-	public void setLandingTime(String landingTime) {
-		this.landingTime = landingTime;
-	}
-
+	
 
 	public int getUserID() {
 		return userID;
@@ -152,16 +74,5 @@ public class FlightOrder {
 	public void setUserID(int userID) {
 		this.userID = userID;
 	}
-
-
-	public String getPassengerUserName() {
-		return passengerUserName;
-	}
-
-
-	public void setPassengerUserName(String passengerUserName) {
-		this.passengerUserName = passengerUserName;
-	}
-	//testing this
 
 }
