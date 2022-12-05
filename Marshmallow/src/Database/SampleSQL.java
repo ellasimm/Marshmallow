@@ -15,7 +15,7 @@ public class SampleSQL {
 		
 		SampleSQL azure = new SampleSQL();
 		System.out.println("connecting..");
-		String sql = "Select flightId, fromCity, toCity, takeOffTime, landingTime, unitCost from Flight";
+		String sql = "Select flightId, fromCity, toCity, takeOffTime, landingTime, numSeats, flightDate from Flights";
 		azure.SelectAzureSQL(cnnString, sql);
 	}
 	
