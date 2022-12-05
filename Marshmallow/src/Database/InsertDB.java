@@ -57,7 +57,7 @@ public class InsertDB {
 			Connection cnn = DriverManager.getConnection(cnnString);
 			log.info("Insert data");
 			
-			PreparedStatement preparedStatement = cnn.prepareStatement("INSERT INTO FlightOrder(flightOrderId, flightId, subtotal, bookingstatus, accountUserId) VALUES(?,?,?,?,?);");
+			PreparedStatement preparedStatement = cnn.prepareStatement("INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) VALUES(?,?,?,?,?,?,?,?);");
 			
 		}catch(SQLIntegrityConstraintViolationException ex1) {
 			

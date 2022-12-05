@@ -59,7 +59,7 @@ public class FlightOrder {
 													booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),
 													LoginPageController.currentUser.getUserID());
 		
-		InsertDB.insertFlightOrder(flightOrder);
+		InsertDB.insertFlightOrder(booked);
 	}
 
 	
