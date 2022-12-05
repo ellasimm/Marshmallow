@@ -35,7 +35,7 @@ public class FlightOrder {
 		
 		FlightOrder flightOrder = new FlightOrder(orderNum, flightID, LoginPageController.currentUser.getUserID());
 		
-		InsertDB.insertFlightOrder(booked);
+		InsertDB.insertFlightOrder(flightOrder);
 	}
 
 	
