@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import FlightCode.Flights;
 import FlightCode.User;
+import GUI.ErrorMessage;
 import GUI.ErrorMessageController;
 
 public class InsertDB {
@@ -55,11 +56,12 @@ public class InsertDB {
 			Connection cnn = DriverManager.getConnection(cnnString);
 			log.info("Insert data");
 			
-			PreparedStatement preparedStatement = cnn.prepareStatement("INSERT INTO FlightOrder(flightOrderId, flightId, subtotal, bookingstatus, accountUserId) VALUES(?,?,?,?,?);");
+			PreparedStatement preparedStatement = cnn.prepareStatement("INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) VALUES(?,?,?,?,?,?,?,?);");
 			
 		}catch(SQLIntegrityConstraintViolationException ex1) {
 			
-			ErrorMessageController.display("Duplicate Booking Alert!");
+			ErrorMessage.showErrorMessage("Duplicate Booking Alert!");
+			
 			ex1.printStackTrace();
 			success = false;
 			
@@ -70,6 +72,7 @@ public class InsertDB {
 			ex3.printStackTrace();
 		}
 	}
+	
 	public void insertAccount(User user, Connection connection) throws SQLException{
 		success = false;
 	
@@ -99,7 +102,7 @@ public class InsertDB {
 			success = true;
 		}catch(SQLIntegrityConstraintViolationException ex1) {
 			
-			ErrorMessageController.display("Duplicate Account Alert!" + "\nTry again or click forgot password");
+			ErrorMessage.showErrorMessage("Duplicate Account Alert!" + "\nTry again or click forgot password");
 			success = false;
 			
 		}catch(SQLException ex2) {

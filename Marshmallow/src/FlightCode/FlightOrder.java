@@ -1,12 +1,10 @@
 package FlightCode;
 
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.Random;
-
 import Database.GetDB;
 import Database.InsertDB;
 import GUI.LoginPageController;
+
 public class FlightOrder {
 	
 	private int orderNumber;
@@ -17,7 +15,6 @@ public class FlightOrder {
 	private String takeOffTime;
 	private String landingTime;
 	private int userID;
-	private String passengerUserName;
 	
 	
 	public FlightOrder(){
@@ -26,7 +23,7 @@ public class FlightOrder {
 	
 	
 	public FlightOrder(int orderNumber, int flightID, String fromCity, String toCity,
-							String flightDate, String takeOffTime, String landingTime, int userID, String passengerUserName) {
+							String flightDate, String takeOffTime, String landingTime, int userID) {
 		
 		this.orderNumber = orderNumber;
 		this.flightID = flightID;
@@ -36,7 +33,6 @@ public class FlightOrder {
 		this.takeOffTime = takeOffTime;
 		this.landingTime = landingTime;
 		this.userID = userID;
-		this.passengerUserName = passengerUserName;
 	}
 	
 	
@@ -61,7 +57,7 @@ public class FlightOrder {
 		
 		FlightOrder flightOrder = new FlightOrder(orderNum, flightID, booked.getFromCity(), booked.getToCity(),
 													booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),
-													LoginPageController.currentUser.getUserID(), LoginPageController.currentUser.getUserName());
+													LoginPageController.currentUser.getUserID());
 		
 		InsertDB.insertFlightOrder(booked);
 	}
@@ -152,16 +148,5 @@ public class FlightOrder {
 	public void setUserID(int userID) {
 		this.userID = userID;
 	}
-
-
-	public String getPassengerUserName() {
-		return passengerUserName;
-	}
-
-
-	public void setPassengerUserName(String passengerUserName) {
-		this.passengerUserName = passengerUserName;
-	}
-	//testing this
 
 }
