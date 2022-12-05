@@ -1,19 +1,10 @@
 package GUI;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.control.*;
 import javafx.geometry.*;
 
 public class ErrorMessage {
@@ -27,7 +18,7 @@ public class ErrorMessage {
 //
 //	        alert.showAndWait();
 //	    }
-public static void showErrorMessage(String message) {
+	public static void showErrorMessage(String message) {
 		
 		Stage window = new Stage();
 		
@@ -55,5 +46,5 @@ public static void showErrorMessage(String message) {
 	
 
 	}
-	}
+}
 
