@@ -16,26 +16,28 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Modality;
 
-
 public class ErrorMessageController implements Initializable{
 
 	
+
 	@FXML Label errorMessage;
 	@FXML Button errorButton;
 	
-	public void display(String message) {
-		Stage stage = new Stage();
-		stage.initModality(Modality.APPLICATION_MODAL);
-		errorMessage.setText(message);
+public void openError(String message) throws Exception {
 		
+		AnchorPane openErrorParent = FXMLLoader.load(getClass().getResource("/GUI/ErrorMessage.fxml"));
+		Scene openErrorScene = new Scene(openErrorParent);
+		Stage window = FXMLLoader.load(getClass().getResource("/GUI/ErrorMessage.fxml"));
+		
+		window.initModality(Modality.APPLICATION_MODAL);
+		window.setScene(openErrorScene);
+		errorMessage.setText(message);
+		window.show();
 	}
 
 	public void handleCloseButtonAction(ActionEvent event) throws IOException {
 	    Stage stage = (Stage) errorButton.getScene().getWindow();
 	    stage.close();
-	    AnchorPane openErrorParent = FXMLLoader.load(getClass().getResource("/GUI/ErrorMessage.fxml"));
-	    Scene scene = new Scene(openErrorParent);
-	    stage.showAndWait();
 	}
 	
 	@Override
