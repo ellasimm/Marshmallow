@@ -1,14 +1,55 @@
 package Database;
 
-public class UpdateDB {
-	public static void deleteFlightOrder(int orderNumber) {
-		
-	}
-	public static void deleteFlight(int flightId) {
-		
-	}
-	public static void addFlight(int flightId) {
-		
-	}
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Logger;
 
+import FlightCode.FlightOrder;
+import FlightCode.Flights;
+
+public class UpdateDB {
+	public static boolean success;
+	private static final Logger log = null;
+	
+	public static void deleteFlightOrder(FlightOrder order, Connection connection) throws SQLException {
+		success = false;
+		try {
+			String cnnString = "jdbc:sqlserver://cisproject2022.database.windows.net:1433;database=FlightReservationProject;user=RezaKian@cisproject2022;password=Saglover2?;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+			System.out.println("connecting..");
+			Connection cnn = DriverManager.getConnection(cnnString);
+			log.info("Delete data");
+			PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM FlightOrder WHERE flightOrderId = ? ; ");
+			preparedStatement.setLong(1, order.getOrderNumber());
+			preparedStatement.executeUpdate();
+			
+			connection.close();
+			success = true;
+		}catch(Exception e1) {
+			e1.printStackTrace();
+			success = false;
+		}
+	}
+	public static void deleteFlight(Flights flight, Connection connection) throws SQLException {
+		success = false;
+		try {
+			String cnnString = "jdbc:sqlserver://cisproject2022.database.windows.net:1433;database=FlightReservationProject;user=RezaKian@cisproject2022;password=Saglover2?;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+			System.out.println("connecting..");
+			Connection cnn = DriverManager.getConnection(cnnString);
+			log.info("Delete data");
+			PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM Flight WHERE flightId = ? ; ");
+			preparedStatement.setLong(1,flight.getFlightId());
+			preparedStatement.executeUpdate();
+			
+			connection.close();
+			success = true;
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			success = false;
+		
+		}
+	}
+	
 }
