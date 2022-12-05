@@ -27,7 +27,7 @@ public class SampleSQL {
 			resultSet = statement.executeQuery(sql);
 			while(resultSet.next()) {
 				System.out.println(resultSet.getString(1) + ", "+ resultSet.getString(2)+", "+ resultSet.getString(3)
-									+ ", " + resultSet.getString(4) + ", "+ resultSet.getString(5)+", "+ resultSet.getString(6));	
+									+ ", " + resultSet.getString(4) + ", "+ resultSet.getString(5)+", "+ resultSet.getString(6) +", "+ resultSet.getString(7));	
 			}
 		}	
 		catch (SQLException e) {
