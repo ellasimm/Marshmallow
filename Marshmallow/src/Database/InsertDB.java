@@ -15,7 +15,7 @@ public class InsertDB {
 	private static final Logger log = null;
 
 	
-	public static void insertFlight(Flights flight, Connection connection) throws SQLException{
+	public static void insertFlight(Flights flight) throws SQLException{
 		success = false;
 		
 	
@@ -24,7 +24,7 @@ public class InsertDB {
 			System.out.println("connecting..");
 			Connection cnn = DriverManager.getConnection(cnnString);
 			log.info("Insert data");
-			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Flight (flightID, fromCity, toCity, takeOffTime, landingTime, unitCost) VALUES (?,?,?,?,?,?);");
+			PreparedStatement preparedStatement = cnn.prepareStatement("INSERT INTO Flight (flightID, fromCity, toCity, takeOffTime, landingTime, unitCost) VALUES (?,?,?,?,?,?);");
 			preparedStatement.setInt(1, flight.getFlightId());
 			preparedStatement.setString(2, flight.getFromCity());
 			preparedStatement.setString(3, flight.getToCity());
@@ -36,7 +36,7 @@ public class InsertDB {
 			
 			preparedStatement.executeUpdate();
 			
-			connection.close();
+			cnn.close();
 			success = true;
 								
 		}catch(Exception ex) {
@@ -45,7 +45,7 @@ public class InsertDB {
 			success = false;
 		}
 	}
-	public static void insertFlightOrder(Flights order, Connection connection) throws SQLException {
+	public static void insertFlightOrder(Flights order) throws SQLException {
 		success = false;
 		
 		try {
@@ -54,7 +54,7 @@ public class InsertDB {
 			Connection cnn = DriverManager.getConnection(cnnString);
 			log.info("Insert data");
 			
-			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO FlightOrder(flightOrderId, flightId, subtotal, bookingstatus, accountUserId) VALUES(?,?,?,?,?);");
+			PreparedStatement preparedStatement = cnn.prepareStatement("INSERT INTO FlightOrder(flightOrderId, flightId, subtotal, bookingstatus, accountUserId) VALUES(?,?,?,?,?);");
 			
 		}catch(Exception ex) {
 			System.out.println("An exception occurred in database");

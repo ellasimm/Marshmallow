@@ -6,6 +6,7 @@ import GUI.ErrorMessageController;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 
 public class Flights implements Comparable<Flights>{
@@ -25,7 +26,7 @@ public class Flights implements Comparable<Flights>{
 	}
 
 	public Flights(int flightId, String fromCity, String toCity, int numSeats,
-			String flightDate, String landingTime, String takeOffTime, String returnFlight) {
+			String flightDate, String landingTime, String takeOffTime) {
 
 		this.flightId = flightId;
 		this.fromCity = fromCity;
@@ -34,22 +35,21 @@ public class Flights implements Comparable<Flights>{
 		this.flightDate = flightDate;
 		this.landingTime = landingTime;
 		this.takeOffTime = takeOffTime;
-		this.returnFlight = returnFlight;	
 	}
 
 	public static void createFlight(String fromCity, String toCity, int numSeats, String flightDate, 
-										String landingTime,  String takeOffTime,  String  returnFlight) {
+										String landingTime,  String takeOffTime) {
 
 		int num = createFlightNum();
 
-		Flights flight = new Flights(num, fromCity, toCity, numSeats, flightDate, landingTime,  takeOffTime, returnFlight);
+		Flights flight = new Flights(num, fromCity, toCity, numSeats, flightDate, landingTime,  takeOffTime);
 		String cnnString = "jdbc:sqlserver://cisproject2022.database.windows.net:1433;database=FlightReservationProject;user=RezaKian@cisproject2022;password=Saglover2?;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 		Connection connection = DriverManager.getConnection(cnnString);
-		InsertDB.insertFlight(flight, connection);
-		if(InsertDB.success)  {
-			ErrorMessageController.display("Flight Created. The Flight ID is: " + num);
-		}else {
-			ErrorMessageController.display("Try Again, Make Sure All Fields Are Filled");
+		try {
+			InsertDB.insertFlight(flight, connection);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -123,14 +123,6 @@ public class Flights implements Comparable<Flights>{
 
 	public void setTakeOffTime(String takeOffTime) {
 		this.takeOffTime = takeOffTime;
-	}
-
-	public String getReturnFlight() {
-		return returnFlight;
-	}
-
-	public void setReturnFlight(String returnFlight) {
-		this.returnFlight = returnFlight;
 	}
 
 	public static int createFlightNum() {

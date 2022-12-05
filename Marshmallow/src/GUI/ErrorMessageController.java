@@ -31,7 +31,7 @@ public void openError(String message) throws Exception {
 		
 		window.initModality(Modality.APPLICATION_MODAL);
 		window.setScene(openErrorScene);
-		errorMessage.setText(message);
+		
 		window.show();
 	}
 

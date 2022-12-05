@@ -1,4 +1,6 @@
 package FlightCode;
+
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Random;
 
@@ -8,138 +10,158 @@ import GUI.LoginPageController;
 public class FlightOrder {
 	
 	private int orderNumber;
-	private Flights flightId;
-	private Date bookingDate;
-	private Aircraft[] seatNumbers;
-	private int[] passengersSeatNumbers;
-	//private int[] passengersSsn;
-	private Date[] passengersDateOfBirth;
-	private Flights fromCity;
-	private Flights toCity;
-	private Flights flightDate;
-	private Flights takeOffTime;
-	private Flights landingTime;
-	private Flights unitCost;
-	private float subtotal;
-	private boolean bookingStatus;
-	private User userID;
-	private String passenger_userName;
+	private int flightID;
+	private String fromCity;
+	private String toCity;
+	private String flightDate;
+	private String takeOffTime;
+	private String landingTime;
+	private int userID;
+	private String passengerUserName;
+	
 	
 	public FlightOrder(){
+		
 	}
-	public FlightOrder(int orderNumber, Flights flightId, Date bookingDate, int[] passengersSeatNumbers, 
-			int[] passengersSsn, Date[] passengersDateOfBirth, Flights fromCity, Flights toCity, Flights flightDate,
-			Flights takeOffTime, Flights landingTime, Flights unitCost, float subtotal, boolean bookingStatus, User userID, String passenger_userName){
+	
+	
+	public FlightOrder(int orderNumber, int flightID, String fromCity, String toCity,
+							String flightDate, String takeOffTime, String landingTime, int userID, String passengerUserName) {
+		
 		this.orderNumber = orderNumber;
-		this.flightId = flightId;
-		this.bookingDate = bookingDate;
-		this.passengersSeatNumbers = passengersSeatNumbers;
-		//this.passengersSsn = passengersSsn;
-		this.passengersDateOfBirth = passengersDateOfBirth;
+		this.flightID = flightID;
 		this.fromCity = fromCity;
 		this.toCity = toCity;
 		this.flightDate = flightDate;
 		this.takeOffTime = takeOffTime;
 		this.landingTime = landingTime;
-		this.unitCost = unitCost;
-		this.subtotal = subtotal;
-		this.bookingStatus = bookingStatus;
 		this.userID = userID;
-		this.passenger_userName = passenger_userName;
+		this.passengerUserName = passengerUserName;
 	}
 	
-	public FlightOrder(Flights flightId, Flights flightDate, Flights takeOffTime, Flights landingTime, Flights fromCity, Flights toCity) {
-		this.flightId = flightId;
-		this.flightDate = flightDate;
-		this.takeOffTime = takeOffTime;
-		this.landingTime = landingTime;
-		this.fromCity = fromCity;
-		this.toCity = toCity;
-	}
 	
-	//just created this constructor for booking
-	public FlightOrder(int orderNumber, User userID, Flights flightId,  Flights flightDate,Flights takeOffTime, Flights landingTime, Flights fromCity, Flights toCity, String userName) {
+	public FlightOrder(int orderNumber, int flightID, String fromCity, String toCity, 
+						String flightDate, String takeOffTime, String landingTime) {
+		
 		this.orderNumber = orderNumber;
-		this.userID = userID;
-		this.flightId = flightId;
+		this.flightID = flightID;
+		this.fromCity = fromCity;
+		this.toCity = toCity;
 		this.flightDate = flightDate;
 		this.takeOffTime = takeOffTime;
 		this.landingTime = landingTime;
-		this.fromCity = fromCity;
-		this.toCity = toCity;
-		passenger_userName = userName;
-		
-	}
-	public void displayAvailableSeats() {
-	}
-	public void displayCheckout() {
-	}
-	public void placeOrder(int flightId) {
-		int ticketNum = generateTicket();
-		Flights toBook = GetDB.getFlight(flightId);//retrieve flightID from the DB
-		
-		FlightOrder booking = new FlightOrder(orderNumber, LoginPageController.currentUser.getUserID(), flightId, toBook.getFlightDate(),
-				toBook.getTakeOffTime(), toBook.getLandingTime(), toBook.getFromCity(), toBook.getToCity(),
-				LoginPageController.currentUser.getUserName()); //why does it have errors
-		
-		InsertDB.insertFightOrder(booking); //need to create this method in InsertDB
-	}
-	public void saveCustomerActivity() {
-	}
-	public void goMainMenu() {
 	}
 	
-	public static int generateTicket() {
-		Random rand  = new Random();
-		int ticketNum = rand.nextInt(999);
-		return ticketNum;
+	
+	public static void orderFlight(int flightID) throws SQLException {
+		
+		int orderNum = generateOrderNumber();
+		
+		Flights booked = GetDB.getFlight(flightID);
+		
+		FlightOrder flightOrder = new FlightOrder(orderNum, flightID, booked.getFromCity(), booked.getToCity(),
+													booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),
+													LoginPageController.currentUser.getUserID(), LoginPageController.currentUser.getUserName());
+		
+		InsertDB.insertFlightOrder(booked);
 	}
+
+	
+	public static int generateOrderNumber() {
+		
+		int num = (int)(Math.random() * 1000);
+		return num;
+	}
+
+
 	public int getOrderNumber() {
 		return orderNumber;
 	}
+
+
 	public void setOrderNumber(int orderNumber) {
 		this.orderNumber = orderNumber;
 	}
-	public Date getBookingDate() {
-		return bookingDate;
+
+
+	public int getFlightID() {
+		return flightID;
 	}
-	public void setBookingDate(Date bookingDate) {
-		this.bookingDate = bookingDate;
+
+
+	public void setFlightID(int flightID) {
+		this.flightID = flightID;
 	}
-	public int[] getPassengersSeatNumbers() {
-		return passengersSeatNumbers;
+
+
+	public String getFromCity() {
+		return fromCity;
 	}
-	public void setPassengersSeatNumbers(int[] passengersSeatNumbers) {
-		this.passengersSeatNumbers = passengersSeatNumbers;
+
+
+	public void setFromCity(String fromCity) {
+		this.fromCity = fromCity;
 	}
-	public String[] getPassengersFullNames() {
-		return passengersFullNames;
+
+
+	public String getToCity() {
+		return toCity;
 	}
-	public void setPassengersFullNames(String[] passengersFullNames) {
-		this.passengersFullNames = passengersFullNames;
+
+
+	public void setToCity(String toCity) {
+		this.toCity = toCity;
 	}
-	public int[] getPassengersSsn() {
-		return passengersSsn;
+
+
+	public String getFlightDate() {
+		return flightDate;
 	}
-	public void setPassengersSsn(int[] passengersSsn) {
-		this.passengersSsn = passengersSsn;
+
+
+	public void setFlightDate(String flightDate) {
+		this.flightDate = flightDate;
 	}
-	public Date[] getPassengersDateOfBirth() {
-		return passengersDateOfBirth;
+
+
+	public String getTakeOffTime() {
+		return takeOffTime;
 	}
-	public void setPassengersDateOfBirth(Date[] passengersDateOfBirth) {
-		this.passengersDateOfBirth = passengersDateOfBirth;
+
+
+	public void setTakeOffTime(String takeOffTime) {
+		this.takeOffTime = takeOffTime;
 	}
-	public float getSubtotal() {
-		return subtotal;
+
+
+	public String getLandingTime() {
+		return landingTime;
 	}
-	public void setSubtotal(float subtotal) {
-		this.subtotal = subtotal;
+
+
+	public void setLandingTime(String landingTime) {
+		this.landingTime = landingTime;
 	}
-	public boolean isBookingStatus() {
-		return bookingStatus;
+
+
+	public int getUserID() {
+		return userID;
 	}
-	public void setBookingStatus(boolean bookingStatus) {
-		this.bookingStatus = bookingStatus;
+
+
+	public void setUserID(int userID) {
+		this.userID = userID;
 	}
+
+
+	public String getPassengerUserName() {
+		return passengerUserName;
+	}
+
+
+	public void setPassengerUserName(String passengerUserName) {
+		this.passengerUserName = passengerUserName;
+	}
+	
+
 }

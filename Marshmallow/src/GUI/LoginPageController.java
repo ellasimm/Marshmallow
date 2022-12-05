@@ -76,6 +76,12 @@ public class LoginPageController implements Initializable {
 		window.show();
 		}
 	}
+	
+	public void checkLogin(ActionEvent event) {
+
+		User currentUser = new User();
+		
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
