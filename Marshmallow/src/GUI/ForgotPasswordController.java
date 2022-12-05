@@ -39,6 +39,7 @@ public class ForgotPasswordController implements Initializable{
 		
 		window.setScene(homeScene);
 		window.show();
+		
 	}
 	
 	public void passRecovery(ActionEvent event) throws Exception {

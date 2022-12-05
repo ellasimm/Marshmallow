@@ -2,6 +2,8 @@ package FlightCode;
 
 import java.util.ArrayList;
 import Database.InsertDB;
+import GUI.ErrorMessageController;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -45,9 +47,9 @@ public class Flights implements Comparable<Flights>{
 		Connection connection = DriverManager.getConnection(cnnString);
 		InsertDB.insertFlight(flight, connection);
 		if(InsertDB.success)  {
-				AlertBox.Display("Flight Created. The Flight ID is: " + num);
+			ErrorMessageController.display("Flight Created. The Flight ID is: " + num);
 		}else {
-			AlertBox.Display("Try Again, Make Sure All Fields Are Filled");
+			ErrorMessageController.display("Try Again, Make Sure All Fields Are Filled");
 		}
 	}
 
