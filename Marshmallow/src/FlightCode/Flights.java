@@ -25,8 +25,8 @@ public class Flights implements Comparable<Flights>{
 	public Flights() {
 	}
 
-	public Flights(int flightId, String fromCity, String toCity, int numSeats,
-			String flightDate, String landingTime, String takeOffTime) {
+	public Flights(int flightId, String fromCity, String toCity, String takeOffTime, String landingTime,  int numSeats,
+			String flightDate) {
 
 		this.flightId = flightId;
 		this.fromCity = fromCity;
@@ -36,19 +36,22 @@ public class Flights implements Comparable<Flights>{
 		this.landingTime = landingTime;
 		this.takeOffTime = takeOffTime;
 	}
+	
 
 	public static void createFlight(String fromCity, String toCity, int numSeats, String flightDate, 
-										String landingTime,  String takeOffTime) {
+										String landingTime,  String takeOffTime){
 
-		int num = createFlightNum();
+		int num = createFlightNum();  //should this be inside try?
 
-		Flights flight = new Flights(num, fromCity, toCity, numSeats, flightDate, landingTime,  takeOffTime);
-		String cnnString = "jdbc:sqlserver://cisproject2022.database.windows.net:1433;database=FlightReservationProject;user=RezaKian@cisproject2022;password=Saglover2?;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-		Connection connection = DriverManager.getConnection(cnnString);
 		try {
+
+			Flights flight = new Flights(num, fromCity, toCity, landingTime,  takeOffTime, numSeats, flightDate);
+			String cnnString = "jdbc:sqlserver://cisproject2022.database.windows.net:1433;database=FlightReservationProject;user=RezaKian@cisproject2022;password=Saglover2?;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+			Connection connection = DriverManager.getConnection(cnnString);
 			InsertDB.insertFlight(flight, connection);
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}

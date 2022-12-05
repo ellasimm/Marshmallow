@@ -17,24 +17,23 @@ public class InsertDB {
 	private static final Logger log = null;
 
 	
-	public static void insertFlight(Flights flight) throws SQLException{
+	public static void insertFlight(Flights flight, Connection connection) throws SQLException{
 		success = false;
 		
 	
 		try {
-			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+			String cnnString = "jdbc:sqlserver://cisproject2022.database.windows.net:1433;database=FlightReservationProject;user=RezaKian@cisproject2022;password=Saglover2?;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 			System.out.println("connecting..");
 			Connection cnn = DriverManager.getConnection(cnnString);
 			log.info("Insert data");
-			PreparedStatement preparedStatement = cnn.prepareStatement("INSERT INTO Flight (flightID, fromCity, toCity, takeOffTime, landingTime, flightDate ) VALUES (?,?,?,?,?,?);");
+			PreparedStatement preparedStatement = cnn.prepareStatement("INSERT INTO Flights (flightID, fromCity, toCity, takeOffTime, landingTime, numSeat, flightDate ) VALUES (?,?,?,?,?,?,?);");
 			preparedStatement.setInt(1, flight.getFlightId());
 			preparedStatement.setString(2, flight.getFromCity());
 			preparedStatement.setString(3, flight.getToCity());
 			preparedStatement.setString(4, flight.getTakeOffTime());
 			preparedStatement.setString(5, flight.getLandingTime());
-			preparedStatement.setString(6, flight.getFlightDate());
-			preparedStatement.setInt(7, flight.getNumSeats());
-			//preparedStatement.setString(8, flight.getReturnFlight());
+			preparedStatement.setInt(6, flight.getNumSeats());
+			preparedStatement.setString(7, flight.getFlightDate());
 			
 			preparedStatement.executeUpdate();
 			
@@ -51,7 +50,7 @@ public class InsertDB {
 		success = false;
 		
 		try {
-			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+			String cnnString = "jdbc:sqlserver://cisproject2022.database.windows.net:1433;database=FlightReservationProject;user=RezaKian@cisproject2022;password=Saglover2?;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 			System.out.println("connecting..");
 			Connection cnn = DriverManager.getConnection(cnnString);
 			log.info("Insert data");
@@ -75,7 +74,7 @@ public class InsertDB {
 		success = false;
 	
 		try {
-			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";;
+			String cnnString = "jdbc:sqlserver://cisproject2022.database.windows.net:1433;database=FlightReservationProject;user=RezaKian@cisproject2022;password=Saglover2?;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 			System.out.println("connecting..");
 			Connection cnn = DriverManager.getConnection(cnnString);
 			log.info("Insert data");

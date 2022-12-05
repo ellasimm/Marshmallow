@@ -1,4 +1,4 @@
-package Database;
+package Database;  //finished I believe
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,10 +21,9 @@ public class SearchDB {
 			Connection cnn = DriverManager.getConnection(cnnString);
 			log.info("Search data");
 			
-			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Flight, FlightDate WHERE Flight.fromCity=" + "'" + flight.getFromCity() + "'" + 
-			"and Flight.toCity=" + "'" + flight.getToCity() + "'" + "and FlightDate.flight_date=" + "'" + flight.getFlightDate() + "'");
+			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Flights WHERE fromCity=" + "'" + flight.getFromCity() + "'" + 
+			"and toCity=" + "'" + flight.getToCity() + "'" + "and flightDate=" + "'" + flight.getFlightDate() + "'");
 			
-			// I don't understand how flightDate works. 
 			
 			resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
@@ -33,8 +32,10 @@ public class SearchDB {
 				flight1.setFlightId(resultSet.getInt("flightId"));
 				flight1.setFromCity(resultSet.getString("fromCity"));
 				flight1.setToCity(resultSet.getString("toCity"));
-				
-				flight1.setFlightDate(resultSet.getString(""/* what column should I place inside the quotes.*/));
+				flight1.setTakeOffTime(resultSet.getString("takeOffTime"));
+				flight1.setLandingTime(resultSet.getString("landingTime"));
+				flight1.setNumSeats(resultSet.getInt("numSeat"));
+				flight1.setFlightDate(resultSet.getString("flightDate"));
 				
 				flights.add(flight);
 			}

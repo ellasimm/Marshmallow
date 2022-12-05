@@ -1,4 +1,4 @@
-package Database;
+package Database; //finished I believe
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -38,7 +38,7 @@ public class UpdateDB {
 			System.out.println("connecting..");
 			Connection cnn = DriverManager.getConnection(cnnString);
 			log.info("Delete data");
-			PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM Flight WHERE flightId = ? ; ");
+			PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM Flights WHERE flightId = ? ; ");
 			preparedStatement.setLong(1,flight.getFlightId());
 			preparedStatement.executeUpdate();
 			
