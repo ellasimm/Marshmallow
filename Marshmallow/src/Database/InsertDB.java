@@ -1,4 +1,4 @@
-package Database;
+package Database;  //Fix classNotFoundException
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import FlightCode.Flights;
 import FlightCode.User;
 import GUI.ErrorMessage;
-import GUI.ErrorMessageController;
+
 
 public class InsertDB {
 	public static boolean success;
