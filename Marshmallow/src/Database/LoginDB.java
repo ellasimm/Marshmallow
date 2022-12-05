@@ -1,27 +1,46 @@
 package Database;
 
+import java.sql.*;
+
 public class LoginDB {
 	
-	public String confirmLogin(String userName) {
+	static final String url =  "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+	static Connection cnn;
+	
+	public String loginConnection(String username) {
 		String result = "";
-		//add more
+		
+		try {
+			Class.forName("java.sql.Driver");	
+			System.out.println("database connected");
+			cnn = DriverManager.getConnection(url);
+		
+			PreparedStatement preparedStatement = cnn.prepareStatement("SELECT * FROM AccountUser WHERE userName=" + "'" + username + "'");
+			ResultSet res = preparedStatement.executeQuery();
+			
+			if (res.next()) {
+				result = res.getString("password");
+			}
+			cnn.close();
+			
+		}catch (SQLException | ClassNotFoundException ex){
+			
+			System.out.println("Something went wrong");
+			ex.printStackTrace();
+		}
 		return result;
 	}
 	
-	public String returnPassword(String email, String securityAnswer) {
-		String correctSecurityAnswer = "";
-		String userAnswer = securityAnswer;
+	
+	public String forgotPassword(String question, String answer) {
+		
 		String result = "";
-		//add more
-		return result;
+		String rightAnswer = "";
+		String password = "";
+		String userAnswer = answer;
+		
 		
 	}
 	
-	public Boolean findEmail(String email) {
-		boolean result = false;
-		//add more
-		return result;
-		
-	}
 
 }
