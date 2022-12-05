@@ -45,10 +45,24 @@ public class InsertDB {
 			success = false;
 		}
 	}
-	public static void insertFlightOrder(Flights order) {
+	public static void insertFlightOrder(Flights order, Connection connection) throws SQLException {
+		success = false;
 		
+		try {
+			String cnnString = "jdbc:sqlserver://cisproject2022.database.windows.net:1433;database=FlightReservationProject;user=RezaKian@cisproject2022;password=Saglover2?;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+			System.out.println("connecting..");
+			Connection cnn = DriverManager.getConnection(cnnString);
+			log.info("Insert data");
+			
+			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO FlightOrder(flightOrderId, flightId, subtotal, bookingstatus, accountUserId) VALUES(?,?,?,?,?);");
+			
+		}catch(Exception ex) {
+			System.out.println("An exception occurred in database");
+			ex.printStackTrace();
+			success = false;
+		}
 	}
-	public void insertAccount(User user, Connection connection) throws SQLException {
+	public void insertAccount(User user, Connection connection) throws SQLException{
 		success = false;
 	
 		try {

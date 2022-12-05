@@ -2,6 +2,7 @@ package FlightCode;
 import java.util.Date;
 import java.util.Random;
 
+import Database.GetDB;
 import Database.InsertDB;
 import GUI.LoginPageController;
 public class FlightOrder {
@@ -11,46 +12,63 @@ public class FlightOrder {
 	private Date bookingDate;
 	private Aircraft[] seatNumbers;
 	private int[] passengersSeatNumbers;
-	private String[] passengersFullNames;  //is this necessary? 
-	private int[] passengersSsn;
+	//private int[] passengersSsn;
 	private Date[] passengersDateOfBirth;
 	private Flights fromCity;
 	private Flights toCity;
 	private Flights flightDate;
-	private Flights flightTime;
+	private Flights takeOffTime;
+	private Flights landingTime;
 	private Flights unitCost;
 	private float subtotal;
 	private boolean bookingStatus;
 	private User userID;
+	private String passenger_userName;
 	
 	public FlightOrder(){
 	}
-	public FlightOrder(int orderNumber, Flights flightId, Date bookingDate, int[] passengersSeatNumbers, String[] passengersFullNames, 
+	public FlightOrder(int orderNumber, Flights flightId, Date bookingDate, int[] passengersSeatNumbers, 
 			int[] passengersSsn, Date[] passengersDateOfBirth, Flights fromCity, Flights toCity, Flights flightDate,
-			Flights flightTime, Flights unitCost, float subtotal, boolean bookingStatus, User userID){
+			Flights takeOffTime, Flights landingTime, Flights unitCost, float subtotal, boolean bookingStatus, User userID, String passenger_userName){
 		this.orderNumber = orderNumber;
 		this.flightId = flightId;
 		this.bookingDate = bookingDate;
 		this.passengersSeatNumbers = passengersSeatNumbers;
-		this.passengersFullNames = passengersFullNames;
-		this.passengersSsn = passengersSsn;
+		//this.passengersSsn = passengersSsn;
 		this.passengersDateOfBirth = passengersDateOfBirth;
 		this.fromCity = fromCity;
 		this.toCity = toCity;
 		this.flightDate = flightDate;
-		this.flightTime = flightTime;
+		this.takeOffTime = takeOffTime;
+		this.landingTime = landingTime;
 		this.unitCost = unitCost;
 		this.subtotal = subtotal;
 		this.bookingStatus = bookingStatus;
 		this.userID = userID;
+		this.passenger_userName = passenger_userName;
 	}
 	
-	public FlightOrder(Flights flightId, Flights flightDate, Flights flightTime, Flights fromCity, Flights toCity) {
+	public FlightOrder(Flights flightId, Flights flightDate, Flights takeOffTime, Flights landingTime, Flights fromCity, Flights toCity) {
 		this.flightId = flightId;
 		this.flightDate = flightDate;
-		this.flightTime = flightTime;
+		this.takeOffTime = takeOffTime;
+		this.landingTime = landingTime;
 		this.fromCity = fromCity;
 		this.toCity = toCity;
+	}
+	
+	//just created this constructor for booking
+	public FlightOrder(int orderNumber, User userID, Flights flightId,  Flights flightDate,Flights takeOffTime, Flights landingTime, Flights fromCity, Flights toCity, String userName) {
+		this.orderNumber = orderNumber;
+		this.userID = userID;
+		this.flightId = flightId;
+		this.flightDate = flightDate;
+		this.takeOffTime = takeOffTime;
+		this.landingTime = landingTime;
+		this.fromCity = fromCity;
+		this.toCity = toCity;
+		passenger_userName = userName;
+		
 	}
 	public void displayAvailableSeats() {
 	}
@@ -58,9 +76,12 @@ public class FlightOrder {
 	}
 	public void placeOrder(int flightId) {
 		int ticketNum = generateTicket();
-		//FlightOrder toBook = ;//retrieve flightID from the DB
-		FlightOrder booking = new FlightOrder(orderNumber, LoginPageController.currentUser.getUserID(),flightId, /** toBook.toCity(),*/
-				LoginPageController.currentUser.getUserName()); //has error becuz toBook needs to connect to DB
+		Flights toBook = GetDB.getFlight(flightId);//retrieve flightID from the DB
+		
+		FlightOrder booking = new FlightOrder(orderNumber, LoginPageController.currentUser.getUserID(), flightId, toBook.getFlightDate(),
+				toBook.getTakeOffTime(), toBook.getLandingTime(), toBook.getFromCity(), toBook.getToCity(),
+				LoginPageController.currentUser.getUserName()); //why does it have errors
+		
 		InsertDB.insertFightOrder(booking); //need to create this method in InsertDB
 	}
 	public void saveCustomerActivity() {

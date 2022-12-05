@@ -6,9 +6,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 import Database.InsertDB;
 
@@ -55,7 +58,7 @@ public class User implements Comparable<User>{
 	
 	
 	public static void generateUser(String userName, String password, String firstName, String lastName, int ssn,
-            String email, String address, int zipCode, String state, String securityQuestion, String securityAnswer) {
+            String email, String address, int zipCode, String state, String securityQuestion, String securityAnswer) throws SQLException {
 		
 		int userID = generateUserId();
 		User user = new User(userID, userName, password, firstName, lastName, ssn, email, address, zipCode, state, securityQuestion, securityAnswer);
