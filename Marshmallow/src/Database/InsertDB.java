@@ -26,7 +26,7 @@ public class InsertDB {
 			System.out.println("connecting..");
 			Connection cnn = DriverManager.getConnection(cnnString);
 			log.info("Insert data");
-			PreparedStatement preparedStatement = cnn.prepareStatement("INSERT INTO Flight (flightID, fromCity, toCity, takeOffTime, landingTime, unitCost) VALUES (?,?,?,?,?,?);");
+			PreparedStatement preparedStatement = cnn.prepareStatement("INSERT INTO Flight (flightID, fromCity, toCity, takeOffTime, landingTime, flightDate ) VALUES (?,?,?,?,?,?);");
 			preparedStatement.setInt(1, flight.getFlightId());
 			preparedStatement.setString(2, flight.getFromCity());
 			preparedStatement.setString(3, flight.getToCity());
@@ -34,7 +34,7 @@ public class InsertDB {
 			preparedStatement.setString(5, flight.getLandingTime());
 			preparedStatement.setString(6, flight.getFlightDate());
 			preparedStatement.setInt(7, flight.getNumSeats());
-			preparedStatement.setString(8, flight.getReturnFlight());
+			//preparedStatement.setString(8, flight.getReturnFlight());
 			
 			preparedStatement.executeUpdate();
 			
