@@ -25,7 +25,7 @@ public class Login {
 	}
 	public boolean performLogin() {
 		LoginDB login = new LoginDB();
-		String checkLogin = login.confirmLogin(getUserName());
+		String checkLogin = login.loginConnection(getUserName());
 		checkPassword(checkLogin);
 		return checkLoginInfo;
 	}
