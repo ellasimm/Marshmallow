@@ -6,7 +6,10 @@ import java.util.ResourceBundle;
 import Database.GetDB;
 import Database.SearchDB;
 import FlightCode.Flights;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,19 +45,12 @@ public class findFlightAdminController implements Initializable{
 	@FXML TableView<Flights> flightTable;
 	@FXML Button searchButton;
 	@FXML Button addButton;
-	@FXML Button adminButton;
 	
-	ObservableList<Flights> list;
-	int index = -1;
-	Connection conn = null;
-	ResultSet rs = null;
-	PreparedStatement pst = null;
+	ObservableList<Flights> list = FXCollections.observableArrayList(GetDB.allFlights());
 	
 	
 	
-	
-	
-public void logOut(ActionEvent event) throws Exception {
+	public void logOut(ActionEvent event) throws Exception {
 		
 		AnchorPane logOutParent = FXMLLoader.load(getClass().getResource("/GUI/OpeningPage.fxml"));
 		Scene logOutScene = new Scene(logOutParent);
@@ -65,31 +61,70 @@ public void logOut(ActionEvent event) throws Exception {
 		window.show();
 	}
 
-public void toAccount(ActionEvent event) throws Exception {
+	public void toAccount(ActionEvent event) throws Exception {
 	
-	AnchorPane toAccountParent = FXMLLoader.load(getClass().getResource("/GUI/Account.fxml"));
-	Scene toAccountScene = new Scene(toAccountParent);
+		AnchorPane toAccountParent = FXMLLoader.load(getClass().getResource("/GUI/Account.fxml"));
+		Scene toAccountScene = new Scene(toAccountParent);
 	
-	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 	
-	window.setScene(toAccountScene);
-	window.show();
-}
+		window.setScene(toAccountScene);
+		window.show();
+	}
 
 
 
 	@Override
-	public void initialize(URL url, ResourceBundle rb) {
-		cityToTable.setCellValueFactory(new PropertyValueFactory<Flights, String>("toCity"));
-		cityFromTable.setCellValueFactory(new PropertyValueFactory<Flights,  String>("fromCity"));
-		flightDateTable.setCellValueFactory(new PropertyValueFactory<Flights, String>("flightDate"));
-		depTimeTable.setCellValueFactory(new PropertyValueFactory<Flights, String>("takeOffTime"));
-		arrivalTimeTable.setCellValueFactory(new PropertyValueFactory<Flights, String>("landingTime"));
-		numSeatsTable.setCellValueFactory(new PropertyValueFactory<Flights, Integer>("numSeat"));
-		flightIDTable.setCellValueFactory(new PropertyValueFactory<Flights, Integer>("flightId"));
-		flightTable.setItems(GetDB.allFlights());
-	}
-	
+	public void initialize(URL url, ResourceBundle resource) {
+		cityToTable.setCellValueFactory(new PropertyValueFactory<>("toCity"));
+		cityFromTable.setCellValueFactory(new PropertyValueFactory<>("fromCity"));
+		flightDateTable.setCellValueFactory(new PropertyValueFactory<>("flightDate"));
+		depTimeTable.setCellValueFactory(new PropertyValueFactory<>("takeOffTime"));
+		arrivalTimeTable.setCellValueFactory(new PropertyValueFactory<>("landingTime"));
+		numSeatsTable.setCellValueFactory(new PropertyValueFactory<>("numSeat"));
+		flightIDTable.setCellValueFactory(new PropertyValueFactory<>("flightId"));
+		flightTable.setItems(list);
+		
+		FilteredList<Flights> filteredData = new FilteredList<>(list, b -> true);
+		searchDeparture.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(Flights -> {
+				if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+					return true;
+				}
+				String searchKeyword = newValue.toLowerCase();
+				
+				if (Flights.getToCity().toLowerCase().indexOf(searchKeyword) > -1) {
+					return true;
+				}
+				else if (Flights.getFromCity().toLowerCase().indexOf(searchKeyword) > -1) {
+					return true;
+				}
+				else if (Flights.getFlightDate().toLowerCase().indexOf(searchKeyword) > -1) {
+					return true;
+				}
+				else if (Flights.getTakeOffTime().toLowerCase().indexOf(searchKeyword) > -1) {
+					return true;
+				}
+				else if (Flights.getLandingTime().toLowerCase().indexOf(searchKeyword) > -1) {
+					return true;
+				}
+				else if (Flights.getNumSeats().toString().toLowerCase().indexOf(searchKeyword) > -1) {
+					return true;
+				}
+				else if (Flights.getFlightId().toString().toLowerCase().indexOf(searchKeyword) > -1) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			});
+		});
+		
+		SortedList<Flights> sortedList = new SortedList<>(filteredData);
+		
+		sortedList.comparatorProperty().bind(flightTable.comparatorProperty());
+		
+		flightTable.setItems(sortedList);
+	}	
 	
 }
-

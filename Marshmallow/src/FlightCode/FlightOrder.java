@@ -65,7 +65,7 @@ public class FlightOrder {
 			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 			Connection connection = DriverManager.getConnection(cnnString);
 			
-			InsertDB.insertFlightOrder(flightOrder, sql); //remove sql from InsertDb's method once tested
+			InsertDB.insertFlightOrder(flightOrder); //remove sql from InsertDb's method once tested
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();
