@@ -2,6 +2,7 @@ package Database;
 
 import FlightCode.FlightOrder;
 import FlightCode.Flights;
+import FlightCode.User;
 import GUI.LoginPageController;
 
 public class DBTester {
@@ -10,7 +11,11 @@ public class DBTester {
 		
 		//Already tested insertFlight, it works
 		
-		Flights flight = new Flights();
+		//Flights flight = new Flights();
+		User user = new User();
+		String sql = "INSERT INTO AccountUser(UserId, userName, password, firstName, lastName, ssn, email, address, zipCode, state, securityQuestion, securityAnswer) "
+				+ "VALUES(8, 'user21', 'password21', 'James', 'Burt', '111111111', 'james@gmail.com', '21 BLVd', 40122, 'Alabama', 'What is your name?', 'James Burt');";
+		InsertDB.insertAccount(sql)	;		
 		/**
 		//String sql = "INSERT INTO Flights (flightID, fromCity, toCity, takeOffTime, landingTime, numSeat, flightDate ) "
 		//		+ "VALUES (216, 'Atlanta', 'Miami', '2:40PM', '4:40PM', 50, '01/25/2023');";
@@ -20,9 +25,7 @@ public class DBTester {
 		System.out.println("Flight added");
 		
 		*/
-		int Flightid = 216;
-		String sql = "DELETE FROM Flights WHERE flightId =" + "'"+Flightid+"'"; 
-		UpdateDB.deleteFlight(flight, sql);
+		
 		//need to test out insertflightorder
 		
 		//FlightOrder flightOrder = new FlightOrder();

@@ -93,13 +93,15 @@ public class InsertDB {
 		
 	}
 	
-	public void insertAccount(User user){
+	public static void insertAccount(String sql){
+		User user = new User();
 		success = false;
+		/**
 		String sql = "INSERT INTO AccountUser(UserId, userName, password, firstName, lastName, ssn, email, address, zipCode, state, securityQuestion, securityAnswer)) "
 				+ "VALUES('" +user.getUserID()+"' , '" +user.getUserName() +"', '"+ user.getPassword()+"', '"+user.getFirstName()+"', "
 				+ "													'"+user.getLastName()+"', '"+user.getSsn()+"', '"+user.getEmail()+"', "
 				+ "													'"+user.getAddress()+"', '"+user.getZipCode()+"', '"+user.getState()+"', '"+user.getSecurityQuestion()+"', '"+user.getSecurityAnswer()+"');";
-						
+			**/			
 				
 		try(Connection cnn = DriverManager.getConnection(cnnStr);
 				PreparedStatement preparedStatement = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);){
@@ -135,6 +137,9 @@ public class InsertDB {
 				ex2.printStackTrace();
 				success = false;
 				
+		}catch(Exception ex3) {
+			ex3.printStackTrace();
+			success = false;
 		}
 	
 	}
