@@ -65,10 +65,16 @@
             <Font name="Telugu MN" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="addButton" layoutX="583.0" layoutY="120.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Add Flight">
+      <Button fx:id="addButton" layoutX="584.0" layoutY="197.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Book Flight">
          <font>
             <Font name="Tamil MN" size="13.0" />
          </font>
       </Button>
+      <TextField fx:id="flightNum" layoutX="585.0" layoutY="161.0" prefHeight="26.0" prefWidth="86.0" promptText="ie 1" />
+      <Label layoutX="586.0" layoutY="135.0" prefHeight="28.0" prefWidth="100.0" text="Flight #:">
+         <font>
+            <Font name="Telugu MN" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

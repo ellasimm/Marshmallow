@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import Database.GetDB;
 import Database.SearchDB;
+import FlightCode.FlightOrder;
 import FlightCode.Flights;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,9 +46,14 @@ public class findFlightController implements Initializable{
 	@FXML TableView<Flights> flightTable;
 	@FXML Button searchButton;
 	@FXML Button addButton;
+	@FXML TextField flightNum;
 	
 	ObservableList<Flights> list = FXCollections.observableArrayList(GetDB.allFlights());
 	
+	public void addFlight(ActionEvent event) throws Exception {
+		int flightId = Integer.parseInt(flightNum.getText());
+		FlightOrder.orderFlight(flightId);
+	}
 	
 	
 	public void logOut(ActionEvent event) throws Exception {
