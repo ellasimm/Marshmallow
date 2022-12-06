@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
 public class SearchDB {
 	private static final Logger log = null;
 
-	public static ObservableList<Flights> searchFlight(Flights flight, Connection connection){
+	public static ObservableList<Flights> searchFlight(Flights flight){
 		ObservableList<Flights> flights = FXCollections.observableArrayList();
 		ResultSet resultSet = null;
 		try {
@@ -21,7 +21,7 @@ public class SearchDB {
 			Connection cnn = DriverManager.getConnection(cnnString);
 			log.info("Search data");
 			
-			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Flights WHERE fromCity=" + "'" + flight.getFromCity() + "'" + 
+			PreparedStatement preparedStatement = cnn.prepareStatement("SELECT * FROM Flights WHERE fromCity=" + "'" + flight.getFromCity() + "'" + 
 			"and toCity=" + "'" + flight.getToCity() + "'" + "and flightDate=" + "'" + flight.getFlightDate() + "'");
 			
 			
@@ -39,7 +39,7 @@ public class SearchDB {
 				
 				flights.add(flight);
 			}
-			connection.close();
+			cnn.close();
 			}catch(Exception ex){
 				System.out.println("An error occured in Database.");
 			}
