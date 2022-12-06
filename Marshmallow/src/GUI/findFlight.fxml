@@ -50,13 +50,13 @@
       </Button>
       <TableView fx:id="flightTable" layoutX="44.0" layoutY="130.0" prefHeight="200.0" prefWidth="524.0">
         <columns>
-          <TableColumn fx:id="cityToTable" prefWidth="75.0" text="To" />
-          <TableColumn fx:id="cityFromTable" prefWidth="75.0" text="From" />
-            <TableColumn fx:id="flightDateTable" prefWidth="75.0" text="Date" />
-            <TableColumn fx:id="depTimeTable" prefWidth="75.0" text="Departure" />
-            <TableColumn fx:id="arrivalTimeTable" prefWidth="75.0" text="Arrival" />
-            <TableColumn fx:id="numSeatsTable" prefWidth="75.0" text="Seats Left" />
-            <TableColumn fx:id="flightIDTable" prefWidth="75.0" text="Flight ID" />
+          <TableColumn fx:id="cityToTable" prefWidth="92.15516662597656" text="To" />
+          <TableColumn fx:id="cityFromTable" prefWidth="86.34488677978516" text="From" />
+            <TableColumn fx:id="flightDateTable" prefWidth="87.92794799804688" text="Date" />
+            <TableColumn fx:id="depTimeTable" prefWidth="81.45147705078125" text="Departure" />
+            <TableColumn fx:id="arrivalTimeTable" prefWidth="87.71322631835938" text="Arrival" />
+            <TableColumn fx:id="numSeatsTable" minWidth="0.0" prefWidth="0.0" text="Seats Left" />
+            <TableColumn fx:id="flightIDTable" prefWidth="90.73666381835938" text="Flight ID" />
         </columns>
       </TableView>
       <TextField fx:id="searchDeparture" layoutX="197.0" layoutY="84.0" prefHeight="26.0" prefWidth="359.0" promptText="ie Atlanta, 12:00PM, etc" />
