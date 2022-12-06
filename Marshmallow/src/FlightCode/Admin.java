@@ -1,9 +1,17 @@
 package FlightCode;   //FINISHED ALL THE CODE IS WRITTEN
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class Admin extends User{
 	
 	public final static boolean isAdmin = true;
-	
+	public Admin() {
+		
+	}
 	public Admin(String userName, String password) {
 		super(userName, password);
 	}
@@ -14,9 +22,27 @@ public class Admin extends User{
 		super(userID, userName, password, firstName, lastName, ssn, email, address, zipCode, state, securityQuestion, securityAnswer);
 	}
 	
+	public void getAdmin(String sql, String cnnStr) {
+		System.out.println("selecting data..");
+		ResultSet resultSet = null;
+		try(Connection cnn = DriverManager.getConnection(cnnStr);
+				Statement statement = cnn.createStatement();){
+			resultSet = statement.executeQuery(sql);
+		
+		while(resultSet.next()) {
+			System.out.println(resultSet.getInt(13) );
+			}
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+}
+	
+	
 	@Override
 	public String toString() {
 		return "Username : " + this.getUserName() + "\nPassword: " + this.getPassword() 
 					+ "ID: " + this.getUserID();
 	}
+	
+	
 }
