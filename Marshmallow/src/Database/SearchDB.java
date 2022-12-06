@@ -12,8 +12,7 @@ import javafx.collections.ObservableList;
 public class SearchDB {
 	private static final Logger log = null;
 
-	public static ObservableList<Flights> searchFlight(String departFrom,String arriveTo,
-			String departDay,String returnDay){
+	public static ObservableList<Flights> searchFlight(String departDay, String departTime, String departCity, String arriveCity){
 		ObservableList<Flights> flights = FXCollections.observableArrayList();
 		ResultSet resultSet = null;
 		try {
@@ -23,9 +22,9 @@ public class SearchDB {
 			Connection cnn = DriverManager.getConnection(cnnString);
 			
 			
-			PreparedStatement preparedStatement = cnn.prepareStatement("SELECT * FROM flights WHERE departure_city=" + "'" + departFrom + "'" + 
-					"and destination_city=" + "'" + arriveTo + "'" + "and flight_date=" + "'" + departDay + "'" 
-					+ "and return_day=" + "'" + returnDay + "'");
+			PreparedStatement preparedStatement = cnn.prepareStatement("SELECT * FROM flights WHERE departure_city=" + "'" + departCity + "'" + 
+					"and destination_city=" + "'" + arriveCity + "'" + "and flight_date=" + "'" + departDay + "'" 
+					+ "and return_day=" + "'" + departTime + "'");
 			
 			
 			resultSet = preparedStatement.executeQuery();

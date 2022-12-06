@@ -62,7 +62,7 @@ public class findFlightController implements Initializable{
 		departCity = searchDeparture.getText();
 		arriveCity = searchArrival.getText();
 		
-		flights = SearchDB.findFlights(departDay, departTime, departCity, arriveCity);
+		flights = SearchDB.searchFlight(departDay, departTime, departCity, arriveCity);
 	}
 	
 	
