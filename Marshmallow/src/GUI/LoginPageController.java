@@ -83,18 +83,17 @@ public class LoginPageController implements Initializable {
 			
 			else {
 				currentUser = GetDB.getUser(user);
-			}
+				AnchorPane logInParent = FXMLLoader.load(getClass().getResource("/GUI/findFlight.fxml"));
+				Scene logInScene = new Scene(logInParent);
+				
+				Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+				
+				window.setScene(logInScene);
+				window.show();
+			}		
 		}
-		
-
-		else {	
-		AnchorPane logInParent = FXMLLoader.load(getClass().getResource("/GUI/findFlight.fxml"));
-		Scene logInScene = new Scene(logInParent);
-		
-		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		
-		window.setScene(logInScene);
-		window.show();
+		else {
+			ErrorMessage.showErrorMessage("Incorrect username or Password");
 		}
 	}
 	
