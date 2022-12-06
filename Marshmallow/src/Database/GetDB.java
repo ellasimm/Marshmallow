@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Logger;
 
 import FlightCode.FlightOrder;
@@ -49,6 +51,32 @@ public class GetDB {
 		}
 		return user;
 	}
+		/** New Method for getFlight */ //Omama is working on this method
+	public static Flights getFlight(int flightId, String sql) {
+		ResultSet resultSet = null;
+		Flights flight = new Flights();
+		try(Connection cnn = DriverManager.getConnection("jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+				Statement statement = cnn.createStatement();){
+			
+			resultSet = statement.executeQuery(sql);
+		
+			while(resultSet.next()) {
+				System.out.println(resultSet.getInt(1) + ","+ resultSet.getString(2) + ","+ resultSet.getString(3) );
+				flight.setFlightId(resultSet.getInt("flightId"));
+				flight.setFromCity(resultSet.getString("fromCity"));
+				flight.setToCity(resultSet.getString("toCity"));
+				flight.setTakeOffTime(resultSet.getString("takeOffTime"));
+				flight.setLandingTime(resultSet.getString("landingTime"));
+				flight.setNumSeats(resultSet.getInt("numSeat"));
+				flight.setFlightDate(resultSet.getString("flightDate"));
+			}
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		return flight; 
+	}
+		
+	/**    //Old Method for getFlight
 	public static Flights getFlight(int flightId) {
 		Flights flight = new Flights();
 		
@@ -78,7 +106,9 @@ public class GetDB {
 			ex.printStackTrace();
 		}
 		return flight;
+		
 	}
+	*/
 	
 	public static ObservableList<Flights> allFlights(){
 		ObservableList<Flights> flight = FXCollections.observableArrayList();
