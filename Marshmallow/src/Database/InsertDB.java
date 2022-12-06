@@ -38,7 +38,6 @@ public class InsertDB {
 			preparedStatement.setString(7, flight.getFlightDate());
 			
 			preparedStatement.executeUpdate();
-			
 			cnn.close();
 			success = true;
 								
@@ -48,6 +47,7 @@ public class InsertDB {
 			success = false;
 		}
 	}
+	
 	public static void insertFlightOrder(Flights order) {
 		success = false;
 		

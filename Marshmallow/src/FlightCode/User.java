@@ -65,7 +65,7 @@ public class User implements Comparable<User>{
 		String cnnString = "jdbc:sqlserver://cisproject2022.database.windows.net:1433;database=FlightReservationProject;user=RezaKian@cisproject2022;password=Saglover2?;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 		Connection connection = DriverManager.getConnection(cnnString);
 		InsertDB input = new InsertDB(); //create connection to the database
-		input.insertAccount(user, connection);  //need to insert this user into the database
+		input.insertAccount(user);  //need to insert this user into the database
 	}
 	
 	

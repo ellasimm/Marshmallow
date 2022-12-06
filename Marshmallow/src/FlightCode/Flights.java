@@ -2,7 +2,6 @@ package FlightCode;
 
 import java.util.ArrayList;
 import Database.InsertDB;
-import GUI.ErrorMessageController;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
