@@ -49,7 +49,7 @@ public class InsertDB {
 	
 	}
 	
-	public static void insertFlightOrder(Flights order, String sql) {
+	public static void insertFlightOrder(FlightOrder order, String sql, String sql2) {
 		success = false;
 		try(Connection cnn = DriverManager.getConnection(cnnStr);
 				PreparedStatement preparedStatement = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);){
@@ -58,9 +58,31 @@ public class InsertDB {
 			resultSet = preparedStatement.getGeneratedKeys();
 			while(resultSet.next()) {
 				System.out.println("key(s): "+ resultSet.getString(1));
+				preparedStatement.setInt(1, order.getOrderNumber());
+				preparedStatement.setInt(2, order.getFlightID());
+				preparedStatement.setString(3, order.getFromCity());
+				preparedStatement.setString(4, order.getToCity());
+				preparedStatement.setString(5, order.getFlightDate());
+				preparedStatement.setString(6, order.getTakeOffTime());
+				preparedStatement.setString(7, order.getLandingTime());
+				preparedStatement.setInt(8, order.getUserID());
+				preparedStatement.executeUpdate();
+				
+				PreparedStatement preparedStatement2 = cnn.prepareStatement(sql2);
+				
+				preparedStatement2.executeUpdate();
+				success = true;
 			}
+		}catch(SQLIntegrityConstraintViolationException ex1) {
+			
+			ErrorMessage.showErrorMessage("Duplicate Booking Alert!");
+			
+			ex1.printStackTrace();
+			success = false;
+			
 		}catch(SQLException ex) {
 			ex.printStackTrace();
+			success = false;
 		}
 		
 		/**
@@ -71,8 +93,8 @@ public class InsertDB {
 			log.info("Insert data");
 			
 			PreparedStatement preparedStatement = cnn.prepareStatement("INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) VALUES(?,?,?,?,?,?,?,?);");
-			String sql = "UPDATE Flights SET numSeat = numSeat -1 WHERE flightId=" + "'" + FlightOrder.getFlightID() + "'";
-			PreparedStatement preparedStatement2 = cnn.prepareStatement(sql);
+			String sql2 = "UPDATE Flights SET numSeat = numSeat -1 WHERE flightId=" + "'" + FlightOrder.getFlightID() + "'";
+			PreparedStatement preparedStatement2 = cnn.prepareStatement(sql2);
 			
 			preparedStatement2.executeUpdate();
 			

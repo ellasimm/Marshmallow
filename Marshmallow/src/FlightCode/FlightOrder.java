@@ -54,15 +54,24 @@ public class FlightOrder {
 	public static void orderFlight(int flightID) throws SQLException {
 		
 		int orderNum = generateOrderNumber();
-		String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-		Connection connection = DriverManager.getConnection(cnnString);
-		Flights booked = GetDB.getFlight(flightID);
 		
-		FlightOrder flightOrder = new FlightOrder(orderNum, flightID, booked.getFromCity(), booked.getToCity(),
+		Flights booked = GetDB.getFlight(flightID);
+		try {
+			FlightOrder flightOrder = new FlightOrder(orderNum, flightID, booked.getFromCity(), booked.getToCity(),
 													booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),
 													LoginPageController.currentUser.getUserID());
-		
-		InsertDB.insertFlightOrder(booked);
+			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+			Connection connection = DriverManager.getConnection(cnnString);
+			String sql = "INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) "
+					+ "VALUES(orderNum, flightID, booked.getFromCity(), booked.getToCity(),\r\n"
+					+ "													booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),\r\n"
+					+ "													LoginPageController.currentUser.getUserID());";
+			String sql2 = "UPDATE Flights SET numSeat = numSeat -1 WHERE flightId=" + "'" + booked.getFlightId() + "'";
+			InsertDB.insertFlightOrder(flightOrder, sql, sql2);
+			
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	

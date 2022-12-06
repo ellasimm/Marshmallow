@@ -51,9 +51,8 @@ public class Flights implements Comparable<Flights>{
 					+ "VALUES (num, fromCity, toCity, landingTime,  takeOffTime, numSeats, flightDate);";
 			InsertDB.insertFlight(flight, sql);
 			
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
+		} catch(SQLException ex) {
+			ex.printStackTrace();
 		}
 	}
 
