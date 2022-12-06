@@ -22,10 +22,10 @@ public class Admin extends User{
 		super(userID, userName, password, firstName, lastName, ssn, email, address, zipCode, state, securityQuestion, securityAnswer);
 	}
 	
-	public void getAdmin(String sql, String cnnStr) {
+	public void getAdmin(String sql) {
 		System.out.println("selecting data..");
 		ResultSet resultSet = null;
-		try(Connection cnn = DriverManager.getConnection(cnnStr);
+		try(Connection cnn = DriverManager.getConnection("jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
 				Statement statement = cnn.createStatement();){
 			resultSet = statement.executeQuery(sql);
 		
