@@ -57,16 +57,12 @@ public class Flights implements Comparable<Flights>{
 
 
 	public  String getPass(ArrayList<User> passengers) {
-
 		String pass = "";
-
 		for (int i = 0; i < passengers.size(); i++) {
 
 			User user = passengers.get(i);
 			pass  += user;
-
 		}		
-
 		return pass;	
 	}
 
@@ -144,12 +140,11 @@ public class Flights implements Comparable<Flights>{
 
 	@Override
 	public int compareTo(Flights o) {
-		if (flightId ==  o.flightId) {
+		if (flightId ==  o.flightId) 
 			return 0;
-		}
-		else {
+		else 
 			return -1;
-		}
+			
 	}
 
 }
