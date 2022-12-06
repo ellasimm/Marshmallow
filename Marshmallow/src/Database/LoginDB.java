@@ -33,6 +33,41 @@ public class LoginDB {
 		return result;
 	}
 	
+	public Boolean searchUsername(String username) {
+
+		Boolean result = false;
+		int check = 0;		
+		try {
+
+			cnn = DriverManager.getConnection(url);
+
+			PreparedStatement preparedStatement = cnn
+					.prepareStatement("SELECT * FROM AccountUser WHERE userName=" + "'" + username + "'");
+
+			ResultSet res = preparedStatement.executeQuery();
+
+			if (res.next()) {
+
+				check = res.getInt("securityQuestion");
+
+			}
+
+			cnn.close();
+
+		} catch (Exception ex) {
+
+			ex.printStackTrace();
+
+		}
+		if (check > 0) {
+			result = true;
+		} else {
+			result = false;
+		}
+		return result;
+
+	}
+	
 	
 	public String forgotPassword(String username, String answer) {
 		String result =  "";

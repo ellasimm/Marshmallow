@@ -3,6 +3,7 @@ package GUI;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Database.LoginDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,16 +19,10 @@ import javafx.stage.Stage;
 
 public class ForgotPasswordController implements Initializable{
 
-	@FXML private Text PassRecoveryInputUsername;
 	@FXML private TextField UsernameInput;
 	@FXML private Button SecurityQuestionButton;
-	@FXML private Text SecurityQuestion;
-	@FXML private TextField SecurityAnswerIn;
-	@FXML private Button GetPassword;
-	@FXML private Rectangle BacgroundRectangle;
-	@FXML private Text PasswordText;
-	@FXML private Text RememberPassword;
 	@FXML private Button HomeButton;
+	@FXML private TextField SecurityAnswerIn;
 
 
 	public void goHome(ActionEvent event) throws Exception {
@@ -44,13 +39,16 @@ public class ForgotPasswordController implements Initializable{
 	
 	public void passRecovery(ActionEvent event) throws Exception {
 		
-		AnchorPane passRecoveryParent = FXMLLoader.load(getClass().getResource("/GUI/PasswordRecovery.fxml"));
-		Scene passRecoveryScene = new Scene(passRecoveryParent);
+		String username = UsernameInput.getText();
+		String answer = SecurityAnswerIn.getText();
 		
-		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		
-		window.setScene(passRecoveryScene);
-		window.show();
+		try {
+			LoginDB check = new LoginDB();
+			String password = check.forgotPassword(username, answer);
+			ErrorMessage.showErrorMessage("Your password is: " + password);
+		}catch (Exception ex) {
+			ErrorMessage.showErrorMessage("Incorrect information");
+		}
 	}
 	
 	@Override
