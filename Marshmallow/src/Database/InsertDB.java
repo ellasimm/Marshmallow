@@ -119,7 +119,7 @@ public class InsertDB {
 				preparedStatement.setString(10, user.getState());
 				preparedStatement.setString(11, user.getSecurityQuestion());
 				preparedStatement.setString(12, user.getSecurityAnswer());
-				preparedStatement.setBoolean(13, User.isAdmin);
+				preparedStatement.setInt(13, -1);
 				preparedStatement.executeUpdate();
 				
 				cnn.close();
@@ -134,8 +134,9 @@ public class InsertDB {
 				ex2.printStackTrace();
 				success = false;
 				
-		}catch(Exception ex3) {
+		}catch(ClassNotFoundException ex3) {
 			ex3.printStackTrace();
+			System.out.println("Something went wrong in the database");
 			success = false;
 		}
 	

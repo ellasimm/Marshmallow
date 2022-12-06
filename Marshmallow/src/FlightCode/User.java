@@ -30,7 +30,7 @@ public class User implements Comparable<User>{
 	private int zipCode;
 	private String state;
 	private int ssn;
-	public static boolean isAdmin = false;
+	public int isAdmin = -1;
 	
 	public User() {
 	}
@@ -63,9 +63,8 @@ public class User implements Comparable<User>{
 		int userID = generateUserId();
 		User user = new User(userID, userName, password, firstName, lastName, ssn, email, address, zipCode, state, securityQuestion, securityAnswer);
 //		String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-//		Connection connection = DriverManager.getConnection(cnnString);
-		InsertDB input = new InsertDB(); //create connection to the database
-		input.insertAccount(user);  //need to insert this user into the database
+//		Connection connection = DriverManager.getConnection(cnnString); //create connection to the database
+		InsertDB.insertAccount(user);  //need to insert this user into the database
 	}
 	
 	
@@ -186,6 +185,14 @@ public class User implements Comparable<User>{
 		else {
 			return -1;
 		}
+	}
+	
+	public Int getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(String isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 	
 	/**
