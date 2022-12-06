@@ -31,36 +31,19 @@ public class InsertDB {
 			while(resultSet.next()) {
 				System.out.println("key(s): "+ resultSet.getString(1));
 				preparedStatement.setInt(1,flight.getFlightId());
+				preparedStatement.setString(2, flight.getFromCity());
+				preparedStatement.setString(3, flight.getToCity());
+				preparedStatement.setString(4, flight.getTakeOffTime());
+				preparedStatement.setString(5, flight.getLandingTime());
+				preparedStatement.setInt(6, flight.getNumSeats());
+				preparedStatement.setString(7, flight.getFlightDate());
+				preparedStatement.executeUpdate();
 			}
 		}catch(SQLException ex) {
 			ex.printStackTrace();
 		}
 		//String sql = "SELECT isAdmin FROM AccountUser WHERE userName =" + "'" + userName + "'");
-	/**
-		try {
-			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-			System.out.println("connecting..");
-			Connection cnn = DriverManager.getConnection(cnnString);
-			log.info("Insert data");
-			PreparedStatement preparedStatement = cnn.prepareStatement("INSERT INTO Flights (flightID, fromCity, toCity, takeOffTime, landingTime, numSeat, flightDate ) VALUES (?,?,?,?,?,?,?);");
-			preparedStatement.setInt(1, flight.getFlightId());
-			preparedStatement.setString(2, flight.getFromCity());
-			preparedStatement.setString(3, flight.getToCity());
-			preparedStatement.setString(4, flight.getTakeOffTime());
-			preparedStatement.setString(5, flight.getLandingTime());
-			preparedStatement.setInt(6, flight.getNumSeats());
-			preparedStatement.setString(7, flight.getFlightDate());
-			
-			preparedStatement.executeUpdate();
-			cnn.close();
-			success = true;
-								
-		}catch(Exception ex) {
-			System.out.println("An exception occurred in database");
-			ex.printStackTrace();
-			success = false;
-		}
-		**/
+	
 	}
 	
 	public static void insertFlightOrder(Flights order) {
