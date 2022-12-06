@@ -40,7 +40,7 @@ public class Flights implements Comparable<Flights>{
 	public static void createFlight(String fromCity, String toCity, int numSeats, String flightDate, 
 										String landingTime,  String takeOffTime){
 
-		int num = createFlightNum();  //should this be inside try?
+		int num = createFlightNum();  
 
 		try {
 
