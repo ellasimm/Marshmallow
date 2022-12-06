@@ -187,11 +187,11 @@ public class User implements Comparable<User>{
 		}
 	}
 	
-	public Int getIsAdmin() {
+	public int getIsAdmin() {
 		return isAdmin;
 	}
 
-	public void setIsAdmin(String isAdmin) {
+	public void setIsAdmin(int isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 	

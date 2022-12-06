@@ -54,22 +54,16 @@ public class FlightOrder {
 	public static void orderFlight(int flightID) throws SQLException {
 		int orderNum = generateOrderNumber();
 	
-		try {
+		Flights booked = GetDB.getFlight(flightID);
 		
-			Flights booked = GetDB.getFlight(flightID);
-			
-			FlightOrder flightOrder = new FlightOrder(orderNum, flightID, booked.getFromCity(), booked.getToCity(),
-													booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),
-													LoginPageController.currentUser.getUserID());
-			
-			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-			Connection connection = DriverManager.getConnection(cnnString);
-			
-			InsertDB.insertFlightOrder(flightOrder); //remove sql from InsertDb's method once tested
-			
-		}catch(SQLException ex) {
-			ex.printStackTrace();
-		}
+		FlightOrder flightOrder = new FlightOrder(orderNum, flightID, booked.getFromCity(), booked.getToCity(),
+												booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),
+												LoginPageController.currentUser.getUserID());
+		
+//			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+//			Connection connection = DriverManager.getConnection(cnnString);
+		
+		InsertDB.insertFlightOrder(flightOrder); //remove sql from InsertDb's method once tested
 	}
 
 	

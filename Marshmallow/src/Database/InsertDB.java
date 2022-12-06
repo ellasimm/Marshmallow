@@ -22,10 +22,10 @@ public class InsertDB {
 	static final String cnnStr = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 
 	
-	public static void insertFlight(Flights flight, String sql){
+	public static void insertFlight(Flights flight){
 		success = false;
-		//String sql = "INSERT INTO Flights (flightID, fromCity, toCity, takeOffTime, landingTime, numSeat, flightDate ) "
-		//		+ "VALUES (num, fromCity, toCity, landingTime,  takeOffTime, numSeats, flightDate);";
+		String sql = "INSERT INTO Flights (flightID, fromCity, toCity, takeOffTime, landingTime, numSeat, flightDate ) "
+				+ "VALUES (num, fromCity, toCity, landingTime,  takeOffTime, numSeats, flightDate);";
 		try(Connection cnn = DriverManager.getConnection(cnnStr);
 				PreparedStatement preparedStatement = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);){
 			ResultSet resultSet = null;
