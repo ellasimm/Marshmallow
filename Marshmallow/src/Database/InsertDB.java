@@ -103,7 +103,7 @@ public class InsertDB {
 			Connection cnn =  DriverManager.getConnection(cnnStr);
 			
 			String sqlQuery = "INSERT INTO AccountUser(UseriD,userName,password,firstName,lastName,ssn,"
-					+ "email, address, zipCode,securityQuestion,securityAnswer,isAdmin)" + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "email, address, zipCode, state, securityQuestion,securityAnswer,isAdmin)" + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			PreparedStatement preparedStatement = cnn.prepareStatement(sqlQuery);
 
