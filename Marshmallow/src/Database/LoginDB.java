@@ -93,7 +93,7 @@ public class LoginDB {
 			}
 			
 			else if (userAnswer.equals(rightAnswer)) {
-				result = "your password is " + password;
+				result = "Your password is: " + password;
 			}
 			
 			else {

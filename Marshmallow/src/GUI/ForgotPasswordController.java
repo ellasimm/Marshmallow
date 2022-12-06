@@ -45,9 +45,9 @@ public class ForgotPasswordController implements Initializable{
 		try {
 			LoginDB check = new LoginDB();
 			String password = check.forgotPassword(username, answer);
-			ErrorMessage.showErrorMessage("Your password is: " + password);
+			ErrorMessage.showErrorMessage(password);
 		}catch (Exception ex) {
-			ErrorMessage.showErrorMessage("Incorrect information");
+			
 		}
 	}
 	
