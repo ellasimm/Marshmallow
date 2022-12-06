@@ -22,10 +22,8 @@ public class DBTester {
 		FlightOrder flightOrder = new FlightOrder();
 		Flights booked = GetDB.getFlight(212, getFlightsql);
 		String sql1 = "INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) "
-				+ "VALUES(flightOrderId, flightId, booked.getFromCity(), booked.getToCity(),\r\n"
-				+ "													booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),\r\n"
-				+ "													LoginPageController.currentUser.getUserID());";
-		String sql2 = "UPDATE Flights SET numSeat = numSeat -1 WHERE flightId=" + "'" + booked.getFlightId() + "'";
-		InsertDB.insertFlightOrder(flightOrder, sql1, sql2);
+				+ "VALUES(016, 212, 'Atlanta', 'Doha', '12/7/2022', '12:30pm', '2:30am', LoginPageController.currentUser.getUserID());";
+		
+		InsertDB.insertFlightOrder(flightOrder, sql1);
 	}
 }

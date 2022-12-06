@@ -47,9 +47,8 @@ public class Flights implements Comparable<Flights>{
 			Flights flight = new Flights(num, fromCity, toCity, landingTime,  takeOffTime, numSeats, flightDate);
 			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 			Connection connection = DriverManager.getConnection(cnnString);
-			String sql = "INSERT INTO Flights (flightID, fromCity, toCity, takeOffTime, landingTime, numSeat, flightDate ) "
-					+ "VALUES (num, fromCity, toCity, landingTime,  takeOffTime, numSeats, flightDate);";
-			InsertDB.insertFlight(flight, sql);
+		
+			InsertDB.insertFlight(flight);
 			
 		} catch(SQLException ex) {
 			ex.printStackTrace();

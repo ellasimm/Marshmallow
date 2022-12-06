@@ -21,8 +21,10 @@ public class InsertDB {
 	static final String cnnStr = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 
 	
-	public static void insertFlight(Flights flight, String sql){
+	public static void insertFlight(Flights flight){
 		success = false;
+		String sql = "INSERT INTO Flights (flightID, fromCity, toCity, takeOffTime, landingTime, numSeat, flightDate ) "
+				+ "VALUES (num, fromCity, toCity, landingTime,  takeOffTime, numSeats, flightDate);";
 		try(Connection cnn = DriverManager.getConnection(cnnStr);
 				PreparedStatement preparedStatement = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);){
 			ResultSet resultSet = null;
@@ -49,15 +51,20 @@ public class InsertDB {
 	
 	}
 	
-	public static void insertFlightOrder(FlightOrder order, String sql, String sql2) {
+	public static void insertFlightOrder(FlightOrder order, String sql) {
 		success = false;
+		//String sql = "INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) "
+		//		+ "VALUES(orderNum, flightID, booked.getFromCity(), booked.getToCity(),\r\n"
+		//		+ "													booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),\r\n"
+		//		+ "													LoginPageController.currentUser.getUserID());";
 		try(Connection cnn = DriverManager.getConnection(cnnStr);
 				PreparedStatement preparedStatement = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);){
 			ResultSet resultSet = null;
 			preparedStatement.execute();
 			resultSet = preparedStatement.getGeneratedKeys();
 			while(resultSet.next()) {
-				System.out.println("key(s): "+ resultSet.getString(1));
+				System.out.println("key(s): "+ resultSet.getString(1)+ ","+ resultSet.getString(2)+ ","+ resultSet.getString(3)+ ","+
+											resultSet.getString(4)+ ","+resultSet.getString(5)+ ","+ resultSet.getString(6)+ ","+ resultSet.getString(7));
 				preparedStatement.setInt(1, order.getOrderNumber());
 				preparedStatement.setInt(2, order.getFlightID());
 				preparedStatement.setString(3, order.getFromCity());
@@ -68,9 +75,7 @@ public class InsertDB {
 				preparedStatement.setInt(8, order.getUserID());
 				preparedStatement.executeUpdate();
 				
-				PreparedStatement preparedStatement2 = cnn.prepareStatement(sql2);
 				
-				preparedStatement2.executeUpdate();
 				success = true;
 			}
 		}catch(SQLIntegrityConstraintViolationException ex1) {
