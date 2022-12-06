@@ -22,19 +22,20 @@ public class Admin extends User{
 		super(userID, userName, password, firstName, lastName, ssn, email, address, zipCode, state, securityQuestion, securityAnswer);
 	}
 	
-	public int getAdmin(String username) {
-		System.out.println("selecting data..");
-		ResultSet resultSet = null;
-		try(Connection cnn = DriverManager.getConnection("jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
-				Statement statement = cnn.createStatement();){
-			resultSet = statement.executeQuery("SELECT isAdmin FROM AccountUser WHERE userName=" + "'" + username + "'");
-		
-		while(resultSet.next()) {
-			return resultSet.getInt(13);
-			}
-		}catch(SQLException ex) {
-			ex.printStackTrace();
-		}
+	public static int getAdmin(String username) {
+//		System.out.println("selecting data..");
+//		ResultSet resultSet = null;
+//		try(Connection cnn = DriverManager.getConnection("jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+//				Statement statement = cnn.createStatement();){
+//			resultSet = statement.executeQuery("SELECT isAdmin FROM AccountUser WHERE userName=" + "'" + username + "'");
+//		
+//		while(resultSet.next()) {
+//			return resultSet.getInt(13);
+//			}
+//		}catch(SQLException ex) {
+//			ex.printStackTrace();
+//		}
+		return -1;
 }
 	
 	

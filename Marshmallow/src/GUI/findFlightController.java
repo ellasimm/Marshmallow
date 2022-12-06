@@ -3,6 +3,7 @@ package GUI;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Database.GetDB;
 import Database.SearchDB;
 import FlightCode.Flights;
 import javafx.collections.ObservableList;
@@ -30,7 +31,10 @@ public class findFlightController implements Initializable{
 	@FXML TableColumn<Flights, String> cityToTable;
 	@FXML TableColumn<Flights, String> cityFromTable;
 	@FXML TableColumn<Flights, String> flightDateTable;
-	@FXML TableColumn<Flights, String> timeTable;
+	@FXML TableColumn<Flights, String> depTimeTable;
+	@FXML TableColumn<Flights, String> arrivalTimeTable;
+	@FXML TableColumn<Flights, Integer> numSeatsTable;
+	@FXML TableColumn<Flights, Integer> flightIDTable;
 	@FXML TextField searchDeparture;
 	@FXML TextField searchArrival;
 	@FXML TextField searchDate;
@@ -71,14 +75,19 @@ public void toAccount(ActionEvent event) throws Exception {
 	window.show();
 }
 
+
+
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-	
+	public void initialize(URL url, ResourceBundle rb) {
 		cityToTable.setCellValueFactory(new PropertyValueFactory<Flights, String>("toCity"));
 		cityFromTable.setCellValueFactory(new PropertyValueFactory<Flights,  String>("fromCity"));
 		flightDateTable.setCellValueFactory(new PropertyValueFactory<Flights, String>("flightDate"));
-		timeTable.setCellValueFactory(new PropertyValueFactory<Flights, String>("flightNumber"));
-		list = SearchDB.searchFlight();
+		depTimeTable.setCellValueFactory(new PropertyValueFactory<Flights, String>("takeOffTime"));
+		arrivalTimeTable.setCellValueFactory(new PropertyValueFactory<Flights, String>("landingTime"));
+		numSeatsTable.setCellValueFactory(new PropertyValueFactory<Flights, Integer>("numSeat"));
+		flightIDTable.setCellValueFactory(new PropertyValueFactory<Flights, Integer>("flightId"));
+		list = GetDB.allFlights();
+		flightTable.setItems(list);
 	}
 	
 	
