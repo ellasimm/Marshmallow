@@ -1,4 +1,4 @@
-package Database;   //finished I believe
+package Database;   // FINISHED with GetDB
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,16 +19,18 @@ public class GetDB {
 	
 	public static User getUser(String userName) {
 		User user = new User();
-		try {
-			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-			System.out.println("connecting..");
-			Connection cnn = DriverManager.getConnection(cnnString);
-			log.info("Get data");
-			PreparedStatement preparedStatement = cnn.prepareStatement("SELECT * FROM AccountUser WHERE userName=" + "'" + userName + "'");
+		ResultSet resultSet = null;
+		String sql = "SELECT * FROM AccountUser WHERE userName=" + "'" + userName + "'" ;
+		try(Connection cnn = DriverManager.getConnection("jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+				Statement statement = cnn.createStatement();){
 			
-			ResultSet resultSet = preparedStatement.executeQuery();
-			
+			resultSet = statement.executeQuery(sql);
+		
 			while(resultSet.next()) {
+				System.out.println(resultSet.getString(1)+ ","+ resultSet.getString(2)+ ","+ resultSet.getString(3)+ ","+
+						resultSet.getString(4)+ ","+resultSet.getString(5)+ ","+ resultSet.getString(6)+ ","+ resultSet.getString(7)+","+
+						resultSet.getString(8)+ ","+resultSet.getString(9)+ ","+resultSet.getString(10)+ ","+ resultSet.getString(11)+ ","+ resultSet.getString(12));
+				
 				user.setUserID(resultSet.getInt("UserId"));
 				user.setUserName(resultSet.getString("userName"));
 				user.setPassword(resultSet.getString("password"));
@@ -41,17 +43,14 @@ public class GetDB {
 				user.setState(resultSet.getString("state"));
 				user.setSecurityQuestion(resultSet.getString("securityQuestion"));
 				user.setSecurityAnswer(resultSet.getString("securityAnswer"));
-			
 			}
-
-			cnn.close();
-			
-		}catch(Exception ex) {
+		}catch(SQLException ex) {
 			ex.printStackTrace();
 		}
-		return user;
+		return user; 
+	
 	}
-		/** New Method for getFlight */ //Omama is working on this method
+		/** New Method for getFlight */ 
 	public static Flights getFlight(int flightId) {
 		ResultSet resultSet = null;
 		Flights flight = new Flights();
@@ -78,54 +77,21 @@ public class GetDB {
 		return flight; 
 	}
 		
-	/**    //Old Method for getFlight
-	public static Flights getFlight(int flightId) {
-		Flights flight = new Flights();
-		
-		try {
-			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-			System.out.println("connecting..");
-			Connection cnn = DriverManager.getConnection(cnnString);
-			log.info("Get data");
-			PreparedStatement preparedStatement = cnn.prepareStatement("SELECT * FROM Flights WHERE flightId=" + "'" + flightId + "'");
-			
-			ResultSet resultSet = preparedStatement.executeQuery();
-			
-			while(resultSet.next()) {
-				
-				flight.setFlightId(resultSet.getInt("flightId"));
-				flight.setFromCity(resultSet.getString("fromCity"));
-				flight.setToCity(resultSet.getString("toCity"));
-				flight.setTakeOffTime(resultSet.getString("takeOffTime"));
-				flight.setLandingTime(resultSet.getString("landingTime"));
-				flight.setNumSeats(resultSet.getInt("numSeat"));
-				flight.setFlightDate(resultSet.getString("flightDate"));
 	
-			}
-			cnn.close();
-			
-		}catch(Exception ex) {
-			ex.printStackTrace();
-		}
-		return flight;
-		
-	}
-	*/
 	
 	public static ObservableList<Flights> allFlights(){
 		ObservableList<Flights> flight = FXCollections.observableArrayList();
+		ResultSet resultSet = null;
+		String sql = "SELECT * FROM Flights;";
+		try(Connection cnn = DriverManager.getConnection("jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+				Statement statement = cnn.createStatement();){
+			
+			resultSet = statement.executeQuery(sql);
 		
-		try {
-			Class.forName("java.sql.Driver");
-			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-			System.out.println("connecting..");
-			Connection cnn = DriverManager.getConnection(cnnString);
-			
-			PreparedStatement preparedStatement = cnn.prepareStatement("SELECT * FROM Flights");
-			
-			ResultSet resultSet = preparedStatement.executeQuery();
-			
 			while(resultSet.next()) {
+				System.out.println(resultSet.getInt(1) + ","+ resultSet.getString(2) + ","+ resultSet.getString(3) + ","+
+						resultSet.getString(4)+ ","+resultSet.getString(5)+ ","+ resultSet.getString(6)+ ","+ resultSet.getString(7));
+				
 				Flights flights = new Flights();
 				
 				flights.setFlightId(resultSet.getInt("flightId"));
@@ -138,42 +104,40 @@ public class GetDB {
 				
 				flight.add(flights);
 			}
-			cnn.close();
-			
-		}catch(Exception ex) {
+		}catch(SQLException ex) {
 			ex.printStackTrace();
 		}
-			
-		return flight;
+		return flight; 
 	}
+	
 	public static ObservableList<FlightOrder> flightorders(int userID){
 		ObservableList<FlightOrder> orders = FXCollections.observableArrayList();
+		ResultSet resultSet = null;
+		String sql = "SELECT * FROM FlightOrder WHERE userId=" + "'" + userID + "'" ;
+		try(Connection cnn = DriverManager.getConnection("jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+				Statement statement = cnn.createStatement();){
+			
+			resultSet = statement.executeQuery(sql);
 		
-		try {
-			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-			System.out.println("connecting..");
-			Connection cnn = DriverManager.getConnection(cnnString);
-			log.info("Get data");
-			PreparedStatement preparedStatement = cnn.prepareStatement("SELECT * FROM FlightOrder WHERE userId=" + "'" + userID + "'");
-			
-			ResultSet resultSet = preparedStatement.executeQuery();
-			
 			while(resultSet.next()) {
+				System.out.println(resultSet.getInt(1) + ","+ resultSet.getString(2) + ","+ resultSet.getString(3) + ","+
+						resultSet.getString(4)+ ","+resultSet.getString(5)+ ","+ resultSet.getString(6)+ ","+ resultSet.getString(7));
+				
 				FlightOrder booking = new FlightOrder(resultSet.getInt("flightOrderId"),
-											(resultSet.getInt("flightId")),
-											(resultSet.getString("fromCity")),
-											(resultSet.getString("toCity")),
-											(resultSet.getString("flightDate")),
-											(resultSet.getString("takeOffTime")),
-											(resultSet.getString("landingTime")),
-											(resultSet.getInt("userId")));
-				orders.add(booking);							
+													(resultSet.getInt("flightId")),
+													(resultSet.getString("fromCity")),
+													(resultSet.getString("toCity")),
+													(resultSet.getString("flightDate")),
+													(resultSet.getString("takeOffTime")),
+													(resultSet.getString("landingTime")),
+													(resultSet.getInt("userId")));
+				orders.add(booking);
 			}
-			cnn.close();
-		
-		}catch(Exception ex) {
+		}catch(SQLException ex) {
 			ex.printStackTrace();
 		}
-		return orders;
+		
+		return orders; 
+		
 	}
 }
