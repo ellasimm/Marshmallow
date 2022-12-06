@@ -51,7 +51,7 @@ public class GetDB {
 		}
 		return user;
 	}
-		/** New Method for getFlight */
+		/** New Method for getFlight */ //Omama is working on this method
 	public static Flights getFlight(int flightId, String sql) {
 		ResultSet resultSet = null;
 		Flights flight = new Flights();
