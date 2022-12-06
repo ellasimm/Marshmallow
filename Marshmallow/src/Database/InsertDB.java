@@ -18,21 +18,24 @@ import GUI.ErrorMessage;
 public class InsertDB {
 	public static boolean success;
 	private static final Logger log = null;
+	static final String cnnStr = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 
 	
-	public static void insertFlight(Flights flight){
+	public static void insertFlight(Flights flight, String sql){
 		success = false;
 		try(Connection cnn = DriverManager.getConnection(cnnStr);
-				PreparedStatement statement = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);){
+				PreparedStatement preparedStatement = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);){
 			ResultSet resultSet = null;
-			statement.execute();
-			resultSet = statement.getGeneratedKeys();
+			preparedStatement.execute();
+			resultSet = preparedStatement.getGeneratedKeys();
 			while(resultSet.next()) {
 				System.out.println("key(s): "+ resultSet.getString(1));
+				preparedStatement.setInt(1,flight.getFlightId());
 			}
 		}catch(SQLException ex) {
 			ex.printStackTrace();
 		}
+		//String sql = "SELECT isAdmin FROM AccountUser WHERE userName =" + "'" + userName + "'");
 	/**
 		try {
 			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
