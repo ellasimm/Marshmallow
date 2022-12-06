@@ -52,16 +52,18 @@ public class GetDB {
 		return user;
 	}
 		/** New Method for getFlight */ //Omama is working on this method
-	public static Flights getFlight(int flightId, String sql) {
+	public static Flights getFlight(int flightId) {
 		ResultSet resultSet = null;
 		Flights flight = new Flights();
+		String sql = "SELECT * FROM Flights WHERE flightId=" + "'" + flightId + "'" ;
 		try(Connection cnn = DriverManager.getConnection("jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
 				Statement statement = cnn.createStatement();){
 			
 			resultSet = statement.executeQuery(sql);
 		
 			while(resultSet.next()) {
-				System.out.println(resultSet.getInt(1) + ","+ resultSet.getString(2) + ","+ resultSet.getString(3) );
+				System.out.println(resultSet.getInt(1) + ","+ resultSet.getString(2) + ","+ resultSet.getString(3) + ","+
+						resultSet.getString(4)+ ","+resultSet.getString(5)+ ","+ resultSet.getString(6)+ ","+ resultSet.getString(7));
 				flight.setFlightId(resultSet.getInt("flightId"));
 				flight.setFromCity(resultSet.getString("fromCity"));
 				flight.setToCity(resultSet.getString("toCity"));

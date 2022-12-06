@@ -13,6 +13,7 @@ import FlightCode.FlightOrder;
 import FlightCode.Flights;
 import FlightCode.User;
 import GUI.ErrorMessage;
+import GUI.LoginPageController;
 
 
 public class InsertDB {
@@ -47,16 +48,16 @@ public class InsertDB {
 			ex.printStackTrace();
 			success = false;
 		}
-		//String sql = "SELECT isAdmin FROM AccountUser WHERE userName =" + "'" + userName + "'");
-	
+		
 	}
 	
 	public static void insertFlightOrder(FlightOrder order, String sql) {
 		success = false;
-		//String sql = "INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) "
-		//		+ "VALUES(orderNum, flightID, booked.getFromCity(), booked.getToCity(),\r\n"
-		//		+ "													booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),\r\n"
-		//		+ "													LoginPageController.currentUser.getUserID());";
+		String sql = "INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) "
+				+ "VALUES(orderNum, flightID, booked.getFromCity(), booked.getToCity(),\r\n"
+				+ "													booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),\r\n"
+				+ "													LoginPageController.currentUser.getUserID());";
+	
 		try(Connection cnn = DriverManager.getConnection(cnnStr);
 				PreparedStatement preparedStatement = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);){
 			ResultSet resultSet = null;
@@ -90,42 +91,6 @@ public class InsertDB {
 			success = false;
 		}
 		
-		/**
-		try {
-			String cnnString ="jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-			System.out.println("connecting..");
-			Connection cnn = DriverManager.getConnection(cnnString);
-			log.info("Insert data");
-			
-			PreparedStatement preparedStatement = cnn.prepareStatement("INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) VALUES(?,?,?,?,?,?,?,?);");
-			String sql2 = "UPDATE Flights SET numSeat = numSeat -1 WHERE flightId=" + "'" + FlightOrder.getFlightID() + "'";
-			PreparedStatement preparedStatement2 = cnn.prepareStatement(sql2);
-			
-			preparedStatement2.executeUpdate();
-			
-			preparedStatement.setInt(1, FlightOrder.getOrderNumber());
-			preparedStatement.setInt(2, FlightOrder.getFlightID());
-			preparedStatement.setString(3, FlightOrder.getFromCity());
-			preparedStatement.setString(4, FlightOrder.getToCity());
-			preparedStatement.setString(5, FlightOrder.getFlightDate());
-			preparedStatement.setString(6, FlightOrder.getTakeOffTime());
-			preparedStatement.setString(7, FlightOrder.getLandingTime());
-			preparedStatement.setInt(8, FlightOrder.getUserID());
-		
-		}catch(SQLIntegrityConstraintViolationException ex1) {
-			
-			ErrorMessage.showErrorMessage("Duplicate Booking Alert!");
-			
-			ex1.printStackTrace();
-			success = false;
-			
-		}catch(SQLException ex2) {
-			ex2.printStackTrace();
-			success = false;
-		}catch(ClassNotFoundException ex3) {
-			ex3.printStackTrace();
-		}
-		*/
 	}
 	
 	public void insertAccount(User user) throws SQLException{
