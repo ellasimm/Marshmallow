@@ -1,26 +1,16 @@
 package Database;
 
-import java.util.Scanner;
-
 import FlightCode.Flights;
 
 public class DBTester {
 
 	
 	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
 		
-		int flightID = input.nextInt();
-		String fromCity = input.nextLine();
-		String toCity = input.nextLine();
-		String tOffTime = input.nextLine();
-		String lTime = input.nextLine();
-		int numSeats = input.nextInt();
-		String flightDate = input.nextLine();
-		
-		Flights flight = new Flights(flightID, fromCity, toCity, tOffTime,
-				lTime, numSeats, flightDate);
+		Flights flight = new Flights(222, "Atlanta", "Doha", "12:30pm",
+				"2:30am", 80, "12/07/22");
 		
 		InsertDB.insertFlight(flight);
+		System.out.println("Flight added");
 	}
 }
