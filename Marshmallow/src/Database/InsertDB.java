@@ -38,17 +38,32 @@ public class InsertDB {
 				preparedStatement.setInt(6, flight.getNumSeats());
 				preparedStatement.setString(7, flight.getFlightDate());
 				preparedStatement.executeUpdate();
+				
+				success = true;
 			}
 		}catch(SQLException ex) {
 			ex.printStackTrace();
+			success = false;
 		}
 		//String sql = "SELECT isAdmin FROM AccountUser WHERE userName =" + "'" + userName + "'");
 	
 	}
 	
-	public static void insertFlightOrder(Flights order) {
+	public static void insertFlightOrder(Flights order, String sql) {
 		success = false;
+		try(Connection cnn = DriverManager.getConnection(cnnStr);
+				PreparedStatement preparedStatement = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);){
+			ResultSet resultSet = null;
+			preparedStatement.execute();
+			resultSet = preparedStatement.getGeneratedKeys();
+			while(resultSet.next()) {
+				System.out.println("key(s): "+ resultSet.getString(1));
+			}
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+		}
 		
+		/**
 		try {
 			String cnnString ="jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 			System.out.println("connecting..");
@@ -83,6 +98,7 @@ public class InsertDB {
 		}catch(ClassNotFoundException ex3) {
 			ex3.printStackTrace();
 		}
+		*/
 	}
 	
 	public void insertAccount(User user) throws SQLException{
