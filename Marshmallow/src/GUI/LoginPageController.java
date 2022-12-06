@@ -71,7 +71,7 @@ public class LoginPageController implements Initializable {
 		}
 		else if (login.performLogin() == true) {
 			
-			if(GetDB.getAdmin() == 1) {
+			if(Admin.getAdmin(user) == 1) {
 				AnchorPane logInAdminParent = FXMLLoader.load(getClass().getResource("/GUI/findFlightAdmin.fxml"));
 				Scene logInAdminScene = new Scene(logInAdminParent);
 				
