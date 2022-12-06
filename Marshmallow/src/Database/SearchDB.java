@@ -16,10 +16,11 @@ public class SearchDB {
 		ObservableList<Flights> flights = FXCollections.observableArrayList();
 		ResultSet resultSet = null;
 		try {
+			Class.forName("java.sql.Driver");
 			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 			System.out.println("connecting..");
 			Connection cnn = DriverManager.getConnection(cnnString);
-			log.info("Search data");
+			
 			
 			PreparedStatement preparedStatement = cnn.prepareStatement("SELECT * FROM Flights WHERE fromCity=" + "'" + flight.getFromCity() + "'" + 
 			"and toCity=" + "'" + flight.getToCity() + "'" + "and flightDate=" + "'" + flight.getFlightDate() + "'");

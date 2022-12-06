@@ -49,7 +49,7 @@ public class findFlightController implements Initializable{
 	ResultSet rs = null;
 	PreparedStatement pst = null;
 	
-	public String
+	public String m;
 	
 	
 	public void searchFlights(ActionEvent event) throws Exception {
