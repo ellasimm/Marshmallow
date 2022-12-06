@@ -3,7 +3,9 @@ package GUI;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Database.GetDB;
 import FlightCode.Admin;
+import FlightCode.Login;
 import FlightCode.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +25,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class LoginPageController implements Initializable {
 	
+	
 	@FXML private TextField UsernameIn;
 	@FXML private TextField PasswordIn;
 	@FXML private Button LoginButton;
@@ -30,6 +33,7 @@ public class LoginPageController implements Initializable {
 
 	public static Admin currentAdmin;
 	public static User currentUser;
+	public static String user;
 	
 	public void goToForgotPassword(ActionEvent event) throws Exception {
 		
@@ -57,15 +61,32 @@ public class LoginPageController implements Initializable {
 	
 	public void logIn(ActionEvent event) throws Exception {
 		
-		if (User.isAdmin) {
-			AnchorPane logInAdminParent = FXMLLoader.load(getClass().getResource("/GUI/findFlightAdmin.fxml"));
-			Scene logInAdminScene = new Scene(logInAdminParent);
-			
-			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-			
-			window.setScene(logInAdminScene);
-			window.show();
+		user = UsernameIn.getText();
+		String password = PasswordIn.getText();
+		
+		Login login = new Login(user, password);
+		
+		if (password.isEmpty() || user.isEmpty()) {
+			ErrorMessage.showErrorMessage("Please enter a username AND password");
 		}
+		else if (login.performLogin() == true) {
+			
+			if(user.getAdmin() == 1) {
+				AnchorPane logInAdminParent = FXMLLoader.load(getClass().getResource("/GUI/findFlightAdmin.fxml"));
+				Scene logInAdminScene = new Scene(logInAdminParent);
+				
+				Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+				
+				window.setScene(logInAdminScene);
+				window.show();	
+			}
+			
+			else {
+				currentUser = GetDB.getUser(user);
+			}
+		}
+		
+
 		else {	
 		AnchorPane logInParent = FXMLLoader.load(getClass().getResource("/GUI/findFlight.fxml"));
 		Scene logInScene = new Scene(logInParent);

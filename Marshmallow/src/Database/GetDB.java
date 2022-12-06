@@ -15,14 +15,14 @@ import javafx.collections.FXCollections;
 public class GetDB {
 	private static final Logger log = null;
 	
-	public static User getUser(String userName, Connection connection) {
+	public static User getUser(String userName) {
 		User user = new User();
 		try {
 			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 			System.out.println("connecting..");
 			Connection cnn = DriverManager.getConnection(cnnString);
 			log.info("Get data");
-			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM AccountUser WHERE userName=" + "'" + userName + "'");
+			PreparedStatement preparedStatement = cnn.prepareStatement("SELECT * FROM AccountUser WHERE userName=" + "'" + userName + "'");
 			
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
@@ -42,14 +42,14 @@ public class GetDB {
 			
 			}
 
-			connection.close();
+			cnn.close();
 			
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
 		return user;
 	}
-	public static Flights getFlight(int flightId, Connection connection) {
+	public static Flights getFlight(int flightId) {
 		Flights flight = new Flights();
 		
 		try {
@@ -57,7 +57,7 @@ public class GetDB {
 			System.out.println("connecting..");
 			Connection cnn = DriverManager.getConnection(cnnString);
 			log.info("Get data");
-			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Flights WHERE flightId=" + "'" + flightId + "'");
+			PreparedStatement preparedStatement = cnn.prepareStatement("SELECT * FROM Flights WHERE flightId=" + "'" + flightId + "'");
 			
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
@@ -72,7 +72,7 @@ public class GetDB {
 				flight.setFlightDate(resultSet.getString("flightDate"));
 	
 			}
-			connection.close();
+			cnn.close();
 			
 		}catch(Exception ex) {
 			ex.printStackTrace();
@@ -80,7 +80,7 @@ public class GetDB {
 		return flight;
 	}
 	
-	public static ObservableList<Flights> allFlights(Connection connection){
+	public static ObservableList<Flights> allFlights(){
 		ObservableList<Flights> flight = FXCollections.observableArrayList();
 		
 		try {
@@ -88,7 +88,7 @@ public class GetDB {
 			System.out.println("connecting..");
 			Connection cnn = DriverManager.getConnection(cnnString);
 			log.info("Get data");
-			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Flights");
+			PreparedStatement preparedStatement = cnn.prepareStatement("SELECT * FROM Flights");
 			
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
@@ -105,7 +105,7 @@ public class GetDB {
 				
 				flight.add(flights);
 			}
-			connection.close();
+			cnn.close();
 			
 		}catch(Exception ex) {
 			ex.printStackTrace();
@@ -113,7 +113,7 @@ public class GetDB {
 			
 		return flight;
 	}
-	public static ObservableList<FlightOrder> flightorders(int userID, Connection connection){
+	public static ObservableList<FlightOrder> flightorders(int userID){
 		ObservableList<FlightOrder> orders = FXCollections.observableArrayList();
 		
 		try {
@@ -121,7 +121,7 @@ public class GetDB {
 			System.out.println("connecting..");
 			Connection cnn = DriverManager.getConnection(cnnString);
 			log.info("Get data");
-			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM FlightOrder WHERE userId=" + "'" + userID + "'");
+			PreparedStatement preparedStatement = cnn.prepareStatement("SELECT * FROM FlightOrder WHERE userId=" + "'" + userID + "'");
 			
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
@@ -136,7 +136,7 @@ public class GetDB {
 											(resultSet.getInt("userId")));
 				orders.add(booking);							
 			}
-			connection.close();
+			cnn.close();
 		
 		}catch(Exception ex) {
 			ex.printStackTrace();
