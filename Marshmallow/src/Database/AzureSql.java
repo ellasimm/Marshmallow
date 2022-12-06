@@ -13,7 +13,7 @@ public class AzureSql {
 		String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 		AzureSql azure = new AzureSql();
 		System.out.println("Connecting..");
-		String sql = "SELECT accountUserId, userName, password FROM AccountUser; ";
+		String sql = "SELECT userId, userName, password FROM AccountUser; ";
 		azure.SelectAzureSQL(sql, cnnString);
 	}
 	
