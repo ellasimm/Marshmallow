@@ -1,5 +1,7 @@
 package FlightCode;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import Database.GetDB;
 import Database.InsertDB;
@@ -52,14 +54,15 @@ public class FlightOrder {
 	public static void orderFlight(int flightID) throws SQLException {
 		
 		int orderNum = generateOrderNumber();
-		
-		Flights booked = GetDB.getFlight(flightID);
+		String cnnString = "jdbc:sqlserver://cisproject2022.database.windows.net:1433;database=FlightReservationProject;user=RezaKian@cisproject2022;password=Saglover2?;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+		Connection connection = DriverManager.getConnection(cnnString);
+		Flights booked = GetDB.getFlight(flightID, connection);
 		
 		FlightOrder flightOrder = new FlightOrder(orderNum, flightID, booked.getFromCity(), booked.getToCity(),
 													booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),
 													LoginPageController.currentUser.getUserID());
 		
-		InsertDB.insertFlightOrder(booked);
+		InsertDB.insertFlightOrder(booked, connection);
 	}
 
 	

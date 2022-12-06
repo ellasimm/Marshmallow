@@ -8,6 +8,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.logging.Logger;
 
+import FlightCode.FlightOrder;
 import FlightCode.Flights;
 import FlightCode.User;
 import GUI.ErrorMessage;
@@ -18,7 +19,7 @@ public class InsertDB {
 	private static final Logger log = null;
 
 	
-	public static void insertFlight(Flights flight, Connection connection) throws SQLException{
+	public static void insertFlight(Flights flight, Connection connection){
 		success = false;
 		
 	
@@ -47,7 +48,7 @@ public class InsertDB {
 			success = false;
 		}
 	}
-	public static void insertFlightOrder(Flights order) throws SQLException {
+	public static void insertFlightOrder(Flights order, Connection connection) {
 		success = false;
 		
 		try {
@@ -57,7 +58,20 @@ public class InsertDB {
 			log.info("Insert data");
 			
 			PreparedStatement preparedStatement = cnn.prepareStatement("INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) VALUES(?,?,?,?,?,?,?,?);");
+			String sql = "UPDATE Flights SET numSeat = numSeat -1 WHERE flightId=" + "'" + FlightOrder.getFlightID() + "'";
+			PreparedStatement preparedStatement2 = cnn.prepareStatement(sql);
 			
+			preparedStatement2.executeUpdate();
+			
+			preparedStatement.setInt(1, FlightOrder.getOrderNumber());
+			preparedStatement.setInt(2, FlightOrder.getFlightID());
+			preparedStatement.setString(3, FlightOrder.getFromCity());
+			preparedStatement.setString(4, FlightOrder.getToCity());
+			preparedStatement.setString(5, FlightOrder.getFlightDate());
+			preparedStatement.setString(6, FlightOrder.getTakeOffTime());
+			preparedStatement.setString(7, FlightOrder.getLandingTime());
+			preparedStatement.setInt(8, FlightOrder.getUserID());
+		
 		}catch(SQLIntegrityConstraintViolationException ex1) {
 			
 			ErrorMessage.showErrorMessage("Duplicate Booking Alert!");
@@ -100,6 +114,7 @@ public class InsertDB {
 			
 			connection.close();
 			success = true;
+			
 		}catch(SQLIntegrityConstraintViolationException ex1) {
 			
 			ErrorMessage.showErrorMessage("Duplicate Account Alert!" + "\nTry again or click forgot password");
