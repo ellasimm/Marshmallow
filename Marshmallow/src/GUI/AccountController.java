@@ -34,7 +34,7 @@ public class AccountController implements Initializable{
 	@FXML TableColumn dateColumn;
 	@FXML Button deleteButton;
 	
-	ObservableList<Flights> list = FXCollections.observableArrayList(GetDB.flightorders();
+	//ObservableList<Flights> list = FXCollections.observableArrayList(GetDB.flightorders();
 	
 public void back(ActionEvent event) throws Exception {
 		
@@ -43,7 +43,7 @@ public void back(ActionEvent event) throws Exception {
 		
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		
-		window.setScene(backScene);s
+		window.setScene(backScene);
 		window.show();
 	}
 	
@@ -60,14 +60,14 @@ public void logOut(ActionEvent event) throws Exception {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resource) {
-		cityToTable.setCellValueFactory(new PropertyValueFactory<>("toCity"));
-		cityFromTable.setCellValueFactory(new PropertyValueFactory<>("fromCity"));
-		flightDateTable.setCellValueFactory(new PropertyValueFactory<>("flightDate"));
-		depTimeTable.setCellValueFactory(new PropertyValueFactory<>("takeOffTime"));
-		arrivalTimeTable.setCellValueFactory(new PropertyValueFactory<>("landingTime"));
-		numSeatsTable.setCellValueFactory(new PropertyValueFactory<>("numSeat"));
-		flightIDTable.setCellValueFactory(new PropertyValueFactory<>("flightId"));
-		flightTable.setItems(list);
+//		cityToTable.setCellValueFactory(new PropertyValueFactory<>("toCity"));
+//		cityFromTable.setCellValueFactory(new PropertyValueFactory<>("fromCity"));
+//		flightDateTable.setCellValueFactory(new PropertyValueFactory<>("flightDate"));
+//		depTimeTable.setCellValueFactory(new PropertyValueFactory<>("takeOffTime"));
+//		arrivalTimeTable.setCellValueFactory(new PropertyValueFactory<>("landingTime"));
+//		numSeatsTable.setCellValueFactory(new PropertyValueFactory<>("numSeat"));
+//		flightIDTable.setCellValueFactory(new PropertyValueFactory<>("flightId"));
+//		flightTable.setItems(list);
 		
 	}
 	

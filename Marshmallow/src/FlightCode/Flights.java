@@ -8,43 +8,43 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
+
 public class Flights implements Comparable<Flights>{
 
 	private Integer flightId;
 	private String fromCity;
 	private String toCity;
-	private Integer numSeats;
+	private Integer numSeat;
 	private String flightDate;
 	private String landingTime;
 	private String takeOffTime;
 	private ArrayList<User> passengers = new ArrayList<>();
-	private String returnFlight;
 
 
 	public Flights() {
 	}
 
-	public Flights(int flightId, String fromCity, String toCity, String takeOffTime, String landingTime,  int numSeats,
+	public Flights(Integer flightId, String fromCity, String toCity, String takeOffTime, String landingTime,  Integer numSeat,
 			String flightDate) {
 
 		this.flightId = flightId;
 		this.fromCity = fromCity;
 		this.toCity = toCity;
-		this.numSeats = numSeats;
+		this.numSeat = numSeat;
 		this.flightDate = flightDate;
 		this.landingTime = landingTime;
 		this.takeOffTime = takeOffTime;
 	}
 	
 
-	public static void createFlight(String fromCity, String toCity, int numSeats, String flightDate, 
+	public static void createFlight(String fromCity, String toCity, Integer numSeat, String flightDate, 
 										String landingTime,  String takeOffTime){
 
 		int num = createFlightNum();  
 
 		try {
 
-			Flights flight = new Flights(num, fromCity, toCity, landingTime,  takeOffTime, numSeats, flightDate);
+			Flights flight = new Flights(num, fromCity, toCity, landingTime,  takeOffTime, numSeat, flightDate);
 			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 			Connection connection = DriverManager.getConnection(cnnString);
 		
@@ -71,7 +71,7 @@ public class Flights implements Comparable<Flights>{
 		return flightId;
 	}
 
-	public void setFlightId(int flightId) {
+	public void setFlightId(Integer flightId) {
 		this.flightId = flightId;
 	}
 
@@ -92,11 +92,11 @@ public class Flights implements Comparable<Flights>{
 	}
 
 	public Integer getNumSeats() {
-		return numSeats;
+		return numSeat;
 	}
 
-	public void setNumSeats(int numSeats) {
-		this.numSeats = numSeats;
+	public void setNumSeats(Integer numSeats) {
+		this.numSeat = numSeats;
 	}
 
 	public String getFlightDate() {
