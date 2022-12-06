@@ -55,8 +55,10 @@ public class FlightOrder {
 		
 		int orderNum = generateOrderNumber();
 		
-		Flights booked = GetDB.getFlight(flightID);
+		
 		try {
+			String getFlightSql = "SELECT * FROM Flights WHERE flightId=" + "'" + flightID + "'" ;
+			Flights booked = GetDB.getFlight(flightID, getFlightSql);
 			FlightOrder flightOrder = new FlightOrder(orderNum, flightID, booked.getFromCity(), booked.getToCity(),
 													booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),
 													LoginPageController.currentUser.getUserID());
