@@ -143,8 +143,4 @@ public class GetDB {
 		}
 		return orders;
 	}
-	
-	public static int getAdmin(){ 
-		return 1;
-	}
 }

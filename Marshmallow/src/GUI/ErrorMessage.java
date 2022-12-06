@@ -39,7 +39,6 @@ public class ErrorMessage {
 		
 		//Display window and wait for it to be closed before returning 
 		Scene scene = new Scene(layout);
-		scene.getStylesheets().add("graphicUserInterface/thing.css");
 		window.setScene(scene);
 		window.showAndWait();
 		
