@@ -54,7 +54,7 @@ public class FlightOrder {
 	public static void orderFlight(int flightID) throws SQLException {
 		
 		int orderNum = generateOrderNumber();
-		String cnnString = "jdbc:sqlserver://cisproject2022.database.windows.net:1433;database=FlightReservationProject;user=RezaKian@cisproject2022;password=Saglover2?;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+		String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 		Connection connection = DriverManager.getConnection(cnnString);
 		Flights booked = GetDB.getFlight(flightID, connection);
 		
