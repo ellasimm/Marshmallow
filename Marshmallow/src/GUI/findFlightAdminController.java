@@ -3,6 +3,10 @@ package GUI;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Database.GetDB;
+import Database.SearchDB;
+import FlightCode.Flights;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,27 +17,44 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 
 public class findFlightAdminController implements Initializable{
 
 	@FXML Button accountButton;
 	@FXML Button LogOutButton;
-	@FXML TableView flightTable;
-	@FXML TableColumn cityToTable;
-	@FXML TableColumn cityFromTable;
-	@FXML TableColumn flightDateTable;
-	@FXML TableColumn timeTable;
+	@FXML TableColumn<Flights, String> cityToTable;
+	@FXML TableColumn<Flights, String> cityFromTable;
+	@FXML TableColumn<Flights, String> flightDateTable;
+	@FXML TableColumn<Flights, String> depTimeTable;
+	@FXML TableColumn<Flights, String> arrivalTimeTable;
+	@FXML TableColumn<Flights, Integer> numSeatsTable;
+	@FXML TableColumn<Flights, Integer> flightIDTable;
 	@FXML TextField searchDeparture;
 	@FXML TextField searchArrival;
 	@FXML TextField searchDate;
-	@FXML Button searchButton;
 	@FXML TextField searchTime;
+	@FXML TableView<Flights> flightTable;
+	@FXML Button searchButton;
 	@FXML Button addButton;
 	@FXML Button adminButton;
 	
-	public void logOut(ActionEvent event) throws Exception {
+	ObservableList<Flights> list;
+	int index = -1;
+	Connection conn = null;
+	ResultSet rs = null;
+	PreparedStatement pst = null;
+	
+	
+	
+	
+	
+public void logOut(ActionEvent event) throws Exception {
 		
 		AnchorPane logOutParent = FXMLLoader.load(getClass().getResource("/GUI/OpeningPage.fxml"));
 		Scene logOutScene = new Scene(logOutParent);
@@ -44,7 +65,7 @@ public class findFlightAdminController implements Initializable{
 		window.show();
 	}
 
-	public void toAccount(ActionEvent event) throws Exception {
+public void toAccount(ActionEvent event) throws Exception {
 	
 	AnchorPane toAccountParent = FXMLLoader.load(getClass().getResource("/GUI/Account.fxml"));
 	Scene toAccountScene = new Scene(toAccountParent);
@@ -53,12 +74,22 @@ public class findFlightAdminController implements Initializable{
 	
 	window.setScene(toAccountScene);
 	window.show();
+}
+
+
+
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		cityToTable.setCellValueFactory(new PropertyValueFactory<Flights, String>("toCity"));
+		cityFromTable.setCellValueFactory(new PropertyValueFactory<Flights,  String>("fromCity"));
+		flightDateTable.setCellValueFactory(new PropertyValueFactory<Flights, String>("flightDate"));
+		depTimeTable.setCellValueFactory(new PropertyValueFactory<Flights, String>("takeOffTime"));
+		arrivalTimeTable.setCellValueFactory(new PropertyValueFactory<Flights, String>("landingTime"));
+		numSeatsTable.setCellValueFactory(new PropertyValueFactory<Flights, Integer>("numSeat"));
+		flightIDTable.setCellValueFactory(new PropertyValueFactory<Flights, Integer>("flightId"));
+		flightTable.setItems(GetDB.allFlights());
 	}
 	
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }
+

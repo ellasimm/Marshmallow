@@ -114,10 +114,11 @@ public class GetDB {
 		ObservableList<Flights> flight = FXCollections.observableArrayList();
 		
 		try {
+			Class.forName("java.sql.Driver");
 			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 			System.out.println("connecting..");
 			Connection cnn = DriverManager.getConnection(cnnString);
-			log.info("Get data");
+			
 			PreparedStatement preparedStatement = cnn.prepareStatement("SELECT * FROM Flights");
 			
 			ResultSet resultSet = preparedStatement.executeQuery();

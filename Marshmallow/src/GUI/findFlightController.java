@@ -49,11 +49,15 @@ public class findFlightController implements Initializable{
 	ResultSet rs = null;
 	PreparedStatement pst = null;
 	
+	public String
 	
 	
+	public void searchFlights(ActionEvent event) throws Exception {
+		
+	}
 	
 	
-public void logOut(ActionEvent event) throws Exception {
+	public void logOut(ActionEvent event) throws Exception {
 		
 		AnchorPane logOutParent = FXMLLoader.load(getClass().getResource("/GUI/OpeningPage.fxml"));
 		Scene logOutScene = new Scene(logOutParent);
@@ -64,16 +68,16 @@ public void logOut(ActionEvent event) throws Exception {
 		window.show();
 	}
 
-public void toAccount(ActionEvent event) throws Exception {
+	public void toAccount(ActionEvent event) throws Exception {
 	
-	AnchorPane toAccountParent = FXMLLoader.load(getClass().getResource("/GUI/Account.fxml"));
-	Scene toAccountScene = new Scene(toAccountParent);
+		AnchorPane toAccountParent = FXMLLoader.load(getClass().getResource("/GUI/Account.fxml"));
+		Scene toAccountScene = new Scene(toAccountParent);
 	
-	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 	
-	window.setScene(toAccountScene);
-	window.show();
-}
+		window.setScene(toAccountScene);
+		window.show();
+	}
 
 
 
@@ -86,8 +90,7 @@ public void toAccount(ActionEvent event) throws Exception {
 		arrivalTimeTable.setCellValueFactory(new PropertyValueFactory<Flights, String>("landingTime"));
 		numSeatsTable.setCellValueFactory(new PropertyValueFactory<Flights, Integer>("numSeat"));
 		flightIDTable.setCellValueFactory(new PropertyValueFactory<Flights, Integer>("flightId"));
-		list = GetDB.allFlights();
-		flightTable.setItems(list);
+		flightTable.setItems(GetDB.allFlights());
 	}
 	
 	

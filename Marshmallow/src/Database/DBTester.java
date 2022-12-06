@@ -22,7 +22,7 @@ public class DBTester {
 		FlightOrder flightOrder = new FlightOrder();
 		Flights booked = GetDB.getFlight(212, getFlightsql);
 		String sql1 = "INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) "
-				+ "VALUES(orderNum, flightID, booked.getFromCity(), booked.getToCity(),\r\n"
+				+ "VALUES(flightOrderId, flightId, booked.getFromCity(), booked.getToCity(),\r\n"
 				+ "													booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),\r\n"
 				+ "													LoginPageController.currentUser.getUserID());";
 		String sql2 = "UPDATE Flights SET numSeat = numSeat -1 WHERE flightId=" + "'" + booked.getFlightId() + "'";
