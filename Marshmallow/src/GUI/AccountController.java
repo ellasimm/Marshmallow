@@ -34,7 +34,7 @@ public class AccountController implements Initializable{
 	@FXML TableColumn dateColumn;
 	@FXML Button deleteButton;
 	
-	ObservableList<Flights> list = FXCollections.observableArrayList(GetDB.flightorders());
+	ObservableList<Flights> list = FXCollections.observableArrayList(GetDB.flightorders();
 	
 public void back(ActionEvent event) throws Exception {
 		
@@ -43,7 +43,7 @@ public void back(ActionEvent event) throws Exception {
 		
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		
-		window.setScene(backScene);
+		window.setScene(backScene);s
 		window.show();
 	}
 	
