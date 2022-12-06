@@ -49,7 +49,7 @@
       <TextField fx:id="usernameIn" layoutX="67.0" layoutY="192.0" prefHeight="26.0" prefWidth="169.0" promptText="Username" />
       <TextField fx:id="passwordIn" layoutX="239.0" layoutY="192.0" prefHeight="26.0" prefWidth="169.0" promptText="Password" />
       <TextField fx:id="eMailIn" layoutX="67.0" layoutY="157.0" prefHeight="26.0" prefWidth="340.0" promptText="Email Address" />
-      <TextField fx:id="answerIn" layoutX="281.0" layoutY="224.0" prefHeight="26.0" prefWidth="127.0" promptText="Answer" />
+      <TextField fx:id="securityAnswerIn" layoutX="281.0" layoutY="224.0" prefHeight="26.0" prefWidth="127.0" promptText="Answer" />
       <TextField fx:id="securityQuestionIn" layoutX="67.0" layoutY="224.0" prefHeight="26.0" prefWidth="206.0" promptText="Security Question" />
       <TextField fx:id="StateIn" layoutX="268.0" layoutY="125.0" prefHeight="26.0" prefWidth="66.0" promptText="State" />
       <Button fx:id="registerButton" layoutX="199.0" layoutY="263.0" mnemonicParsing="false" onAction="#register" prefHeight="36.0" prefWidth="89.0" text="Register">

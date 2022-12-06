@@ -24,7 +24,7 @@ public class ErrorMessage {
 		
 		// block events to other window.
 		window.initModality(Modality.APPLICATION_MODAL);
-		window.setTitle("error");
+		window.setTitle("Alert!");
 		window.setMinWidth(250);
 		
 		

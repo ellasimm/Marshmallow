@@ -102,7 +102,7 @@ public class InsertDB {
 						
 				
 		try(Connection cnn = DriverManager.getConnection(cnnStr);
-				PreparedStatement preparedStatement = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);){
+			PreparedStatement preparedStatement = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);){
 			ResultSet resultSet = null;
 			preparedStatement.execute();
 			resultSet = preparedStatement.getGeneratedKeys();
