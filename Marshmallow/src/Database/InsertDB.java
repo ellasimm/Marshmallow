@@ -1,4 +1,4 @@
-package Database;  //Fix classNotFoundException
+package Database;  //	FINISHED!!!!!!
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,6 +13,7 @@ import FlightCode.FlightOrder;
 import FlightCode.Flights;
 import FlightCode.User;
 import GUI.ErrorMessage;
+import GUI.LoginPageController;
 
 
 public class InsertDB {
@@ -47,16 +48,16 @@ public class InsertDB {
 			ex.printStackTrace();
 			success = false;
 		}
-		//String sql = "SELECT isAdmin FROM AccountUser WHERE userName =" + "'" + userName + "'");
-	
+		
 	}
 	
-	public static void insertFlightOrder(FlightOrder order, String sql) {
+	public static void insertFlightOrder(FlightOrder order) {
 		success = false;
-		//String sql = "INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) "
-		//		+ "VALUES(orderNum, flightID, booked.getFromCity(), booked.getToCity(),\r\n"
-		//		+ "													booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),\r\n"
-		//		+ "													LoginPageController.currentUser.getUserID());";
+		String sql = "INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) "
+				+ "VALUES('" +order.getOrderNumber()+"' , '" + order.getFlightID() +"', '"+ order.getFromCity()+"', '"+order.getToCity()+"', "
+				+ "													'"+order.getFlightDate()+"', '"+order.getTakeOffTime()+"', '"+order.getLandingTime()+"', "
+				+ "													'"+LoginPageController.currentUser.getUserID()+"');";
+	
 		try(Connection cnn = DriverManager.getConnection(cnnStr);
 				PreparedStatement preparedStatement = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);){
 			ResultSet resultSet = null;
@@ -90,84 +91,51 @@ public class InsertDB {
 			success = false;
 		}
 		
-		/**
-		try {
-			String cnnString ="jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-			System.out.println("connecting..");
-			Connection cnn = DriverManager.getConnection(cnnString);
-			log.info("Insert data");
-			
-			PreparedStatement preparedStatement = cnn.prepareStatement("INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) VALUES(?,?,?,?,?,?,?,?);");
-			String sql2 = "UPDATE Flights SET numSeat = numSeat -1 WHERE flightId=" + "'" + FlightOrder.getFlightID() + "'";
-			PreparedStatement preparedStatement2 = cnn.prepareStatement(sql2);
-			
-			preparedStatement2.executeUpdate();
-			
-			preparedStatement.setInt(1, FlightOrder.getOrderNumber());
-			preparedStatement.setInt(2, FlightOrder.getFlightID());
-			preparedStatement.setString(3, FlightOrder.getFromCity());
-			preparedStatement.setString(4, FlightOrder.getToCity());
-			preparedStatement.setString(5, FlightOrder.getFlightDate());
-			preparedStatement.setString(6, FlightOrder.getTakeOffTime());
-			preparedStatement.setString(7, FlightOrder.getLandingTime());
-			preparedStatement.setInt(8, FlightOrder.getUserID());
-		
-		}catch(SQLIntegrityConstraintViolationException ex1) {
-			
-			ErrorMessage.showErrorMessage("Duplicate Booking Alert!");
-			
-			ex1.printStackTrace();
-			success = false;
-			
-		}catch(SQLException ex2) {
-			ex2.printStackTrace();
-			success = false;
-		}catch(ClassNotFoundException ex3) {
-			ex3.printStackTrace();
-		}
-		*/
 	}
 	
-	public void insertAccount(User user) throws SQLException{
+	public void insertAccount(User user){
 		success = false;
-	
-		try {
-			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-			System.out.println("connecting..");
-			Connection cnn = DriverManager.getConnection(cnnString);
-			log.info("Insert data");
-			
-			PreparedStatement preparedStatement = cnn.prepareStatement("INSERT INTO AccountUser(UserId, userName, password, firstName, lastName, ssn, email, address, zipCode, state, securityQuestion, securityAnswer) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
-			preparedStatement.setInt(1, user.getUserID());
-			preparedStatement.setString(2, user.getUserName());
-			preparedStatement.setString(3, user.getPassword());
-			preparedStatement.setString(4, user.getFirstName());
-			preparedStatement.setString(5, user.getLastName());
-			preparedStatement.setInt(6, user.getSsn());
-			preparedStatement.setString(7, user.getEmail());
-			preparedStatement.setString(8, user.getAddress());
-			preparedStatement.setInt(9, user.getZipCode());
-			preparedStatement.setString(10, user.getState());
-			preparedStatement.setString(11, user.getSecurityQuestion());
-			preparedStatement.setString(12, user.getSecurityAnswer());
-			
-			preparedStatement.executeUpdate();
-			
-			cnn.close();
-			success = true;
-			
+		String sql = "INSERT INTO AccountUser(UserId, userName, password, firstName, lastName, ssn, email, address, zipCode, state, securityQuestion, securityAnswer)) "
+				+ "VALUES('" +user.getUserID()+"' , '" +user.getUserName() +"', '"+ user.getPassword()+"', '"+user.getFirstName()+"', "
+				+ "													'"+user.getLastName()+"', '"+user.getSsn()+"', '"+user.getEmail()+"', "
+				+ "													'"+user.getAddress()+"', '"+user.getZipCode()+"', '"+user.getState()+"', '"+user.getSecurityQuestion()+"', '"+user.getSecurityAnswer()+"');";
+						
+				
+		try(Connection cnn = DriverManager.getConnection(cnnStr);
+				PreparedStatement preparedStatement = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);){
+			ResultSet resultSet = null;
+			preparedStatement.execute();
+			resultSet = preparedStatement.getGeneratedKeys();
+			while(resultSet.next()) {
+				System.out.println("key(s): "+ resultSet.getString(1)+ ","+ resultSet.getString(2)+ ","+ resultSet.getString(3)+ ","+
+											resultSet.getString(4)+ ","+resultSet.getString(5)+ ","+ resultSet.getString(6)+ ","+ resultSet.getString(7)+","+
+											resultSet.getString(8)+ ","+resultSet.getString(9)+ ","+resultSet.getString(10)+ ","+ resultSet.getString(11)+ ","+ resultSet.getString(12));
+				preparedStatement.setInt(1, user.getUserID());
+				preparedStatement.setString(2, user.getUserName());
+				preparedStatement.setString(3, user.getPassword());
+				preparedStatement.setString(4, user.getFirstName());
+				preparedStatement.setString(5, user.getLastName());
+				preparedStatement.setInt(6, user.getSsn());
+				preparedStatement.setString(7, user.getEmail());
+				preparedStatement.setString(8, user.getAddress());
+				preparedStatement.setInt(9, user.getZipCode());
+				preparedStatement.setString(10, user.getState());
+				preparedStatement.setString(11, user.getSecurityQuestion());
+				preparedStatement.setString(12, user.getSecurityAnswer());
+				preparedStatement.executeUpdate();
+				
+				success = true;
+				}
 		}catch(SQLIntegrityConstraintViolationException ex1) {
-			
-			ErrorMessage.showErrorMessage("Duplicate Account Alert!" + "\nTry again or click forgot password");
-			success = false;
-			
+				
+				ErrorMessage.showErrorMessage("Duplicate Account!" + "\nTry again or click forgot password");
+				success = false;
+				
 		}catch(SQLException ex2) {
-			ex2.printStackTrace();
-			success = false;
-			
-		}catch(ClassNotFoundException ex3) {
-			System.out.println("Might be an error in Database");
-			ex3.printStackTrace();
+				ex2.printStackTrace();
+				success = false;
+				
 		}
+	
 	}
 }

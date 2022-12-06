@@ -2,9 +2,9 @@ package Database;
 
 import FlightCode.FlightOrder;
 import FlightCode.Flights;
+import GUI.LoginPageController;
 
 public class DBTester {
-
 	
 	public static void main(String[] args) {
 		
@@ -17,13 +17,15 @@ public class DBTester {
 		System.out.println("Flight added");
 		**/
 		
-		// need to fix getDB to test out insertflightorder
-		String getFlightsql = "SELECT * FROM Flights WHERE flightId= 212" ;
-		FlightOrder flightOrder = new FlightOrder();
-		Flights booked = GetDB.getFlight(212, getFlightsql);
-		String sql1 = "INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) "
-				+ "VALUES(016, 212, 'Atlanta', 'Doha', '12/7/2022', '12:30pm', '2:30am', LoginPageController.currentUser.getUserID());";
+		//need to test out insertflightorder
 		
-		InsertDB.insertFlightOrder(flightOrder, sql1);
+		FlightOrder flightOrder = new FlightOrder();
+		
+		//String sql1 = "INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) "
+		//		+ "VALUES(016, 212, 'Atlanta', 'Doha', '12/7/2022', '12:30pm', '2:30am', 3);";
+		String sql2 = "INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) "
+				+ "VALUES(016, 212, 'Atlanta', 'Doha', '12/7/2022', '12:30pm', '2:30am', '" + LoginPageController.currentUser.getUserID()+"' );";
+		
+		InsertDB.insertFlightOrder(flightOrder);
 	}
 }

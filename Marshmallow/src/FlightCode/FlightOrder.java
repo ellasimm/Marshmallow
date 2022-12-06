@@ -52,24 +52,20 @@ public class FlightOrder {
 	
 	//Omama is working on this
 	public static void orderFlight(int flightID) throws SQLException {
-		
 		int orderNum = generateOrderNumber();
-		
-		
+	
 		try {
-			String getFlightSql = "SELECT * FROM Flights WHERE flightId=" + "'" + flightID + "'" ;
-			Flights booked = GetDB.getFlight(flightID, getFlightSql);
+		
+			Flights booked = GetDB.getFlight(flightID);
+			
 			FlightOrder flightOrder = new FlightOrder(orderNum, flightID, booked.getFromCity(), booked.getToCity(),
 													booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),
 													LoginPageController.currentUser.getUserID());
+			
 			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 			Connection connection = DriverManager.getConnection(cnnString);
-			String sql = "INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) "
-					+ "VALUES(orderNum, flightID, booked.getFromCity(), booked.getToCity(),\r\n"
-					+ "													booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),\r\n"
-					+ "													LoginPageController.currentUser.getUserID());";
-			String sql2 = "UPDATE Flights SET numSeat = numSeat -1 WHERE flightId=" + "'" + booked.getFlightId() + "'";
-			InsertDB.insertFlightOrder(flightOrder, sql, sql2);
+			
+			InsertDB.insertFlightOrder(flightOrder, sql); //remove sql from InsertDb's method once tested
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();
