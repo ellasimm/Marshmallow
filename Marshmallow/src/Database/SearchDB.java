@@ -12,7 +12,8 @@ import javafx.collections.ObservableList;
 public class SearchDB {
 	private static final Logger log = null;
 
-	public static ObservableList<Flights> searchFlight(Flights flight){
+	public static ObservableList<Flights> searchFlight(String departFrom,String arriveTo,
+			String departDay,String returnDay){
 		ObservableList<Flights> flights = FXCollections.observableArrayList();
 		ResultSet resultSet = null;
 		try {
@@ -22,21 +23,22 @@ public class SearchDB {
 			Connection cnn = DriverManager.getConnection(cnnString);
 			
 			
-			PreparedStatement preparedStatement = cnn.prepareStatement("SELECT * FROM Flights WHERE fromCity=" + "'" + flight.getFromCity() + "'" + 
-			"and toCity=" + "'" + flight.getToCity() + "'" + "and flightDate=" + "'" + flight.getFlightDate() + "'");
+			PreparedStatement preparedStatement = cnn.prepareStatement("SELECT * FROM flights WHERE departure_city=" + "'" + departFrom + "'" + 
+					"and destination_city=" + "'" + arriveTo + "'" + "and flight_date=" + "'" + departDay + "'" 
+					+ "and return_day=" + "'" + returnDay + "'");
 			
 			
 			resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
-				Flights flight1 = new Flights();
+				Flights flight = new Flights();
 				
-				flight1.setFlightId(resultSet.getInt("flightId"));
-				flight1.setFromCity(resultSet.getString("fromCity"));
-				flight1.setToCity(resultSet.getString("toCity"));
-				flight1.setTakeOffTime(resultSet.getString("takeOffTime"));
-				flight1.setLandingTime(resultSet.getString("landingTime"));
-				flight1.setNumSeats(resultSet.getInt("numSeat"));
-				flight1.setFlightDate(resultSet.getString("flightDate"));
+				flight.setFlightId(resultSet.getInt("flightId"));
+				flight.setFromCity(resultSet.getString("fromCity"));
+				flight.setToCity(resultSet.getString("toCity"));
+				flight.setTakeOffTime(resultSet.getString("takeOffTime"));
+				flight.setLandingTime(resultSet.getString("landingTime"));
+				flight.setNumSeats(resultSet.getInt("numSeat"));
+				flight.setFlightDate(resultSet.getString("flightDate"));
 				
 				flights.add(flight);
 			}

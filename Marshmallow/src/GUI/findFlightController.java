@@ -49,11 +49,20 @@ public class findFlightController implements Initializable{
 	ResultSet rs = null;
 	PreparedStatement pst = null;
 	
-	public String m;
+	public String departDay;
+	public String departTime;
+	public String departCity;
+	public String arriveCity;
+	public static ObservableList<Flights> flights;
 	
 	
 	public void searchFlights(ActionEvent event) throws Exception {
+		departDay = searchDate.getText();
+		departTime = searchTime.getText();
+		departCity = searchDeparture.getText();
+		arriveCity = searchArrival.getText();
 		
+		flights = SearchDB.findFlights(departDay, departTime, departCity, arriveCity);
 	}
 	
 	
