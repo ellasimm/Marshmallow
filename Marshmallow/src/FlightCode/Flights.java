@@ -10,10 +10,10 @@ import java.sql.SQLException;
 
 public class Flights implements Comparable<Flights>{
 
-	private int flightId;
+	private Integer flightId;
 	private String fromCity;
 	private String toCity;
-	private int numSeats;
+	private Integer numSeats;
 	private String flightDate;
 	private String landingTime;
 	private String takeOffTime;
@@ -71,7 +71,7 @@ public class Flights implements Comparable<Flights>{
 	}
 
 
-	public int getFlightId() {
+	public Integer getFlightId() {
 		return flightId;
 	}
 
@@ -95,7 +95,7 @@ public class Flights implements Comparable<Flights>{
 		this.toCity = toCity;
 	}
 
-	public int getNumSeats() {
+	public Integer getNumSeats() {
 		return numSeats;
 	}
 
