@@ -5,21 +5,7 @@ import java.sql.*;
 
 public class LoginDB {
 	
-	static final String url =  "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-	static Connection cnn;
-	
-	public String loginConnection(String username) {
-		try {
-			Class.forName("java.sql.Driver");	
-			System.out.println("database connected");
-			cnn = DriverManager.getConnection(url);
-		
-			PreparedStatement preparedStatement = cnn.prepareStatement("SELECT * FROM AccountUser WHERE userName=")
-		}
-	}
-	
-	/*
-	 * private static final Logger log = null;
+	private static final Logger log = null;
 	
 	public String confirmLogin(String userName, Connection connection) {
 		String result = "";
@@ -119,6 +105,5 @@ public class LoginDB {
 		return result;
 		
 	}
-	 */
 
-}
+

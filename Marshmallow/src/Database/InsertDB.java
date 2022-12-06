@@ -19,7 +19,7 @@ public class InsertDB {
 	private static final Logger log = null;
 
 	
-	public static void insertFlight(Flights flight, Connection connection){
+	public static void insertFlight(Flights flight){
 		success = false;
 		
 	
@@ -48,7 +48,7 @@ public class InsertDB {
 			success = false;
 		}
 	}
-	public static void insertFlightOrder(Flights order, Connection connection) {
+	public static void insertFlightOrder(Flights order) {
 		success = false;
 		
 		try {
@@ -87,7 +87,7 @@ public class InsertDB {
 		}
 	}
 	
-	public void insertAccount(User user, Connection connection) throws SQLException{
+	public void insertAccount(User user) throws SQLException{
 		success = false;
 	
 		try {
@@ -96,7 +96,7 @@ public class InsertDB {
 			Connection cnn = DriverManager.getConnection(cnnString);
 			log.info("Insert data");
 			
-			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO AccountUser(accountUserId, userName, password, firstName, lastName, ssn, email, address, zipCode, state, securityQuestion, securityAnswer) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
+			PreparedStatement preparedStatement = cnn.prepareStatement("INSERT INTO AccountUser(accountUserId, userName, password, firstName, lastName, ssn, email, address, zipCode, state, securityQuestion, securityAnswer) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
 			preparedStatement.setInt(1, user.getUserID());
 			preparedStatement.setString(2, user.getUserName());
 			preparedStatement.setString(3, user.getPassword());
@@ -112,7 +112,7 @@ public class InsertDB {
 			
 			preparedStatement.executeUpdate();
 			
-			connection.close();
+			cnn.close();
 			success = true;
 			
 		}catch(SQLIntegrityConstraintViolationException ex1) {
