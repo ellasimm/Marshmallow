@@ -51,13 +51,32 @@ public class InsertDB {
 		
 	}
 	
-	public static void insertFlightOrder(FlightOrder order) {
+	public static void insertFlightOrder(FlightOrder order) throws ClassNotFoundException {
 		success = false;
+	
+		try {
+			Class.forName("java.sql.Driver");
+			System.out.println("Database is connecting");
+			
+			Connection cnn =  DriverManager.getConnection(cnnStr);
+			String sql = "INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) "
+					+ "VALUES(?,?,?,?,?,?,?,?)";
+			PreparedStatement preparedStatement = cnn.prepareStatement(sql);
+			preparedStatement.setInt(1, order.getOrderNumber());
+			preparedStatement.setInt(2, order.getFlightID());
+			preparedStatement.setString(3, order.getFromCity());
+			preparedStatement.setString(4, order.getToCity());
+			preparedStatement.setString(5, order.getFlightDate());
+			preparedStatement.setString(6, order.getTakeOffTime());
+			preparedStatement.setString(7, order.getLandingTime());
+			preparedStatement.setInt(8, order.getUserID());
+			preparedStatement.executeUpdate();
+		/**
 		String sql = "INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) "
 				+ "VALUES('" +order.getOrderNumber()+"' , '" + order.getFlightID() +"', '"+ order.getFromCity()+"', '"+order.getToCity()+"', "
 				+ "													'"+order.getFlightDate()+"', '"+order.getTakeOffTime()+"', '"+order.getLandingTime()+"', "
 				+ "													'"+LoginPageController.currentUser.getUserID()+"');";
-	
+		
 		try(Connection cnn = DriverManager.getConnection(cnnStr);
 				PreparedStatement preparedStatement = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);){
 			ResultSet resultSet = null;
@@ -75,11 +94,11 @@ public class InsertDB {
 				preparedStatement.setString(7, order.getLandingTime());
 				preparedStatement.setInt(8, order.getUserID());
 				preparedStatement.executeUpdate();
-				
+				*/
 				
 				success = true;
 			}
-		}catch(SQLIntegrityConstraintViolationException ex1) {
+		catch(SQLIntegrityConstraintViolationException ex1) {
 			
 			ErrorMessage.showErrorMessage("Duplicate Booking Alert!");
 			
