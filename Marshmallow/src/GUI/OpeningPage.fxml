@@ -13,7 +13,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="461.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OpeningPageController">
    <children>
       <Rectangle fx:id="ImageBackground" arcHeight="5.0" arcWidth="5.0" height="204.0" layoutX="25.0" layoutY="102.0" stroke="#82c5ee" strokeType="INSIDE" width="208.0">
@@ -63,7 +62,7 @@
       </Label>
       <ImageView fx:id="PlaneImage" fitHeight="178.0" fitWidth="236.0" layoutX="39.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../Desktop/plane3.jpeg" />
+            <Image url="@plane3.jpeg" />
          </image>
       </ImageView>
       <Label layoutX="280.0" layoutY="113.0" text="Existing Users:">
