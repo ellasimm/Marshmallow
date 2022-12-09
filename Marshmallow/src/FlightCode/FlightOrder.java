@@ -50,7 +50,7 @@ public class FlightOrder {
 		this.landingTime = landingTime;
 	}
 	
-	//Omama is working on this
+	
 	public static void orderFlight(int flightID) throws SQLException {
 		int orderNum = generateOrderNumber();
 	
