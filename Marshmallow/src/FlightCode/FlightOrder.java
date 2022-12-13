@@ -51,7 +51,7 @@ public class FlightOrder {
 	}
 	
 	
-	public static void orderFlight(int flightID) throws SQLException {
+	public static void orderFlight(int flightID){
 		int orderNum = generateOrderNumber();
 	
 		Flights booked = GetDB.getFlight(flightID);

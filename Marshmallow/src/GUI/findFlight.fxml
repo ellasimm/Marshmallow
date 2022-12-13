@@ -65,7 +65,7 @@
             <Font name="Telugu MN" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="addButton" layoutX="584.0" layoutY="197.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Book Flight">
+      <Button fx:id="addButton" layoutX="584.0" layoutY="197.0" mnemonicParsing="false" onAction="#addFlight" prefHeight="26.0" prefWidth="92.0" text="Book Flight">
          <font>
             <Font name="Tamil MN" size="13.0" />
          </font>
