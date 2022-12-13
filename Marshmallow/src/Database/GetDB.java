@@ -144,7 +144,7 @@ public class GetDB {
 	public static User getUserId(String userName) {
 		User user = new User();
 		ResultSet resultSet = null;
-		String sql = "SELECT * FROM AccountUser WHERE userName=" + "'" + userName + "'" ;
+		String sql = "SELECT userId FROM AccountUser WHERE userName=" + "'" + userName + "'" ;
 		try(Connection cnn = DriverManager.getConnection("jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
 				Statement statement = cnn.createStatement();){
 			
