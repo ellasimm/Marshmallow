@@ -140,4 +140,23 @@ public class GetDB {
 		return orders; 
 		
 	}
+	//need to check
+	public static User getUserId(String userName) {
+		User user = new User();
+		ResultSet resultSet = null;
+		String sql = "SELECT * FROM AccountUser WHERE userName=" + "'" + userName + "'" ;
+		try(Connection cnn = DriverManager.getConnection("jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+				Statement statement = cnn.createStatement();){
+			
+			resultSet = statement.executeQuery(sql);
+			while(resultSet.next()) {
+				System.out.println(resultSet.getInt("userId"));
+				
+				user.setUserID(resultSet.getInt("UserId"));
+			}
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		return user;
+	}
 }
