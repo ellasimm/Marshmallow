@@ -51,21 +51,24 @@ public class FlightOrder {
 	}
 	
 	
-	public static void orderFlight(int flightID){
+	public static void orderFlight(int flightID) {
+		
 		int orderNum = generateOrderNumber();
 	
 		Flights booked = GetDB.getFlight(flightID);
 		
-		FlightOrder flightOrder = new FlightOrder(orderNum, flightID, booked.getFromCity(), booked.getToCity(),
+		FlightOrder order = new FlightOrder(orderNum, flightID, booked.getFromCity(), booked.getToCity(),
 												booked.getFlightDate(), booked.getTakeOffTime(), booked.getLandingTime(),
 												LoginPageController.currentUser.getUserID());
 
 		try {
-			InsertDB.insertFlightOrder(flightOrder);
-		} catch (ClassNotFoundException e) {
+			InsertDB.insertFlightOrder(order);
 			
+		} catch (ClassNotFoundException e) {
+
 			e.printStackTrace();
-		} 
+		}
+		
 	}
 
 	

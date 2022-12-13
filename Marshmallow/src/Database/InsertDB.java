@@ -52,7 +52,6 @@ public class InsertDB {
 	}
 	
 	public static void insertFlightOrder(FlightOrder order) throws ClassNotFoundException {
-		success = false;
 	
 		try {
 			
@@ -84,18 +83,16 @@ public class InsertDB {
 			
 			ErrorMessage.showErrorMessage("You're booked for flight number " + order.getFlightID());
 			
-				success = true;
 			}
 		catch(SQLIntegrityConstraintViolationException ex1) {
 			
 			ErrorMessage.showErrorMessage("Duplicate Booking Alert!");
 			
 			ex1.printStackTrace();
-			success = false;
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();
-			success = false;
+
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
