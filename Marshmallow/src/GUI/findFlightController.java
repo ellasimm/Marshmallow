@@ -115,7 +115,7 @@ public class findFlightController implements Initializable{
 				else if (Flights.getLandingTime().toLowerCase().indexOf(searchKeyword) > -1) {
 					return true;
 				}
-				else if (Flights.getNumSeats().toString().toLowerCase().indexOf(searchKeyword) > -1) {
+				else if (Flights.getNumSeat().toString().toLowerCase().indexOf(searchKeyword) > -1) {
 					return true;
 				}
 				else if (Flights.getFlightId().toString().toLowerCase().indexOf(searchKeyword) > -1) {

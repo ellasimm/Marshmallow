@@ -62,7 +62,7 @@
       </Label>
       <ImageView fx:id="PlaneImage" fitHeight="178.0" fitWidth="236.0" layoutX="39.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@plane3.jpeg" />
+            <Image url="@../../../../../Desktop/plane3.jpeg" />
          </image>
       </ImageView>
       <Label layoutX="280.0" layoutY="113.0" text="Existing Users:">

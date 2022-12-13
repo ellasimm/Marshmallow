@@ -38,7 +38,7 @@ public class InsertDB {
 				preparedStatement.setString(3, flight.getToCity());
 				preparedStatement.setString(4, flight.getTakeOffTime());
 				preparedStatement.setString(5, flight.getLandingTime());
-				preparedStatement.setInt(6, flight.getNumSeats());
+				preparedStatement.setInt(6, flight.getNumSeat());
 				preparedStatement.setString(7, flight.getFlightDate());
 				preparedStatement.executeUpdate();
 				

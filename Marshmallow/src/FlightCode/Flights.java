@@ -91,12 +91,12 @@ public class Flights implements Comparable<Flights>{
 		this.toCity = toCity;
 	}
 
-	public Integer getNumSeats() {
+	public Integer getNumSeat() {
 		return numSeat;
 	}
 
-	public void setNumSeats(Integer numSeats) {
-		this.numSeat = numSeats;
+	public void setNumSeats(Integer numSeat) {
+		this.numSeat = numSeat;
 	}
 
 	public String getFlightDate() {
