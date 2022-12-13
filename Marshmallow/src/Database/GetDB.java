@@ -142,8 +142,9 @@ public class GetDB {
 	}
 	//need to check all three methods
 	
-	public static User getUserId(String userName) {
-		User user = new User();
+	public static int getUserId(String userName) {
+		//User user = new User();
+		int id = 0;
 		ResultSet resultSet = null;
 		String sql = "SELECT userId FROM AccountUser WHERE userName=" + "'" + userName + "'" ;
 		try(Connection cnn = DriverManager.getConnection("jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
@@ -153,16 +154,17 @@ public class GetDB {
 			while(resultSet.next()) {
 				System.out.println(resultSet.getInt("userId"));
 				
-				user.setUserID(resultSet.getInt("UserId"));
+				id = resultSet.getInt("userId");
 			}
 		}catch(SQLException ex) {
 			ex.printStackTrace();
 		}
-		return user;
+		return id;
 	}
 	
-	public static User getIsAdmin(String userName) {
-		User user = new User();
+	public static int getIsAdmin(String userName) {
+		//User user = new User();
+		int num = 0;
 		ResultSet resultSet = null;
 		String sql = "SELECT isAdmin FROM AccountUser WHERE userName=" + "'" + userName + "'" ;
 		try(Connection cnn = DriverManager.getConnection("jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
@@ -172,16 +174,17 @@ public class GetDB {
 			while(resultSet.next()) {
 				System.out.println(resultSet.getInt("isAdmin"));
 				
-				user.setIsAdmin(resultSet.getInt("isAdmin"));
+				num = resultSet.getInt("isAdmin");
 			}
 		}catch(SQLException ex) {
 			ex.printStackTrace();
 		}
-		return user;
+		return num;
 	}
 	
-	public static User getSQ(String userName) {
-		User user = new User();
+	public static String getSQ(String userName) {
+		//User user = new User();
+		String sq = "";
 		ResultSet resultSet = null;
 		String sql = "SELECT securityQuestion FROM AccountUser WHERE userName=" + "'" + userName + "'" ;
 		try(Connection cnn = DriverManager.getConnection("jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
@@ -191,11 +194,11 @@ public class GetDB {
 			while(resultSet.next()) {
 				System.out.println(resultSet.getString("securityQuestion"));
 				
-				user.setSecurityQuestion(resultSet.getString("securityQuestion"));
+				sq = resultSet.getString("securityQuestion");
 			}
 		}catch(SQLException ex) {
 			ex.printStackTrace();
 		}
-		return user;
+		return sq;
 	}
 }
