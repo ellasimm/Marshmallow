@@ -140,7 +140,8 @@ public class GetDB {
 		return orders; 
 		
 	}
-	//need to check
+	//need to check all three methods
+	
 	public static User getUserId(String userName) {
 		User user = new User();
 		ResultSet resultSet = null;
@@ -153,6 +154,44 @@ public class GetDB {
 				System.out.println(resultSet.getInt("userId"));
 				
 				user.setUserID(resultSet.getInt("UserId"));
+			}
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		return user;
+	}
+	
+	public static User getIsAdmin(String userName) {
+		User user = new User();
+		ResultSet resultSet = null;
+		String sql = "SELECT isAdmin FROM AccountUser WHERE userName=" + "'" + userName + "'" ;
+		try(Connection cnn = DriverManager.getConnection("jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+				Statement statement = cnn.createStatement();){
+			
+			resultSet = statement.executeQuery(sql);
+			while(resultSet.next()) {
+				System.out.println(resultSet.getInt("isAdmin"));
+				
+				user.setIsAdmin(resultSet.getInt("isAdmin"));
+			}
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		return user;
+	}
+	
+	public static User getSQ(String userName) {
+		User user = new User();
+		ResultSet resultSet = null;
+		String sql = "SELECT securityQuestion FROM AccountUser WHERE userName=" + "'" + userName + "'" ;
+		try(Connection cnn = DriverManager.getConnection("jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+				Statement statement = cnn.createStatement();){
+			
+			resultSet = statement.executeQuery(sql);
+			while(resultSet.next()) {
+				System.out.println(resultSet.getString("securityQuestion"));
+				
+				user.setSecurityQuestion(resultSet.getString("securityQuestion"));
 			}
 		}catch(SQLException ex) {
 			ex.printStackTrace();
