@@ -111,34 +111,35 @@ public class GetDB {
 	}
 	
 	public static ObservableList<FlightOrder> flightorders(int userID){
+		String url = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 		ObservableList<FlightOrder> orders = FXCollections.observableArrayList();
-		ResultSet resultSet = null;
-		String sql = "SELECT * FROM FlightOrder WHERE userId=" + "'" + userID + "'" ;
-		try(Connection cnn = DriverManager.getConnection("jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
-				Statement statement = cnn.createStatement();){
-			
-			resultSet = statement.executeQuery(sql);
 		
-			while(resultSet.next()) {
-				System.out.println(resultSet.getInt(1) + ","+ resultSet.getString(2) + ","+ resultSet.getString(3) + ","+
-						resultSet.getString(4)+ ","+resultSet.getString(5)+ ","+ resultSet.getString(6)+ ","+ resultSet.getString(7));
+		try {
+			Class.forName("java.sql.Driver");
+			Connection cnn = DriverManager.getConnection(url);
+			
+			PreparedStatement ps = cnn.prepareStatement("SELECT * FROM FlightOrder WHERE userId=" + "'" + userID + "'");
+			
+			ResultSet res = ps.executeQuery();
+			
+			while (res.next()) {
+				FlightOrder booking = new FlightOrder(res.getInt("flightOrderId"),
+						(res.getInt("flightId")),
+						(res.getString("fromCity")),
+						(res.getString("toCity")),
+						(res.getString("flightDate")),
+						(res.getString("takeOffTime")),
+						(res.getString("landingTime")),
+						(res.getInt("userId")));
 				
-				FlightOrder booking = new FlightOrder(resultSet.getInt("flightOrderId"),
-													(resultSet.getInt("flightId")),
-													(resultSet.getString("fromCity")),
-													(resultSet.getString("toCity")),
-													(resultSet.getString("flightDate")),
-													(resultSet.getString("takeOffTime")),
-													(resultSet.getString("landingTime")),
-													(resultSet.getInt("userId")));
 				orders.add(booking);
 			}
-		}catch(SQLException ex) {
-			ex.printStackTrace();
+			
+			cnn.close();
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
-		
-		return orders; 
-		
+		return orders;
 	}
 	//need to check all three methods
 	
