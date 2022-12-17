@@ -26,7 +26,7 @@ public class AccountController implements Initializable{
 	
 	@FXML Button backButton;
 	@FXML Button logOutButton;
-	@FXML TableView<FlightOrder> userBookedFlight;
+	@FXML TableView<FlightOrder> userBookedFlightsTable;
 	@FXML TableColumn<FlightOrder, Integer> flightIDColumn;
 	@FXML TableColumn<FlightOrder, String> fromCityColumn;
 	@FXML TableColumn<FlightOrder, String> toCityColumn;
@@ -63,14 +63,14 @@ public void logOut(ActionEvent event) throws Exception {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resource) {	
-		orderNumColumn.setCellValueFactory(new PropertyValueFactory<>("flightOrderId"));
-		flightIDColumn.setCellValueFactory(new PropertyValueFactory<>("flightId"));
+		orderNumColumn.setCellValueFactory(new PropertyValueFactory<>("orderNumber"));
+		flightIDColumn.setCellValueFactory(new PropertyValueFactory<>("flightID"));
 		fromCityColumn.setCellValueFactory(new PropertyValueFactory<>("fromCity"));
 		toCityColumn.setCellValueFactory(new PropertyValueFactory<>("toCity"));
 		depTimeColumn.setCellValueFactory(new PropertyValueFactory<>("takeOffTime"));
 		arriveTimeColumn.setCellValueFactory(new PropertyValueFactory<>("landingTime"));
 		dateColumn.setCellValueFactory(new PropertyValueFactory<>("flightDate"));
-		userBookedFlight.setItems(list);
+		userBookedFlightsTable.setItems(list);
 	}
 	
 }
