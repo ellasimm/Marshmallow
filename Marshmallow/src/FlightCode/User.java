@@ -1,17 +1,11 @@
-package FlightCode;  //FINISHED ALL THE CODE IS WRITTEN
+package FlightCode;  
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
-import java.sql.Connection;
-import java.sql.DriverManager;
+
 
 import Database.InsertDB;
 
@@ -194,157 +188,6 @@ public class User implements Comparable<User>{
 	public void setIsAdmin(int isAdmin) {
 		this.isAdmin = isAdmin;
 	}
-	
-	/**
-	
-	public void register() throws FileNotFoundException{
-		Scanner input = new Scanner(System.in);
-		System.out.println("Enter username: ");
-		this.userName = input.nextLine();
-		System.out.println("Enter password: ");
-		this.password = input.nextLine();
-		System.out.println("Confirm Password: ");
-		String confirmPassword = input.nextLine();
-		
-		userName = userName.trim();
-		password = password.trim();
-		confirmPassword = confirmPassword.trim();
-		
-		String str = userName + " " + confirmPassword;
-		if (password.equals(confirmPassword)) {
-			File f = new File("User.txt");
-			Scanner scan = new Scanner(f);
-			int flag = 0;
-			while(scan.hasNextLine()) {
-				String data = scan.nextLine();
-				if(data.equals(str)) {
-					System.out.println("Already Registered.");
-					flag = 1;
-					System.out.println("1. Registeration");
-					System.out.println("2. LogIn");
-					
-					System.out.println("Enter your choice: ");
-					int choice = input.nextInt();
-					if(choice == 1) {
-						this.register();
-					}
-					else if (choice == 2){
-						this.logIn();
-					}
-					else {
-						System.out.println("Enter proper choice.");
-					}
-					break;
-				}
-				scan.close();
-				
-				if (flag == 0) {
-					try {
-						BufferedWriter out = new BufferedWriter(new FileWriter("User.txt", true));
-						out.write(userName +" "+ password+ "\n");
-						out.close();
-					}catch(IOException ex) {
-						System.out.println("Exception happened" + ex);
-					}
-					System.out.println("Successfully Registered.");
-					System.out.println("Please Login");
-					this.logIn();
-				}
-				
-			}
-		}
-		input.close();
-		
-	}
-	public void logIn() {
-		 Scanner input = new Scanner(System.in);
-         
-	        System.out.println("Enter User Name: ");
-	        this.userName = input.nextLine();
-			System.out.println("Enter password: ");
-			this.password = input.nextLine();
-			
-			userName = userName.trim();
-			password = password.trim();
-			
-	        String str = userName +" "+ password;
-	         
-	        try {
-	             
-	              File f = new File("User.txt");
-	              Scanner scan = new Scanner(f);
-	              int flag=0;
-	              while (scan.hasNextLine()) {
-	                String data = scan.nextLine();
-	                if(data.equals(str)) {
-	                    System.out.println("Login Successful");
-	                  
-	                    flag=1;
-	                    break;
-	                }
-	              }
-	                if(flag==0)
-	                {
-	                    System.out.println("Login Failed");
-	                    System.out.println("1. Registration. ");
-	                    System.out.println("2. Login. ");
-	                     
-	                    System.out.println("Enter your Choice");
-	                    int choice=input.nextInt();
-	                    if(choice==1)
-	                    {
-	                        this.register();
-	                    }
-	                    else if(choice==2)
-	                    {
-	                        this.logIn();
-	                    }
-	                    else
-	                    {
-	                        System.out.println("Enter proper choice.");
-	                    }
-	                }
-	               
-	              scan.close();
-	            }  catch (FileNotFoundException ex) {
-	              
-	              System.out.println("Error.");
-	              ex.printStackTrace();
-	            }
-	         
-	        input.close();
-	}
-	public void logOut(){
-		
-	}
-
-	public void goMainMenu() {
-		needs to be created in the GUI
-	}
-	public void bookFlight() {
-		this is similar to flightOrder class
-	}
-	public void deleteFlight() {
-	}
-	public void retrievePassword() {
-		System.out.println(securityQuestion);
-		Scanner input = new Scanner(System.in);
-		String sa = input.nextLine();
-		if (sa.equals(securityAnswer)) {
-			System.out.println("Your password is "+ getPassword());
-		}
-		else {
-			System.out.println("The answer to the security question is incorrect.");
-		}
-		
-		 * should this be in customer and admin so that we call call their specific accounts to retrive. 
-		 * Or does this make sense?
-		 
-	}
-	
-	public void searchFlight() {
-	}
-	*/
 	
 	
 }

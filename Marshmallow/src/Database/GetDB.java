@@ -17,6 +17,7 @@ import javafx.collections.FXCollections;
 public class GetDB {
 	private static final Logger log = null;
 	
+	// get the user's information from the DB
 	public static User getUser(String userName) {
 		User user = new User();
 		ResultSet resultSet = null;
@@ -50,7 +51,8 @@ public class GetDB {
 		return user; 
 	
 	}
-		/** New Method for getFlight */ 
+	
+	// get the flight information with the flightId.
 	public static Flights getFlight(int flightId) {
 		ResultSet resultSet = null;
 		Flights flight = new Flights();
@@ -78,7 +80,7 @@ public class GetDB {
 	}
 		
 	
-	
+	// get the list of flights
 	public static ObservableList<Flights> allFlights(){
 		ObservableList<Flights> flight = FXCollections.observableArrayList();
 		ResultSet resultSet = null;
@@ -110,6 +112,7 @@ public class GetDB {
 		return flight; 
 	}
 	
+	// get the list of booked flights for user
 	public static ObservableList<FlightOrder> flightorders(int userID){
 		String url = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 		ObservableList<FlightOrder> orders = FXCollections.observableArrayList();
@@ -142,9 +145,8 @@ public class GetDB {
 		return orders;
 	}
 	//need to check all three methods
-	
+	// get the user's id with the userName
 	public static int getUserId(String userName) {
-		//User user = new User();
 		int id = 0;
 		ResultSet resultSet = null;
 		String sql = "SELECT userId FROM AccountUser WHERE userName=" + "'" + userName + "'" ;
@@ -162,9 +164,8 @@ public class GetDB {
 		}
 		return id;
 	}
-	
+	// get the number for userName which indicates if the user is Admin or not
 	public static int getIsAdmin(String userName) {
-		//User user = new User();
 		int num = 0;
 		ResultSet resultSet = null;
 		String sql = "SELECT isAdmin FROM AccountUser WHERE userName=" + "'" + userName + "'" ;
@@ -183,8 +184,8 @@ public class GetDB {
 		return num;
 	}
 	
+	// get the security question for the user
 	public static String getSQ(String userName) {
-		//User user = new User();
 		String sq = "";
 		ResultSet resultSet = null;
 		String sql = "SELECT securityQuestion FROM AccountUser WHERE userName=" + "'" + userName + "'" ;
