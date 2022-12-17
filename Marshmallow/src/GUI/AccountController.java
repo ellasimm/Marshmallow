@@ -33,9 +33,11 @@ public class AccountController implements Initializable{
 	@FXML TableColumn<FlightOrder, String> depTimeColumn;
 	@FXML TableColumn<FlightOrder, String> arriveTimeColumn;
 	@FXML TableColumn<FlightOrder, String> dateColumn;
+	@FXML TableColumn<FlightOrder, Integer> orderNumColumn;
 	@FXML Button deleteButton;
 	
-	ObservableList<FlightOrder> list = FXCollections.observableArrayList(GetDB.flightorders(LoginPageController.currentUser.getUserID()));
+	
+	ObservableList<FlightOrder> list = FXCollections.observableArrayList(GetDB.flightorders());
 	
 public void back(ActionEvent event) throws Exception {
 		
@@ -60,7 +62,8 @@ public void logOut(ActionEvent event) throws Exception {
 }
 
 	@Override
-	public void initialize(URL url, ResourceBundle resource) {
+	public void initialize(URL url, ResourceBundle resource) {	
+		orderNumColumn.setCellValueFactory(new PropertyValueFactory<>("flightOrderId"));
 		flightIDColumn.setCellValueFactory(new PropertyValueFactory<>("flightId"));
 		fromCityColumn.setCellValueFactory(new PropertyValueFactory<>("fromCity"));
 		toCityColumn.setCellValueFactory(new PropertyValueFactory<>("toCity"));
@@ -68,7 +71,6 @@ public void logOut(ActionEvent event) throws Exception {
 		arriveTimeColumn.setCellValueFactory(new PropertyValueFactory<>("landingTime"));
 		dateColumn.setCellValueFactory(new PropertyValueFactory<>("flightDate"));
 		userBookedFlight.setItems(list);
-		
 	}
 	
 }

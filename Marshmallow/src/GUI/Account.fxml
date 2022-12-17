@@ -11,7 +11,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="334.0" prefWidth="543.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AccountController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d4efff" height="334.0" opacity="0.54" stroke="WHITE" strokeType="INSIDE" width="543.0" />
@@ -48,14 +47,15 @@
             <Font name="Tamil MN" size="13.0" />
          </font>
       </Button>
-      <TableView fx:id="userBookedFlightsTable" layoutX="41.0" layoutY="89.0" prefHeight="200.0" prefWidth="461.0">
+      <TableView fx:id="userBookedFlightsTable" layoutX="41.0" layoutY="89.0" prefHeight="200.0" prefWidth="487.0">
         <columns>
-          <TableColumn fx:id="flightIDColumn" prefWidth="90.0" text="Flight Number" />
-          <TableColumn fx:id="fromCityColumn" prefWidth="67.0" text="From" />
-            <TableColumn fx:id="toCityColumn" prefWidth="68.0" text="To" />
-            <TableColumn fx:id="depTimeColumn" prefWidth="94.0" text="Departure Time" />
+          <TableColumn fx:id="flightIDColumn" prefWidth="52.0" text="Flight #" />
+          <TableColumn fx:id="fromCityColumn" prefWidth="63.0" text="From" />
+            <TableColumn fx:id="toCityColumn" prefWidth="63.0" text="To" />
+            <TableColumn fx:id="depTimeColumn" prefWidth="100.0" text="Departure Time" />
             <TableColumn fx:id="arriveTimeColumn" prefWidth="78.0" text="Arrival Time" />
-            <TableColumn fx:id="dateColumn" prefWidth="62.0" text="Date" />
+            <TableColumn fx:id="dateColumn" prefWidth="65.0" text="Date" />
+            <TableColumn fx:id="orderNumColumn" prefWidth="75.0" text="Order #" />
         </columns>
       </TableView>
       <Button fx:id="deleteButton" layoutX="224.0" layoutY="294.0" mnemonicParsing="false" text="Delete Flight">

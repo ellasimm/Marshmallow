@@ -49,7 +49,9 @@ public class findFlightController implements Initializable{
 	@FXML Button addButton;
 	@FXML TextField flightNum;
 	
+	
 	ObservableList<Flights> list = FXCollections.observableArrayList(GetDB.allFlights());
+	
 	
 	public void addFlight(ActionEvent event) throws Exception {
 		int flightId = Integer.parseInt(flightNum.getText());
@@ -66,6 +68,7 @@ public class findFlightController implements Initializable{
 		
 		window.setScene(logOutScene);
 		window.show();
+		
 	}
 
 	public void toAccount(ActionEvent event) throws Exception {

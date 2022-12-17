@@ -11,12 +11,13 @@ import java.util.logging.Logger;
 import FlightCode.FlightOrder;
 import FlightCode.Flights;
 import FlightCode.User;
+import GUI.LoginPageController;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 
 public class GetDB {
 	private static final Logger log = null;
-	
+	public static String url = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 	// get the user's information from the DB
 	public static User getUser(String userName) {
 		User user = new User();
@@ -91,8 +92,8 @@ public class GetDB {
 			resultSet = statement.executeQuery(sql);
 		
 			while(resultSet.next()) {
-				System.out.println(resultSet.getInt(1) + ","+ resultSet.getString(2) + ","+ resultSet.getString(3) + ","+
-						resultSet.getString(4)+ ","+resultSet.getString(5)+ ","+ resultSet.getString(6)+ ","+ resultSet.getString(7));
+//				System.out.println(resultSet.getInt(1) + ","+ resultSet.getString(2) + ","+ resultSet.getString(3) + ","+
+//						resultSet.getString(4)+ ","+resultSet.getString(5)+ ","+ resultSet.getString(6)+ ","+ resultSet.getString(7));
 				
 				Flights flights = new Flights();
 				
@@ -113,27 +114,31 @@ public class GetDB {
 	}
 	
 	// get the list of booked flights for user
-	public static ObservableList<FlightOrder> flightorders(int userID){
-		String url = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+	public static ObservableList<FlightOrder> flightorders(){
+		int currUserId = LoginPageController.currentUser.getUserID();
 		ObservableList<FlightOrder> orders = FXCollections.observableArrayList();
+		ResultSet res = null;
 		
 		try {
 			Class.forName("java.sql.Driver");
 			Connection cnn = DriverManager.getConnection(url);
 			
-			PreparedStatement ps = cnn.prepareStatement("SELECT * FROM FlightOrder WHERE userId=" + "'" + userID + "'");
+			PreparedStatement ps = cnn.prepareStatement("SELECT * FROM FlightOrder WHERE UserId=" + "'" + currUserId + "'");
 			
-			ResultSet res = ps.executeQuery();
+			res = ps.executeQuery();
 			
 			while (res.next()) {
+				System.out.println(res.getInt(1) + ","+ res.getString(2) + ","+ res.getString(3) + ","+
+					res.getString(4)+ ","+res.getString(5)+ ","+ res.getString(6)+ ","+ res.getString(7) + ","+ res.getString(8));
+				
 				FlightOrder booking = new FlightOrder(res.getInt("flightOrderId"),
 						(res.getInt("flightId")),
 						(res.getString("fromCity")),
 						(res.getString("toCity")),
-						(res.getString("flightDate")),
 						(res.getString("takeOffTime")),
 						(res.getString("landingTime")),
-						(res.getInt("userId")));
+						(res.getString("flightDate")));
+				
 				
 				orders.add(booking);
 			}
