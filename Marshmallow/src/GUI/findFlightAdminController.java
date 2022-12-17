@@ -28,6 +28,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 
+
 public class findFlightAdminController implements Initializable{
 
 	@FXML Button accountButton;
@@ -49,7 +50,9 @@ public class findFlightAdminController implements Initializable{
 	@FXML TextField flightNum;
 	@FXML Button adminButton;
 	
+	
 	ObservableList<Flights> list = FXCollections.observableArrayList(GetDB.allFlights());
+	
 	
 	public void addFlight(ActionEvent event) throws Exception {
 		int flightId = Integer.parseInt(flightNum.getText());
@@ -66,6 +69,7 @@ public class findFlightAdminController implements Initializable{
 		
 		window.setScene(logOutScene);
 		window.show();
+		
 	}
 
 	public void toAccount(ActionEvent event) throws Exception {

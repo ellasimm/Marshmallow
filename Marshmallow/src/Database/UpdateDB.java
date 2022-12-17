@@ -13,31 +13,19 @@ import FlightCode.Flights;
 public class UpdateDB {
 	public static boolean success;
 	private static final Logger log = null;
+	public static String url = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 	
-	public static void deleteFlightOrder(FlightOrder orderId, String sql)  {
+	
+	public static void deleteFlightOrder(int flightId)  {
 		success = false;
-		
-		/**
-		String sql = "DELETE * FROM FlightOrder WHERE flightOrderId=" + "'" + orderId + "'" ;
-		try(Connection cnn = DriverManager.getConnection("jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
-				PreparedStatement preparedStatement = cnn.prepareStatement(sql);){
-			preparedStatement.setLong(1, orderId.getOrderNumber());
-			preparedStatement.executeUpdate();
-			success = true;
-			
-		}catch(Exception ex) {
-			ex.printStackTrace();
-			success = false;
-		}
-		/**********************************/
 		try {
-			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-			System.out.println("connecting..");
-			Connection cnn = DriverManager.getConnection(cnnString);
-			log.info("Delete data");
-			PreparedStatement preparedStatement = cnn.prepareStatement(sql);
-			preparedStatement.setLong(1, orderId.getOrderNumber());
-			preparedStatement.executeUpdate();
+			Class.forName("java.sql.Driver");
+			
+			Connection cnn = DriverManager.getConnection(url);
+			
+			PreparedStatement ps = cnn.prepareStatement("DELETE FROM FlightOrder WHERE flightId" + "'" + flightId + "'");
+			
+			ps.executeUpdate();
 			
 			cnn.close();
 			success = true;
@@ -46,26 +34,23 @@ public class UpdateDB {
 			success = false;
 		}
 	}
-	public static void deleteFlight(Flights flightid, String sql)  {
+	
+	public static void deleteFlight(int flightId)  {
 		success = false;
-		//String sql = "DELETE FROM Flights WHERE flightId =" + "'"+flightid+"'"; 
 		try {
-			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-			System.out.println("connecting..");
-			Connection cnn = DriverManager.getConnection(cnnString);
-			log.info("Delete data");
-			PreparedStatement preparedStatement = cnn.prepareStatement(sql);
-			preparedStatement.setLong(1,flightid.getFlightId());
-			preparedStatement.executeUpdate();
+			Class.forName("java.sql.Driver");
+			
+			Connection cnn = DriverManager.getConnection(url);
+			
+			PreparedStatement ps = cnn.prepareStatement("DELETE FROM Flights WHERE flightId" + "'" + flightId + "'");
+			
+			ps.executeUpdate();
 			
 			cnn.close();
 			success = true;
-			
-		}catch(Exception ex) {
-			ex.printStackTrace();
+		}catch(Exception e1) {
+			e1.printStackTrace();
 			success = false;
-		
 		}
 	}
-	
 }

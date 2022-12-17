@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import GUI.LoginPageController;
 import Database.GetDB;
+import Database.UpdateDB;
 import FlightCode.FlightOrder;
 import FlightCode.Flights;
 import javafx.collections.FXCollections;
@@ -17,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -35,9 +37,15 @@ public class AccountController implements Initializable{
 	@FXML TableColumn<FlightOrder, String> dateColumn;
 	@FXML TableColumn<FlightOrder, Integer> orderNumColumn;
 	@FXML Button deleteButton;
+	@FXML TextField flightNumIn;
 	
 	
 	ObservableList<FlightOrder> list = FXCollections.observableArrayList(GetDB.flightorders());
+	
+	public void delete(ActionEvent event) throws Exception {
+		int flightId = Integer.parseInt(flightNumIn.getText());
+		UpdateDB.deleteFlightOrder(flightId);
+	}
 	
 public void back(ActionEvent event) throws Exception {
 		
