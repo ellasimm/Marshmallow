@@ -38,13 +38,27 @@ public class AccountController implements Initializable{
 	@FXML TableColumn<FlightOrder, Integer> orderNumColumn;
 	@FXML Button deleteButton;
 	@FXML TextField flightNumIn;
+	@FXML Button refresh;
 	
 	
 	ObservableList<FlightOrder> list = FXCollections.observableArrayList(GetDB.flightorders());
 	
+	
+	public void refresh(ActionEvent event) throws Exception {
+		AnchorPane toAccountParent = FXMLLoader.load(getClass().getResource("/GUI/Account.fxml"));
+		Scene toAccountScene = new Scene(toAccountParent);
+	
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+	
+		window.setScene(toAccountScene);
+		window.show();
+	}
+	
 	public void delete(ActionEvent event) throws Exception {
+		
 		int flightId = Integer.parseInt(flightNumIn.getText());
 		UpdateDB.deleteFlightOrder(flightId);
+		
 	}
 	
 public void back(ActionEvent event) throws Exception {

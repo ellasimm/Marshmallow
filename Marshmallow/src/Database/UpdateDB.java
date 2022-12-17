@@ -17,32 +17,39 @@ public class UpdateDB {
 	
 	
 	public static void deleteFlightOrder(int flightId)  {
+
 		success = false;
 		try {
+
 			Class.forName("java.sql.Driver");
+
+			Connection connection = DriverManager.getConnection(url);
+
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("DELETE FROM FlightOrder WHERE flightId=" + "'" + flightId + "'");
+
+			preparedStatement.executeUpdate();
 			
-			Connection cnn = DriverManager.getConnection(url);
 			
-			PreparedStatement ps = cnn.prepareStatement("DELETE FROM FlightOrder WHERE flightId" + "'" + flightId + "'");
 			
-			ps.executeUpdate();
-			
-			cnn.close();
+			connection.close();
 			success = true;
-		}catch(Exception e1) {
+		} catch (Exception e1) {
 			e1.printStackTrace();
 			success = false;
+
 		}
+		
 	}
 	
-	public static void deleteFlight(int flightId)  {
+	public static void deleteFlight(Integer flightId)  {
 		success = false;
 		try {
 			Class.forName("java.sql.Driver");
 			
 			Connection cnn = DriverManager.getConnection(url);
 			
-			PreparedStatement ps = cnn.prepareStatement("DELETE FROM Flights WHERE flightId" + "'" + flightId + "'");
+			PreparedStatement ps = cnn.prepareStatement("DELETE FROM Flights " + "WHERE flightId" + "'" + flightId + "'");
 			
 			ps.executeUpdate();
 			
