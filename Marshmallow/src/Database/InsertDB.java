@@ -52,12 +52,51 @@ public class InsertDB {
 	}
 	
 	public static void insertFlightOrder(FlightOrder order) throws ClassNotFoundException {
+		/**
+		try {
+			Class.forName("java.sql.Driver");
+			System.out.println("Database is connecting");
+		
+			Connection cnn =  DriverManager.getConnection(cnnStr);
+			Statement stat = cnn.createStatement();
+			
+			String sql2 = "SELECT count(*) FROM FlightOrder WHERE flightId =" + "'" + order.getFlightID() + "'" + "and userID=" +"'"+ order.getUserID()+"'";
+			ResultSet resultSet = stat.executeQuery(sql2);
+			System.out.println(resultSet.next());
+			if(resultSet.next() == true) {
+				ErrorMessage.showErrorMessage("Duplicate Booking Alert!");
+			}
+			else if (resultSet.next() == false){
+				String sqlQuery = "INSERT INTO FlightOrder(flightOrderId, flightId, fromCity, toCity, flightDate, takeOffTime, landingTime, userId) "
+						+ "VALUES(?,?,?,?,?,?,?,?)";
+				
+				String sql ="UPDATE Flights SET numSeat = numSeat -1 WHERE flightId=" + "'" + order.getFlightID() + "'";
+				
+				stat.executeUpdate(sql);
+				
+				PreparedStatement preparedStatement = cnn.prepareStatement(sqlQuery);
+				
+				preparedStatement.setInt(1, order.getOrderNumber());
+				preparedStatement.setInt(2, order.getFlightID());
+				preparedStatement.setString(3, order.getFromCity());
+				preparedStatement.setString(4, order.getToCity());
+				preparedStatement.setString(5, order.getFlightDate());
+				preparedStatement.setString(6, order.getTakeOffTime());
+				preparedStatement.setString(7, order.getLandingTime());
+				preparedStatement.setInt(8, order.getUserID());
+				preparedStatement.executeUpdate();
+				
+				ErrorMessage.showErrorMessage("You're booked for flight number " + order.getFlightID());
+			}
+			cnn.close();
+			
+		**/
 		try {
 			Class.forName("java.sql.Driver");
 			System.out.println("Database is connecting");
 			
 			Connection cnn =  DriverManager.getConnection(cnnStr);
-			String sql2 = "SELECT * FROM FlightOrder WHERE flightId =" + "'" + order.getFlightID() + "'";
+			String sql2 = "SELECT * FROM FlightOrder WHERE flightId =" + "'" + order.getFlightID() + "'" + "and userID=" +"'"+ order.getUserID()+"'";
 			PreparedStatement preparedStatement1 = cnn.prepareStatement(sql2);
 			boolean resultSet = preparedStatement1.execute();
 			
@@ -85,11 +124,13 @@ public class InsertDB {
 				preparedStatement.setInt(8, order.getUserID());
 				preparedStatement.executeUpdate();
 				
-				cnn.close();
+				
 				
 				ErrorMessage.showErrorMessage("You're booked for flight number " + order.getFlightID());
 			}
-			
+				
+			cnn.close();
+	
 		}catch(SQLException ex) {
 			ex.printStackTrace();
 
