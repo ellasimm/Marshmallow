@@ -63,13 +63,25 @@ public class AccountController implements Initializable{
 	
 public void back(ActionEvent event) throws Exception {
 		
-		AnchorPane backParent = FXMLLoader.load(getClass().getResource("/GUI/findFlight.fxml"));
-		Scene backScene = new Scene(backParent);
+		if(GetDB.getAdmin(LoginPageController.currentUser.getUserName()) == -1) {
+			AnchorPane backParent = FXMLLoader.load(getClass().getResource("/GUI/findFlight.fxml"));
+			Scene backScene = new Scene(backParent);
 		
-		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		
-		window.setScene(backScene);
-		window.show();
+			window.setScene(backScene);
+			window.show();
+		}
+		
+		else {
+			AnchorPane backParent = FXMLLoader.load(getClass().getResource("/GUI/findFlightAdmin.fxml"));
+			Scene backScene = new Scene(backParent);
+		
+			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+			window.setScene(backScene);
+			window.show();
+		}
 	}
 	
 public void logOut(ActionEvent event) throws Exception {

@@ -170,7 +170,7 @@ public class GetDB {
 		return id;
 	}
 	// get the number for userName which indicates if the user is Admin or not
-	public static int getIsAdmin(String userName) {
+	public static int getAdmin(String userName) {
 		int num = 0;
 		ResultSet resultSet = null;
 		String sql = "SELECT isAdmin FROM AccountUser WHERE userName=" + "'" + userName + "'" ;
