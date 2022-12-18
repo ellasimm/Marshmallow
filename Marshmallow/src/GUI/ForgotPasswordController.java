@@ -33,6 +33,9 @@ public class ForgotPasswordController implements Initializable{
 		String username = UsernameInput.getText();
 		String ques = GetDB.getSQ(username);
 		sQuestionText.setText(ques);
+		if (ques.isBlank() || ques.isEmpty()) {
+			ErrorMessage.showErrorMessage("Username does not exist");
+		}
 	}
 	
 	
