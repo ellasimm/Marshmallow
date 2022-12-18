@@ -53,6 +53,18 @@ public class findFlightAdminController implements Initializable{
 	
 	ObservableList<Flights> list = FXCollections.observableArrayList(GetDB.allFlights());
 	
+public void adminPage(ActionEvent event) throws Exception {
+		
+		AnchorPane logOutParent = FXMLLoader.load(getClass().getResource("/GUI/AdminPage.fxml"));
+		Scene logOutScene = new Scene(logOutParent);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(logOutScene);
+		window.show();
+		
+	}
+	
 	
 	public void addFlight(ActionEvent event) throws Exception {
 		int flightId = Integer.parseInt(flightNum.getText());

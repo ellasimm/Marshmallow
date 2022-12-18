@@ -23,28 +23,36 @@ public class InsertDB {
 
 	
 	public static void insertFlight(Flights flight){
+		
 		success = false;
-		String sql = "INSERT INTO Flights (flightID, fromCity, toCity, takeOffTime, landingTime, numSeat, flightDate ) "
-				+ "VALUES (num, fromCity, toCity, landingTime,  takeOffTime, numSeats, flightDate);";
-		try(Connection cnn = DriverManager.getConnection(cnnStr);
-				PreparedStatement preparedStatement = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);){
-			ResultSet resultSet = null;
-			preparedStatement.execute();
-			resultSet = preparedStatement.getGeneratedKeys();
-			while(resultSet.next()) {
-				System.out.println("key(s): "+ resultSet.getString(1));
-				preparedStatement.setInt(1,flight.getFlightId());
-				preparedStatement.setString(2, flight.getFromCity());
-				preparedStatement.setString(3, flight.getToCity());
-				preparedStatement.setString(4, flight.getTakeOffTime());
-				preparedStatement.setString(5, flight.getLandingTime());
-				preparedStatement.setInt(6, flight.getNumSeat());
-				preparedStatement.setString(7, flight.getFlightDate());
-				preparedStatement.executeUpdate();
-				
-				success = true;
-			}
-		}catch(SQLException ex) {
+		
+		try {
+			
+		Class.forName("java.sql.Driver");
+		
+		System.out.println("Connected");
+		
+		Connection cnn = DriverManager.getConnection(cnnStr);
+		
+		String sql = "INSERT INTO Flights (flightId, fromCity, toCity, takeOffTime, landingTime, numSeat, flightDate) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?);";
+		
+		PreparedStatement preparedStatement = cnn.prepareStatement(sql);
+		
+		preparedStatement.setInt(1,flight.getFlightId());
+		preparedStatement.setString(2, flight.getFromCity());
+		preparedStatement.setString(3, flight.getToCity());
+		preparedStatement.setString(4, flight.getTakeOffTime());
+		preparedStatement.setString(5, flight.getLandingTime());
+		preparedStatement.setInt(6, flight.getNumSeat());
+		preparedStatement.setString(7, flight.getFlightDate());
+		preparedStatement.executeUpdate();
+		
+		cnn.close();
+		success = true;
+		
+		}catch(Exception ex) {
+			System.out.println("database error");
 			ex.printStackTrace();
 			success = false;
 		}

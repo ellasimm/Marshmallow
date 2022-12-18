@@ -58,6 +58,9 @@ public class AccountController implements Initializable{
 		
 		int flightId = Integer.parseInt(flightNumIn.getText());
 		UpdateDB.deleteFlightOrder(flightId);
+		if (UpdateDB.success) {
+			ErrorMessage.showErrorMessage("Flight deleted. Please refresh the page.");
+		}
 		
 	}
 	

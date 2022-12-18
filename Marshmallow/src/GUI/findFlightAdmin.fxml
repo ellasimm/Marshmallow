@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="349.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.findFlightController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="349.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.findFlightAdminController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d4efff" height="347.0" opacity="0.54" stroke="WHITE" strokeType="INSIDE" width="687.0" />
       <Rectangle fx:id="bckrdBar" arcHeight="5.0" arcWidth="5.0" height="70.0" stroke="#82c6ed" strokeType="INSIDE" width="687.0">
@@ -76,7 +76,7 @@
             <Font name="Telugu MN" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="adminButton" layoutX="23.0" layoutY="22.0" mnemonicParsing="false" onAction="#toAccount" prefHeight="26.0" prefWidth="133.0" text="Add/Delete Flights">
+      <Button fx:id="adminButton" layoutX="23.0" layoutY="22.0" mnemonicParsing="false" onAction="#adminPage" prefHeight="26.0" prefWidth="133.0" text="Add/Delete Flights">
          <font>
             <Font name="Telugu MN" size="13.0" />
          </font>

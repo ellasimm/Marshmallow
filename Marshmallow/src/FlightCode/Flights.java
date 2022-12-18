@@ -2,6 +2,7 @@ package FlightCode;
 
 import java.util.ArrayList;
 import Database.InsertDB;
+import GUI.ErrorMessage;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -40,19 +41,19 @@ public class Flights implements Comparable<Flights>{
 	public static void createFlight(String fromCity, String toCity, Integer numSeat, String flightDate, 
 										String landingTime,  String takeOffTime){
 
-		int num = createFlightNum();  
+		int flightId = createFlightNum();
 
-		try {
-
-			Flights flight = new Flights(num, fromCity, toCity, landingTime,  takeOffTime, numSeat, flightDate);
-			String cnnString = "jdbc:sqlserver://marshmallow.database.windows.net:1433;database=marshmallowDatabase;user=ellasimm@marshmallow;password=EllaOmamaReza1!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-			Connection connection = DriverManager.getConnection(cnnString);
+		Flights flight = new Flights(flightId, fromCity, toCity, landingTime,  takeOffTime, numSeat, flightDate);
 		
-			InsertDB.insertFlight(flight);
+		InsertDB.insertFlight(flight);
 			
-		} catch(SQLException ex) {
-			ex.printStackTrace();
+		if  (InsertDB.success) {
+			ErrorMessage.showErrorMessage("You have created a flight with flight number "  + flightId);
 		}
+		else {
+			ErrorMessage.showErrorMessage("Something went wrong");
+		}
+		
 	}
 
 

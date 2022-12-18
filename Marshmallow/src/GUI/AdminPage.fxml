@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="245.0" prefWidth="412.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdminPageController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d4efff" height="242.0" layoutX="-6.0" layoutY="2.0" opacity="0.54" stroke="WHITE" strokeType="INSIDE" width="417.0" />
+      <Rectangle fx:id="BacgroundRectangle" arcHeight="5.0" arcWidth="5.0" height="74.0" layoutX="-5.0" layoutY="-6.0" stroke="#82c5ee" strokeType="INSIDE" width="417.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.5098039507865906" green="0.772549033164978" blue="0.9333333373069763" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006711409395973154">
+                     <color>
+                        <Color red="0.5098039507865906" green="0.772549033164978" blue="0.9333333373069763" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.7962962985038757" green="0.9253086447715759" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Label layoutX="111.0" layoutY="24.0" prefHeight="30.0" prefWidth="190.0" text="Welcome Admin">
+         <font>
+            <Font name="Telugu MN" size="24.0" />
+         </font>
+      </Label>
+      <Text fx:id="PassRecoveryInputUsername" layoutX="19.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a Flight:" wrappingWidth="102.0">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="toCityIn" alignment="CENTER" layoutX="10.0" layoutY="143.0" prefHeight="26.0" prefWidth="102.0" promptText="Arrival City" />
+      <Button fx:id="deleteButton" layoutX="293.0" layoutY="156.0" mnemonicParsing="false" onAction="#deleteFlight" text="Delete">
+         <font>
+            <Font name="Tamil MN" size="13.0" />
+         </font>
+      </Button>
+      <Text fx:id="RememberPassword" layoutX="258.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font name="Tamil MN" size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="backButton" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#goBack" text="Back">
+         <font>
+            <Font name="Tamil MN" size="13.0" />
+         </font>
+      </Button>
+      <Text fx:id="PassRecoveryInputUsername1" layoutX="258.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete a Flight:" wrappingWidth="129.0">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="fromCityIn" alignment="CENTER" layoutX="10.0" layoutY="117.0" prefHeight="26.0" prefWidth="102.0" promptText="Departure City" />
+      <Button fx:id="addButton" layoutX="57.0" layoutY="201.0" mnemonicParsing="false" onAction="#addFlight" prefHeight="21.0" prefWidth="111.0" text="Add">
+         <font>
+            <Font name="Tamil MN" size="13.0" />
+         </font>
+      </Button>
+      <TextField fx:id="flightDateIn" alignment="CENTER" layoutX="112.0" layoutY="143.0" prefHeight="26.0" prefWidth="102.0" promptText="Date of Flight" />
+      <TextField fx:id="numSeatIn" alignment="CENTER" layoutX="112.0" layoutY="117.0" prefHeight="26.0" prefWidth="102.0" promptText="# of Seats" />
+      <TextField fx:id="takeOffTimeIn" alignment="CENTER" layoutX="10.0" layoutY="169.0" prefHeight="26.0" prefWidth="102.0" promptText="Take-Off Time" />
+      <TextField fx:id="landingTimeIn" alignment="CENTER" layoutX="112.0" layoutY="169.0" prefHeight="26.0" prefWidth="102.0" promptText="Landing Time" />
+      <TextField fx:id="flightNumIn" alignment="CENTER" layoutX="293.0" layoutY="127.0" prefHeight="26.0" prefWidth="59.0" promptText="Flight #" />
+   </children>
+</AnchorPane>
