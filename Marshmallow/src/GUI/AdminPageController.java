@@ -50,16 +50,17 @@ public class AdminPageController implements Initializable{
 	}
 	
 	public void deleteFlight(ActionEvent event) throws Exception { 
-		
-		if (flightNumIn.getText().isBlank()) {
-			ErrorMessage.showErrorMessage("Please enter a number");
-		}
-		
 		int flightId = Integer.parseInt(flightNumIn.getText());
-		UpdateDB.deleteFlight(flightId);
-		if (UpdateDB.success) {
-			ErrorMessage.showErrorMessage("Flight deleted");
-		}	
+		try {
+			UpdateDB.deleteFlight(flightId);
+			if (UpdateDB.success = false) {
+				throw new Exception("Something went wrong");
+			}else {
+				ErrorMessage.showErrorMessage("Flight deleted");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void goBack(ActionEvent event) throws Exception {  
