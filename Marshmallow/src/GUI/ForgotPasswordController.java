@@ -3,6 +3,7 @@ package GUI;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Database.GetDB;
 import Database.LoginDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,8 +24,18 @@ public class ForgotPasswordController implements Initializable{
 	@FXML private Button SecurityQuestionButton;
 	@FXML private Button HomeButton;
 	@FXML private TextField SecurityAnswerIn;
+	@FXML private Button getQuestion;
+	@FXML private Text sQuestionText;
 
 
+	
+	public void getQuestionText(ActionEvent event)throws Exception {
+		String username = UsernameInput.getText();
+		String ques = GetDB.getSQ(username);
+		sQuestionText.setText(ques);
+	}
+	
+	
 	public void goHome(ActionEvent event) throws Exception {
 		
 		AnchorPane goHomeParent = FXMLLoader.load(getClass().getResource("/GUI/LoginPage.fxml"));

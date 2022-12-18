@@ -201,11 +201,12 @@ public class GetDB {
 			while(resultSet.next()) {
 				System.out.println(resultSet.getString("securityQuestion"));
 				
-				sq = resultSet.getString("securityQuestion");
+				sq = resultSet.getString("securityQuestion");	
 			}
 		}catch(SQLException ex) {
 			ex.printStackTrace();
 		}
 		return sq;
+		
 	}
 }

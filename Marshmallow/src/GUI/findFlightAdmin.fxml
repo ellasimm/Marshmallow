@@ -50,13 +50,13 @@
       </Button>
       <TableView fx:id="flightTable" layoutX="44.0" layoutY="130.0" prefHeight="200.0" prefWidth="524.0">
          <columns>
-            <TableColumn fx:id="cityToTable" prefWidth="75.0" text="To" />
-            <TableColumn fx:id="cityFromTable" prefWidth="75.0" text="From" />
-            <TableColumn fx:id="flightDateTable" prefWidth="75.0" text="Date" />
-            <TableColumn fx:id="depTimeTable" prefWidth="75.0" text="Departure" />
-            <TableColumn fx:id="arrivalTimeTable" prefWidth="75.0" text="Arrival" />
-            <TableColumn fx:id="numSeatsTable" prefWidth="75.0" text="Seats Left" />
-            <TableColumn fx:id="flightIDTable" prefWidth="75.0" text="Flight ID" />
+            <TableColumn fx:id="cityToTable" prefWidth="92.15516662597656" text="To" />
+            <TableColumn fx:id="cityFromTable" prefWidth="86.34488677978516" text="From" />
+            <TableColumn fx:id="flightDateTable" prefWidth="69.0" text="Date" />
+            <TableColumn fx:id="depTimeTable" prefWidth="76.5" text="Departure" />
+            <TableColumn fx:id="arrivalTimeTable" prefWidth="69.0" text="Arrival" />
+            <TableColumn fx:id="numSeatsTable" minWidth="0.0" prefWidth="72.0" text="Seats Left" />
+            <TableColumn fx:id="flightIDTable" prefWidth="62.0" text="Flight ID" />
          </columns>
       </TableView>
       <TextField fx:id="searchDeparture" layoutX="197.0" layoutY="84.0" prefHeight="26.0" prefWidth="359.0" promptText="ie Atlanta, 12:00PM, etc" />
@@ -65,12 +65,18 @@
             <Font name="Telugu MN" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="addButton" layoutX="583.0" layoutY="120.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Add Flight">
+      <Button fx:id="addButton" layoutX="584.0" layoutY="197.0" mnemonicParsing="false" onAction="#addFlight" prefHeight="26.0" prefWidth="92.0" text="Book Flight">
          <font>
             <Font name="Tamil MN" size="13.0" />
          </font>
       </Button>
-      <Button fx:id="adminButton" layoutX="7.0" layoutY="22.0" mnemonicParsing="false" onAction="#toAccount" prefHeight="26.0" prefWidth="92.0" text="Admin Page">
+      <TextField fx:id="flightNum" layoutX="585.0" layoutY="161.0" prefHeight="26.0" prefWidth="86.0" promptText="ie 1" />
+      <Label layoutX="586.0" layoutY="135.0" prefHeight="28.0" prefWidth="100.0" text="Flight #:">
+         <font>
+            <Font name="Telugu MN" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="adminButton" layoutX="23.0" layoutY="22.0" mnemonicParsing="false" onAction="#toAccount" prefHeight="26.0" prefWidth="133.0" text="Add/Delete Flights">
          <font>
             <Font name="Telugu MN" size="13.0" />
          </font>
