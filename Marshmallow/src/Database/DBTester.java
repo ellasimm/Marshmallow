@@ -11,16 +11,7 @@ public class DBTester {
 		
 		//Already tested insertFlight, it works
 		
-		Flights flight = new Flights();
-		User user = new User();
-				
 		
-		//String sql = "INSERT INTO Flights (flightID, fromCity, toCity, takeOffTime, landingTime, numSeat, flightDate ) "
-				//+ "VALUES (216, 'Atlanta', 'Miami', '2:40PM', '4:40PM', 50, '01/25/2023');";
-		//String sql = "INSERT INTO Flights (flightID, fromCity, toCity, takeOffTime, landingTime, numSeat, flightDate ) "
-						//+ "VALUES (218, 'Atlanta', 'San Francisco', '5:10PM', '11:00PM', 50, '02/13/2023');";
-		InsertDB.insertFlight(flight);
-		System.out.println("Flight added");
 		
 		
 		

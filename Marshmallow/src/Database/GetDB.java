@@ -29,9 +29,9 @@ public class GetDB {
 			resultSet = statement.executeQuery(sql);
 		
 			while(resultSet.next()) {
-				System.out.println(resultSet.getString(1)+ ","+ resultSet.getString(2)+ ","+ resultSet.getString(3)+ ","+
-						resultSet.getString(4)+ ","+resultSet.getString(5)+ ","+ resultSet.getString(6)+ ","+ resultSet.getString(7)+","+
-						resultSet.getString(8)+ ","+resultSet.getString(9)+ ","+resultSet.getString(10)+ ","+ resultSet.getString(11)+ ","+ resultSet.getString(12));
+//				System.out.println(resultSet.getString(1)+ ","+ resultSet.getString(2)+ ","+ resultSet.getString(3)+ ","+
+//						resultSet.getString(4)+ ","+resultSet.getString(5)+ ","+ resultSet.getString(6)+ ","+ resultSet.getString(7)+","+
+//						resultSet.getString(8)+ ","+resultSet.getString(9)+ ","+resultSet.getString(10)+ ","+ resultSet.getString(11)+ ","+ resultSet.getString(12));
 				
 				user.setUserID(resultSet.getInt("UserId"));
 				user.setUserName(resultSet.getString("userName"));
@@ -64,8 +64,8 @@ public class GetDB {
 			resultSet = statement.executeQuery(sql);
 		
 			while(resultSet.next()) {
-				System.out.println(resultSet.getInt(1) + ","+ resultSet.getString(2) + ","+ resultSet.getString(3) + ","+
-						resultSet.getString(4)+ ","+resultSet.getString(5)+ ","+ resultSet.getString(6)+ ","+ resultSet.getString(7));
+//				System.out.println(resultSet.getInt(1) + ","+ resultSet.getString(2) + ","+ resultSet.getString(3) + ","+
+//						resultSet.getString(4)+ ","+resultSet.getString(5)+ ","+ resultSet.getString(6)+ ","+ resultSet.getString(7));
 				flight.setFlightId(resultSet.getInt("flightId"));
 				flight.setFromCity(resultSet.getString("fromCity"));
 				flight.setToCity(resultSet.getString("toCity"));
@@ -128,8 +128,8 @@ public class GetDB {
 			res = ps.executeQuery();
 			
 			while (res.next()) {
-				System.out.println(res.getInt(1) + ","+ res.getString(2) + ","+ res.getString(3) + ","+
-					res.getString(4)+ ","+res.getString(5)+ ","+ res.getString(6)+ ","+ res.getString(7) + ","+ res.getString(8));
+//				System.out.println(res.getInt(1) + ","+ res.getString(2) + ","+ res.getString(3) + ","+
+//					res.getString(4)+ ","+res.getString(5)+ ","+ res.getString(6)+ ","+ res.getString(7) + ","+ res.getString(8));
 				
 				FlightOrder booking = new FlightOrder(res.getInt("flightOrderId"),
 						(res.getInt("flightId")),

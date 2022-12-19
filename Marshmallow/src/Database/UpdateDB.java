@@ -49,7 +49,7 @@ public class UpdateDB {
 			
 			Connection cnn = DriverManager.getConnection(url);
 			
-			PreparedStatement ps = cnn.prepareStatement("DELETE FROM Flights " + "WHERE flightId" + "'" + flightId + "'");
+			PreparedStatement ps = cnn.prepareStatement("DELETE FROM Flights " + "WHERE flightId=" + "'" + flightId + "'");
 			
 			ps.executeUpdate();
 			

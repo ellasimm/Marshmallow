@@ -85,7 +85,7 @@ public class LoginDB {
 				password = res.getString("password");
 				rightAnswer = res.getString("securityAnswer");
 				
-				System.out.println(password + rightAnswer);
+//				System.out.println(password + rightAnswer);
 			}
 			
 			if(!userAnswer.equals(rightAnswer))  {
