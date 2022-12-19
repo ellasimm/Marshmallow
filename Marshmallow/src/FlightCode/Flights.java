@@ -126,7 +126,7 @@ public class Flights implements Comparable<Flights>{
 
 	public static int createFlightNum() {
 
-		int num = (int)(Math.random() * 99999);
+		int num = (int)(Math.random() * 999);
 		return num;
 	}
 
