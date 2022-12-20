@@ -11,7 +11,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/ellasimm/Desktop/mssql-jdbc-9.2.0.jre8.jar"/>
-	<classpathentry kind="lib" path="/Users/ellasimm/Desktop/mysql-connector-java-8.0.18.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mohammad/Downloads/mssql-jdbc-9.2.0.jre8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mohammad/Downloads/mysql-connector-java-8.0.18.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
